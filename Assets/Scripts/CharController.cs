@@ -15,7 +15,7 @@ public class CharController : MonoBehaviour
     [Header("Main")]
 
     public float speed;
-    public Joystick variableJoystick;
+    public FixedJoystick variableJoystick;
     public Joystick variableJoystick2;
     public Rigidbody rb;
     Vector3 m_EulerAngleVelocity;
@@ -45,16 +45,17 @@ public class CharController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-
+        UpdateAnimator();
+        CheckGroundStatus();
+        MovePosition();
+        MoveRotation();
+    }
+    void MovePosition()
+    {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
-            // movement = new Vector2(movement.x, movement.y);
-            if((Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) > 1)
-            {
-
-            }
             direction = Vector3.forward * movement.z + Vector3.right * movement.x;
             direction = direction.normalized;
         }
@@ -64,31 +65,24 @@ public class CharController : MonoBehaviour
             movement.z = variableJoystick.Vertical;
             direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         }
-        UpdateAnimator();
-        CheckGroundStatus();
-
-
         rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
-
-    
-        rotation.x = variableJoystick2.Horizontal;
-        rotation.z = variableJoystick2.Vertical;
-
-    
 
         run = (Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) * 2;
         if (run > 1)
             run = 1;
         if (run < 0.1)
             run = 0;
-        Debug.Log(run);
+    }
 
+    void MoveRotation()
+    {
+        rotation.x = variableJoystick2.Horizontal;
+        rotation.z = variableJoystick2.Vertical;
 
-
-        if (rotation.x != 0 || rotation.z != 0)
+        if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
         {
             rotation = new Vector3(rotation.x, 0, rotation.z);
-            gameObject.transform.LookAt(gameObject.transform.position + rotation * Time.deltaTime);
+            gameObject.transform.parent.LookAt(gameObject.transform.position + rotation * Time.deltaTime);
             aiming = true;
             Debug.Log("aiming");
         }
@@ -96,18 +90,17 @@ public class CharController : MonoBehaviour
         {
             aiming = false;
             movement = new Vector3(movement.x, 0, movement.z);
-            gameObject.transform.LookAt(gameObject.transform.position + movement * Time.deltaTime);
+            gameObject.transform.parent.LookAt(gameObject.transform.position + movement * Time.deltaTime);
         }
-        Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
-        rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
-
+        //Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
+        //rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
 
     }
     void UpdateAnimator()
     {
         // update the animator parameters
-        charAnimator.SetFloat("Y", variableJoystick.Horizontal);
-        charAnimator.SetFloat("X", variableJoystick.Vertical);
+        //charAnimator.SetFloat("Y", variableJoystick2.Vertical);
+        //charAnimator.SetFloat("X", variableJoystick2.Horizontal);
 
 
         charAnimator.SetFloat("Speed", run);
@@ -125,8 +118,7 @@ public class CharController : MonoBehaviour
 
     }
 
-
-
+  
 
     void CheckGroundStatus()
     {
