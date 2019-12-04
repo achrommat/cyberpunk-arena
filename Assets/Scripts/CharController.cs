@@ -34,6 +34,7 @@ public class CharController : MonoBehaviour
     bool OnGround;
     bool ongroundstay;
     bool aiming;
+    bool Jump;
     float run;
 
 
@@ -56,6 +57,7 @@ public class CharController : MonoBehaviour
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
+           
             direction = Vector3.forward * movement.z + Vector3.right * movement.x;
             direction = direction.normalized;
         }
@@ -65,6 +67,11 @@ public class CharController : MonoBehaviour
             movement.z = variableJoystick.Vertical;
             direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         }
+        //if (movement.x > -0.1 && movement.z < 0.1)
+        //    movement.x = 0;
+        //if (movement.z > -0.1 && movement.z < 0.1)
+        //    movement.z = 0;
+
         rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
 
         run = (Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) * 2;
@@ -110,6 +117,8 @@ public class CharController : MonoBehaviour
             charAnimator.SetFloat("Speed", 2.0f, AnimatorRunDampValue, Time.deltaTime);
 
         charAnimator.SetBool("Aiming", aiming);
+       // charAnimator.SetBool("Jump", Jump);
+
         charAnimator.SetBool("OnGround", OnGround);
 
 
