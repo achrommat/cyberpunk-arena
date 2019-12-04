@@ -23,7 +23,7 @@ public class CharController : MonoBehaviour
 
     public Vector3 movement;
     public Vector3 rotation;
-
+    Vector3 direction;
 
     public bool Sprinting = false;
     public float AnimatorRunDampValue = 0.25f;
@@ -45,17 +45,32 @@ public class CharController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-     
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            movement.x = Input.GetAxis("Horizontal");
+            movement.z = Input.GetAxis("Vertical");
+            // movement = new Vector2(movement.x, movement.y);
+            if((Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) > 1)
+            {
+
+            }
+            direction = Vector3.forward * movement.z + Vector3.right * movement.x;
+            direction = direction.normalized;
+        }
+        else
+        {
+            movement.x = variableJoystick.Horizontal;
+            movement.z = variableJoystick.Vertical;
+            direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+        }
         UpdateAnimator();
         CheckGroundStatus();
 
 
-        Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
 
-        movement.x = variableJoystick.Horizontal;
-        movement.z = variableJoystick.Vertical;
-       
+    
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
 
