@@ -38,6 +38,9 @@ public class CharController : MonoBehaviour
     float run;
 
 
+    [Header("Guns")]
+    public GameObject GunHeand;
+
     private float m_GroundCheckDistance = 0.25f;
     private void Awake()
     {
@@ -80,7 +83,6 @@ public class CharController : MonoBehaviour
         if (run < 0.1)
             run = 0;
     }
-
     void MoveRotation()
     {
         rotation.x = variableJoystick2.Horizontal;
@@ -89,15 +91,17 @@ public class CharController : MonoBehaviour
         if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
         {
             rotation = new Vector3(rotation.x, 0, rotation.z);
-            gameObject.transform.parent.LookAt(gameObject.transform.position + rotation * Time.deltaTime);
+            gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
             aiming = true;
             Debug.Log("aiming");
+            GunHeand.transform.GetChild(0).GetComponent<Weapons>().shooting = true;
         }
         else
         {
             aiming = false;
             movement = new Vector3(movement.x, 0, movement.z);
-            gameObject.transform.parent.LookAt(gameObject.transform.position + movement * Time.deltaTime);
+            gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
+            GunHeand.transform.GetChild(0).GetComponent<Weapons>().shooting = false;
         }
         //Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
         //rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
@@ -126,9 +130,6 @@ public class CharController : MonoBehaviour
         charAnimator.SetBool("ongroundstay", ongroundstay);
 
     }
-
-  
-
     void CheckGroundStatus()
     {
         RaycastHit hitInfo;
@@ -155,6 +156,7 @@ public class CharController : MonoBehaviour
 
     }
 
+    
 
 
     /// <summary>
