@@ -18,6 +18,7 @@ TagManager:
   - AIPlayer
   - Test
   - JumpZone
+  - Walls
   layers:
   - Default
   - TransparentFX

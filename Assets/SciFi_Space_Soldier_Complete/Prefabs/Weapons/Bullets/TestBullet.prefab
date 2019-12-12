@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 422414}
   - component: {fileID: 3341588}
   - component: {fileID: 2305340}
-  - component: {fileID: 11464164}
   - component: {fileID: 5403524}
   - component: {fileID: 6510178}
-  - component: {fileID: 11443524}
   - component: {fileID: -2058507331622125335}
   m_Layer: 13
   m_Name: TestBullet
@@ -84,41 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &11464164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129264}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c8279b3b1aeeb41b96b6fcb2dafbbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGrenade: 0
-  explodeTimer: 5
-  friendlyFire: 1
-  UsePhysicsToTranslate: 0
-  UsePhysicsCollisions: 1
-  team: 0
-  Damage: 0
-  HitForce: 100
-  BulletSpeed: 1
-  BulletAccel: 0
-  temperatureMod: 0
-  RadialDamage: 0
-  DamageRadius: 3
-  RadialForce: 600
-  cameraShakeFactor: 3
-  cameraShakeDuration: 0.5
-  generatesBloodDamage: 1
-  DefaultImpactFX: {fileID: 152416, guid: 07834224d379c644dbd1b5dc3a411a8a, type: 3}
-  DefaultImpactDecal: {fileID: 177838, guid: 158cd3742a8512d478cfd1d8cc7b00ab, type: 3}
-  DetachOnDie: []
-  usePooling: 1
-  timeToLive: 3
-  OriginalScale: {x: 0, y: 0, z: 0}
 --- !u!54 &5403524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,30 +111,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.5}
   m_Center: {x: 0, y: 0, z: -0.03}
---- !u!114 &11443524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129264}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25880e3d34af9fa47b0e51a71dbb741f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseObjectPooling: 0
-  DestroyTime: 2
-  DestroyFX: {fileID: 0}
-  DestroyFXPos: {fileID: 0}
-  Fade: 0
-  FadeMaterial: {fileID: 0}
-  FadeCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-2058507331622125335
 MonoBehaviour:
   m_ObjectHideFlags: 0

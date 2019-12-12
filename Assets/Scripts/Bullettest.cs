@@ -19,6 +19,14 @@ public class Bullettest : MonoBehaviour
         {
             Debug.Log("Рома хуй");
         }
+        if (other.CompareTag("Walls"))
+        {
+            GameObject hit = Instantiate(HitVFX, transform.position, transform.rotation);
+        //    Destroy(hit, 1);
+            //GameObject decal = Instantiate(HitDecal, transform.position, transform.rotation);
+            //Destroy(decal, 5);
+            Destroy(gameObject);
+        }
     }
     public void OnCollisionEnter(Collision collision)
     {
