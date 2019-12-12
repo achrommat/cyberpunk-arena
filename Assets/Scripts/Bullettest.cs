@@ -14,28 +14,12 @@ public class Bullettest : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-       
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Рома хуй");
-        }
         if (other.CompareTag("Walls"))
         {
-            GameObject hit = Instantiate(HitVFX, transform.position, transform.rotation);
-        //    Destroy(hit, 1);
-            //GameObject decal = Instantiate(HitDecal, transform.position, transform.rotation);
-            //Destroy(decal, 5);
+            //тут надо добить поворот попадения - Quaternion или забить хуй (пока второй вариант)
+            //возможно надо делать через рейкаст (пример в PrBullet)
+            GameObject hit = Instantiate(HitVFX, transform.position, Quaternion.LookRotation(transform.position, other.transform.position));
             Destroy(gameObject);
         }
-    }
-    public void OnCollisionEnter(Collision collision)
-    {
-        //чет нихуя не работает тут
-        Debug.Log("Работай сука");
-        GameObject hit = Instantiate(HitVFX, transform.position, transform.rotation);
-        Destroy(hit, 1);
-        GameObject decal = Instantiate(HitDecal, transform.position, transform.rotation);
-        Destroy(decal, 5);
-        Destroy(gameObject);
     }
 }

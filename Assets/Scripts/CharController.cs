@@ -94,14 +94,14 @@ public class CharController : MonoBehaviour
             gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
             aiming = true;
             Debug.Log("aiming");
-            GunHeand.transform.GetChild(0).GetComponent<Weapons>().shooting = true;
+            GunHeand.transform.GetChild(0).GetComponent<WeaponController>().shooting = true;
         }
         else
         {
             aiming = false;
             movement = new Vector3(movement.x, 0, movement.z);
             gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
-            GunHeand.transform.GetChild(0).GetComponent<Weapons>().shooting = false;
+            GunHeand.transform.GetChild(0).GetComponent<WeaponController>().shooting = false;
         }
         //Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
         //rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
@@ -155,8 +155,6 @@ public class CharController : MonoBehaviour
 
 
     }
-
-    
 
 
     /// <summary>

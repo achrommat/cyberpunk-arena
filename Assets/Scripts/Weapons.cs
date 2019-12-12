@@ -5,15 +5,15 @@ using UnityEngine;
 public class Weapons : MonoBehaviour
 {
     public GameObject bullet;
-    public int ActiveWeapon;
     public GameObject ShootPos;
     public GameObject ShootFX;
     public GameObject AudioSource;
     public float speed;
+    public float BulletLifeTime =0.5f;
     public bool shooting;
 
     public float ShootCD= 1;
-    float ShootTimer =0;
+    public float ShootTimer = 0;
 
     public void Update()
     {
@@ -30,7 +30,7 @@ public class Weapons : MonoBehaviour
     {
         GameObject newbullet = Instantiate(bullet, transform.position, transform.rotation);
         GameObject newAudioSource = Instantiate(AudioSource, transform.position, transform.rotation);
-        Destroy(newbullet, 2);
+        Destroy(newbullet, BulletLifeTime);
         Destroy(newAudioSource, 2);
         ShootTimer = ShootCD;
     }
