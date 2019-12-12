@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8361127921376399581}
   m_Layer: 0
   m_Name: Hoverbike_Interactable
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +31,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5259548008857616807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8362803225058302795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 2.1316757, z: 2}
+  m_Center: {x: 0, y: 1.0158379, z: 0}
+--- !u!114 &8261250641656354750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8362803225058302795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a907531bda7d554ba3687d44c169c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  explosive: {fileID: 2255156123212320311, guid: 53090f4c3e9c01b4abe3656cbae3894e,
+    type: 3}
+  trail: {fileID: 5778828093676409458}
 --- !u!1001 &9202608702471316584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,11 +127,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Veh_Hover_Bike_01
       objectReference: {fileID: 0}
+    - target: {fileID: 844599627283955491, guid: f7b714e4f51c8dc4f81340f560739ebc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7b714e4f51c8dc4f81340f560739ebc, type: 3}
+--- !u!1 &8362803225058302795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 844599627283955491, guid: f7b714e4f51c8dc4f81340f560739ebc,
+    type: 3}
+  m_PrefabInstance: {fileID: 9202608702471316584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8360783191083485127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 842529203125363631, guid: f7b714e4f51c8dc4f81340f560739ebc,
+    type: 3}
+  m_PrefabInstance: {fileID: 9202608702471316584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5778828093676409458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3424070884159780378, guid: f7b714e4f51c8dc4f81340f560739ebc,
     type: 3}
   m_PrefabInstance: {fileID: 9202608702471316584}
   m_PrefabAsset: {fileID: 0}
