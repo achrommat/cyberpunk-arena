@@ -10,13 +10,30 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         transform.GetChild(ActiveWeapon).GetComponent<Weapons>().shooting = shooting;
-        if(Input.GetKeyUp(KeyCode.Q) && ActiveWeapon > 1)
+        if(Input.GetKeyUp(KeyCode.Q))
         {
             PreviousVeapon();
         }
-        if (Input.GetKeyUp(KeyCode.E) && ActiveWeapon < transform.childCount -1)
+        if (Input.GetKeyUp(KeyCode.E))
         {
             NextVeapon();
+        }
+    }
+
+    public void NextVeapon()
+    {
+        if (ActiveWeapon < transform.childCount - 1)
+        {
+            ActiveWeapon++;
+            WeaponSelect();
+        }
+    }
+    public void PreviousVeapon()
+    {
+        if(ActiveWeapon > 1)
+        {
+            ActiveWeapon--;
+            WeaponSelect();
         }
     }
     public void WeaponSelect()
@@ -25,16 +42,6 @@ public class WeaponController : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-         transform.GetChild(ActiveWeapon).gameObject.SetActive(true);
-    }
-    public void NextVeapon()
-    {
-        ActiveWeapon++;
-        WeaponSelect();
-    }
-    public void PreviousVeapon()
-    {
-        ActiveWeapon--;
-        WeaponSelect();
+        transform.GetChild(ActiveWeapon).gameObject.SetActive(true);
     }
 }

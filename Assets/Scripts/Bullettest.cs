@@ -9,7 +9,7 @@ public class Bullettest : MonoBehaviour
     public GameObject HitVFX;
     public GameObject HitDecal;
 
-    void Update()
+     void FixedUpdate()
     {
        GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
     }

@@ -28,7 +28,7 @@ public class Weapons : MonoBehaviour
     }
     public void Shoot()
     {
-        GameObject newbullet = Instantiate(bullet, transform.position, transform.rotation);
+        GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
         GameObject newAudioSource = Instantiate(AudioSource, transform.position, transform.rotation);
         Destroy(newbullet, BulletLifeTime);
         Destroy(newAudioSource, 2);
