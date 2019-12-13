@@ -19,6 +19,7 @@ TagManager:
   - Test
   - JumpZone
   - Walls
+  - Interactable
   layers:
   - Default
   - TransparentFX
