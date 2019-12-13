@@ -43,11 +43,11 @@ public class PrPickupAmmo : PrPickupObject {
            //other.GetComponent<PlayerStuff>().weapons.transform.GetChild(1).GetComponent<PrWeapon>().ActualBullets += Amount;
            // other.GetComponent<PlayerStuff>().weapons.transform.GetChild(1).GetComponent<PrWeapon>().UpdateWeaponGUI();
 
-            other.GetComponent<PlayerStuff>().riflebullets += riflebullets;
-            other.GetComponent<PlayerStuff>().laserbullets += laserbullets;
-            other.GetComponent<PlayerStuff>().rocketbullets += rocketbullets;
-            other.GetComponent<PlayerStuff>().pistolbullets += pistolbullets;
-            other.GetComponent<PlayerStuff>().shotgunbullets += shotgunbullets;
+            //other.GetComponent<PlayerStuff>().riflebullets += riflebullets;
+            //other.GetComponent<PlayerStuff>().laserbullets += laserbullets;
+            //other.GetComponent<PlayerStuff>().rocketbullets += rocketbullets;
+            //other.GetComponent<PlayerStuff>().pistolbullets += pistolbullets;
+            //other.GetComponent<PlayerStuff>().shotgunbullets += shotgunbullets;
 
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);

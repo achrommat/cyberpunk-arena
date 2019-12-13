@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour
     public int ActiveWeapon =1;
     public bool shooting;
 
+
     void Update()
     {
         transform.GetChild(ActiveWeapon).GetComponent<Weapons>().shooting = shooting;

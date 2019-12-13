@@ -279,26 +279,26 @@ public class PrWeapon : MonoBehaviour {
             }
         }
 
-        if (Type == WT.Rifle)
-        {
-            ActualBullets = Player.GetComponent<PlayerStuff>().riflebullets;
-        }
-        else if (Type == WT.Pistol)
-        {
-            ActualBullets = 999;
-        }
-        else if(Type == WT.Minigun)
-        {
-            ActualBullets = Player.GetComponent<PlayerStuff>().riflebullets;
-        }
-        else if (Type == WT.RocketLauncher)
-        {
-            ActualBullets = Player.GetComponent<PlayerStuff>().rocketbullets;
-        }
-        else if (Type == WT.Laser)
-        {
-            ActualBullets = Player.GetComponent<PlayerStuff>().laserbullets;
-        }   
+        //if (Type == WT.Rifle)
+        //{
+        //    ActualBullets = Player.GetComponent<PlayerStuff>().riflebullets;
+        //}
+        //else if (Type == WT.Pistol)
+        //{
+        //    ActualBullets = 999;
+        //}
+        //else if(Type == WT.Minigun)
+        //{
+        //    ActualBullets = Player.GetComponent<PlayerStuff>().riflebullets;
+        //}
+        //else if (Type == WT.RocketLauncher)
+        //{
+        //    ActualBullets = Player.GetComponent<PlayerStuff>().rocketbullets;
+        //}
+        //else if (Type == WT.Laser)
+        //{
+        //    ActualBullets = Player.GetComponent<PlayerStuff>().laserbullets;
+        //}   
     }
 
     private void OnDestroy()
@@ -583,7 +583,7 @@ public class PrWeapon : MonoBehaviour {
                         Bullet.transform.localScale = Bullet.GetComponent<PrBullet>().OriginalScale * BulletSize;
 
                     ShootFXLight.GetComponent<PrLightAnimator>().AnimateLight(true);
-                    Player.GetComponent<PlayerStuff>().riflebullets -= 1;
+                //    Player.GetComponent<CharacterStats>().riflebullets -= 1;
                     //ТУТОЧКИ
 
 
