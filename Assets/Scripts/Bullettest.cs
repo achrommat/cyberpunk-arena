@@ -19,7 +19,7 @@ public class Bullettest : MonoBehaviour
         {
             GameObject hit = Instantiate(HitVFX, transform.position, Quaternion.LookRotation(transform.position, other.transform.position));
             Destroy(gameObject);
-            other.GetComponent<Hoverbike_Interactable>().health -= damage;
+            other.GetComponent<InteractableController>().health -= damage;
         }
 
         if (other.CompareTag("Walls"))
