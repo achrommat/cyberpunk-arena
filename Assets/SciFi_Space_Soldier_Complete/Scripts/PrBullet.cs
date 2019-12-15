@@ -446,17 +446,17 @@ public class PrBullet : MonoBehaviour {
 			BulletDecal.transform.parent = Target.transform;
 		}
 
-        if (DetachOnDie.Length > 0)
-        {
-            foreach (GameObject GO in DetachOnDie)
-            {
-                GO.transform.parent = this.transform.parent;
+        //if (DetachOnDie.Length > 0)
+        //{
+        //    foreach (GameObject GO in DetachOnDie)
+        //    {
+        //        GO.transform.parent = this.transform.parent;
 
-                //Object Pooling System
-                GO.GetComponent<PrDestroyTimer>().enabled = true;
-                GO.GetComponent<PrDestroyTimer>().DestroyTime = 10f;
-            }
-        }
+        //        //Object Pooling System
+        //        GO.GetComponent<PrDestroyTimer>().enabled = true;
+        //        GO.GetComponent<PrDestroyTimer>().DestroyTime = 10f;
+        //    }
+        //}
 
         if (usePooling)
             //Object Pooling Mode

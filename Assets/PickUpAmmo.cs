@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PickUpAmmo : MonoBehaviour
 {
-    //public int LightBullets = 0;
-    //public int HeavyBullets = 0;
-    //public int EnergyBullets = 0;
-    //public int ExtraBullets = 0;
     public bool Weapon; 
-    public int WeaponClass = 0; // 0==нихуя, 1 = Rifle, 2 = Shotgun, 3 = Rocket, 4 = Ripper,5 = PlasmaGun, 6 = Railgun, 10 = BFG;
-    public int[] AmmoValue = { 0, 50, 50, 25, 25, 50, 50 };
+    public int WeaponClass = 0; // 0==нихуя, 1 = Rifle, 2 = Shotgun, 3 = Rocket, 4 = Ripper,5 = PlasmaGun, 6 = Railgun, 7 = BFG;
+    public int AmmoClass = 0; // 0 == нихуя, 1 = Light, 2 = Extra, 3 = Energy
+    private int[] AmmoValue = { 0, 50, 50, 25, 25, 50, 50 }; // Кол-во патронов с пака для разных пушек
     public GameObject VFX;
     public GameObject SFX;
     public float CD;
@@ -28,28 +25,41 @@ public class PickUpAmmo : MonoBehaviour
             Destroy(vfx, 2);
             Destroy(sfx, 2);
 
-            if (WeaponClass > 0)
+            if (Weapon && WeaponClass > 0)
             {
-                if (Weapon)
+                //Если поднял НЕ такую же пушку
+                if (weapons.transform.GetChild(WeaponClass).gameObject.active == false)
                 {
-                    //Если поднял НЕ такую же пушку
-                    if (weapons.transform.GetChild(WeaponClass).gameObject.active == false)
+                    for (int i = 0; i < weapons.transform.childCount; i++)
                     {
-                        for (int i = 0; i < weapons.transform.childCount; i++)
-                        {
-                            weapons.transform.GetChild(i).gameObject.SetActive(false);
-                        }
-                        weapons.transform.GetChild(WeaponClass).gameObject.SetActive(true);
-                        weapons.transform.GetChild(WeaponClass).GetComponent<Weapons>().Ammo = 0;
+                        weapons.transform.GetChild(i).gameObject.SetActive(false);
                     }
-                    //Добавляем патроны
-                    weapons.transform.GetChild(WeaponClass).GetComponent<Weapons>().Ammo += AmmoValue[WeaponClass];
+                    weapons.transform.GetChild(WeaponClass).gameObject.SetActive(true);
+                    weapons.transform.GetChild(WeaponClass).GetComponent<Weapons>().Ammo = 0;
                 }
-                else
+                //Добавляем патроны
+                weapons.transform.GetChild(WeaponClass).GetComponent<Weapons>().Ammo += AmmoValue[WeaponClass];
+            }
+            if (Weapon == false && AmmoClass >0)
+            {
+                if (AmmoClass == 1)
                 {
-
+                    weapons.transform.GetChild(1).GetComponent<Weapons>().Ammo += AmmoValue[1];
+                    weapons.transform.GetChild(2).GetComponent<Weapons>().Ammo += AmmoValue[2];
+                }
+                if (AmmoClass == 2)
+                {
+                    weapons.transform.GetChild(3).GetComponent<Weapons>().Ammo += AmmoValue[3];
+                    weapons.transform.GetChild(4).GetComponent<Weapons>().Ammo += AmmoValue[4];
+                }
+                if (AmmoClass == 3)
+                {
+                    weapons.transform.GetChild(5).GetComponent<Weapons>().Ammo += AmmoValue[5];
+                    weapons.transform.GetChild(6).GetComponent<Weapons>().Ammo += AmmoValue[6];
                 }
             }
+
+
 
 
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
