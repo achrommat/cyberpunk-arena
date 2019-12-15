@@ -10,8 +10,14 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        transform.GetChild(ActiveWeapon).GetComponent<Weapons>().shooting = shooting;
-        if(Input.GetKeyUp(KeyCode.Q))
+        for(int i = 0; i< transform.childCount; i++)
+        {
+            if(transform.GetChild(i).gameObject.active)
+            {
+                transform.GetChild(i).GetComponent<Weapons>().shooting = shooting;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             PreviousVeapon();
         }
