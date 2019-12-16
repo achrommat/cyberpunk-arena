@@ -9,6 +9,7 @@ public class InteractableController : MonoBehaviour
     public GameObject trail;
     public Material blackMat;
     private Animator anim;
+    private Component[] meshRenderers;
 
     private void Start()
     {
@@ -25,7 +26,9 @@ public class InteractableController : MonoBehaviour
         Instantiate(explosive, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
         if (gameObject.name == "SM_Veh_Classic_0")
         {
-            gameObject.GetComponentInChildren<MeshRenderer>().material = blackMat;
+            meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer meshRenderer in meshRenderers)
+                meshRenderer.material = blackMat;
             return;
         }
         Destroy(gameObject);
