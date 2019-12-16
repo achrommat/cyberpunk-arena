@@ -7,6 +7,7 @@ public class InteractableController : MonoBehaviour
     public int health;
     public GameObject explosive;
     public GameObject trail;
+    public Material blackMat;
     private Animator anim;
 
     private void Start()
@@ -21,11 +22,13 @@ public class InteractableController : MonoBehaviour
 
     public void RunExplosion()
     {
-        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        if (gameObject.name != "SM_Veh_Classic_0")
+        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        if (gameObject.name == "SM_Veh_Classic_0")
         {
-            Destroy(gameObject);
-        }        
+            gameObject.GetComponentInChildren<MeshRenderer>().material = blackMat;
+            return;
+        }
+        Destroy(gameObject);
     }
 
     private void Update()
