@@ -10,6 +10,7 @@ public class PickUpAmmo : MonoBehaviour
     private int[] AmmoValue = { 0, 50, 50, 25, 25, 50, 50 }; // Кол-во патронов с пака для разных пушек
     public GameObject VFX;
     public GameObject SFX;
+    GameObject weapons;
     public float CD;
     float timer;
 
@@ -18,8 +19,8 @@ public class PickUpAmmo : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            GameObject weapons = other.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(3).GetChild(0).gameObject;
-
+            weapons = other.transform.GetChild(0).GetComponent<CharController>().Weapons;
+            Debug.Log(weapons);
             GameObject vfx = Instantiate(VFX, transform.position, transform.rotation);
             GameObject sfx = Instantiate(SFX, transform.position, transform.rotation);
             Destroy(vfx, 2);
