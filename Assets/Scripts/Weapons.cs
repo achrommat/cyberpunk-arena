@@ -17,7 +17,7 @@ public class Weapons : MonoBehaviour
     public float BulletLifeTime =0.5f;
     public bool shooting;
     public int Ammo;
-  
+    public bool Ripper;
 
     public float ShootCD= 1;
     protected float ShootTimer = 0;
@@ -28,10 +28,18 @@ public class Weapons : MonoBehaviour
         {
             ShootTimer -= Time.deltaTime;
         }
-        if (shooting == true && ShootTimer <= 0)
+
+        if (ShootTimer <= 0)
         {
-            Shoot();
-        }
+            if (Ripper == true)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+            if (shooting == true)
+            {
+                Shoot();
+            }
+        }    
     }
     public void Shoot()
     {
@@ -63,11 +71,14 @@ public class Weapons : MonoBehaviour
                 Source.PlayOneShot(Clip);
                 ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
                 GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
-                Destroy(newbullet, BulletLifeTime);
+            //    Destroy(newbullet, BulletLifeTime);
                 ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 Ammo -= 1;
+                if (Ripper == true)
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+                }
             }
-
             //GameObject newAudioSource = Instantiate(AudioSource, transform.position, transform.rotation);
 
             //Destroy(newAudioSource, 2);
