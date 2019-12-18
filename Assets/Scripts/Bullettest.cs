@@ -86,16 +86,17 @@ public class Bullettest : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            GameObject hit = Instantiate(HitVFX, hitpos, Quaternion.identity);//LookRotation(transform.position, other.transform.position)
-            Destroy(gameObject);
+            BulletHit(other, false);
             other.GetComponent<InteractableController>().health -= damage;
+        }
+        else if (other.CompareTag("ExplosiveBot"))
+        {
+            BulletHit(other, false);
+            other.GetComponent<ExplosiveBotController>().health -= damage;
         }
 
         if (other.CompareTag("Walls"))
-        {
-           
-
-          
+        {       
             if (ricochet > 0)
             {
                 //Vector3 reflectDir = Vector3.Reflect(transform.position, other.transform.position).normalized;
@@ -108,11 +109,18 @@ public class Bullettest : MonoBehaviour
             {
                 //тут надо добить поворот попадения - Quaternion или забить хуй (пока второй вариант)
                 //возможно надо делать через рейкаст (пример в PrBullet)
-                GameObject hit = Instantiate(HitVFX, transform.position, Quaternion.LookRotation(transform.position, other.transform.position));
-                Destroy(gameObject);
+                BulletHit(other, true);
             }
-
-
         }
+    }
+
+    private void BulletHit(Collider other, bool shouldRotate)
+    {
+        Quaternion rotation = Quaternion.identity;
+        if (shouldRotate)
+            rotation = Quaternion.LookRotation(transform.position, other.transform.position);
+
+        GameObject hit = Instantiate(HitVFX, transform.position, rotation);
+        Destroy(gameObject);
     }
 }

@@ -7,8 +7,10 @@ public class ExplosiveBotController : MonoBehaviour
 {
     public GameObject explosive;
     public bool canRun;
+    public int health;
     private Animator anim;
     private Rigidbody rb;
+    private Collider col;
     private Vector2 smoothDeltaPosition = Vector2.zero;
     private Vector2 velocity = Vector2.zero;
     private Transform target;
@@ -18,6 +20,7 @@ public class ExplosiveBotController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        col = GetComponent<Collider>();
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         agent.updatePosition = false;
@@ -26,20 +29,20 @@ public class ExplosiveBotController : MonoBehaviour
     private void Update()
     {
         if (canRun)
-        {
-            agent.SetDestination(target.position);
             Run();
-            
-            if (agent.remainingDistance <= 3f)
-            {
-                //Jump();
-            }
-        }
+        if (health < 1)
+            RunExplosion();
+    }
+
+    private void FixedUpdate()
+    {
+        if (velocity.magnitude > 0.5f && agent.remainingDistance <= 3f)
+            Jump();
     }
 
     private void Run()
     {
-        
+        agent.SetDestination(target.position);
         Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
 
         float dx = Vector3.Dot(transform.right, worldDeltaPosition);
@@ -56,14 +59,13 @@ public class ExplosiveBotController : MonoBehaviour
 
         bool shouldMove = velocity.magnitude > 0.5f && agent.remainingDistance > agent.radius;
 
-        anim.SetBool("Move", shouldMove);
-        if (velocity.magnitude > 0.5f)
-            Debug.Log(agent.remainingDistance);
+        anim.SetBool("Move", shouldMove);        
     }
 
     private void Jump()
     {
-        rb.AddForce(new Vector3(0, 100, 0), ForceMode.Impulse);
+        col.enabled = false;
+        rb.AddForce(new Vector3(0, 1, 0), ForceMode.Impulse);
         anim.SetBool("Jump", true);
     }
 
@@ -74,7 +76,7 @@ public class ExplosiveBotController : MonoBehaviour
 
     public void RunExplosion()
     {
-        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         Destroy(gameObject);
     }
 }

@@ -20,6 +20,7 @@ TagManager:
   - JumpZone
   - Walls
   - Interactable
+  - ExplosiveBot
   layers:
   - Default
   - TransparentFX
