@@ -69,10 +69,10 @@ public class Weapons : MonoBehaviour
             else
             {
                 Source.PlayOneShot(Clip);
-                ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+             //   ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
                 GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
             //    Destroy(newbullet, BulletLifeTime);
-                ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                //ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 Ammo -= 1;
                 if (Ripper == true)
                 {

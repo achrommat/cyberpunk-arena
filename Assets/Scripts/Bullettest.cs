@@ -14,7 +14,7 @@ public class Bullettest : MonoBehaviour
     public int ricochet = 0;
     public Vector3 hitpos;
     public bool sawblade;
-    void FixedUpdate()
+     void FixedUpdate()
     {
         lifetime -= Time.fixedDeltaTime;
         if (sawblade == true)
@@ -45,7 +45,7 @@ public class Bullettest : MonoBehaviour
         if (lifetime > 0)
         {
             GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
-            if (ricochet >=0)
+            if (ricochet >0)
             {
                 Ray ray = new Ray(transform.position, transform.forward);
                 RaycastHit hit;

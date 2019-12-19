@@ -35,12 +35,17 @@ public class CharController : MonoBehaviour
     bool ongroundstay;
     bool aiming;
     bool Jump;
+    bool HaveTarget;
     float run;
 
 
     [Header("Guns")]
     public GameObject GunHeand;
     public GameObject Weapons;
+
+    [Header("Target")]
+    public GameObject Target;
+
 
     private float m_GroundCheckDistance = 0.25f;
     private void Awake()
@@ -88,21 +93,27 @@ public class CharController : MonoBehaviour
     {
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
-
-        if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
+        if(HaveTarget == false)
         {
-            rotation = new Vector3(rotation.x, 0, rotation.z);
-            gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
-            aiming = true;
-            Debug.Log("aiming");
-            Weapons.transform.GetComponent<WeaponController>().shooting = true;
+            if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
+            {
+                rotation = new Vector3(rotation.x, 0, rotation.z);
+                gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
+                aiming = true;
+                Debug.Log("aiming");
+                Weapons.transform.GetComponent<WeaponController>().shooting = true;
+            }
+            else
+            {
+                aiming = false;
+                movement = new Vector3(movement.x, 0, movement.z);
+                gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
+                Weapons.transform.GetComponent<WeaponController>().shooting = false;
+            }
         }
         else
         {
-            aiming = false;
-            movement = new Vector3(movement.x, 0, movement.z);
-            gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
-            Weapons.transform.GetComponent<WeaponController>().shooting = false;
+
         }
         //Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
         //rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
