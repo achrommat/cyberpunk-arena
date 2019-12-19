@@ -43,7 +43,6 @@ public class JumpingPlatform : MonoBehaviour
             other.attachedRigidbody.velocity = (transform.forward * force) * Time.deltaTime;
             Vector3 fromTo = target.transform.position - transform.position;
             Vector3 fromToXZ = new Vector3(fromTo.x, 0f, fromTo.z);
-
             //  transform.rotation = Quaternion.LookRotation(fromToXZ, Vector3.up);
             float x = fromToXZ.magnitude;
             float y = fromTo.y;
@@ -58,6 +57,7 @@ public class JumpingPlatform : MonoBehaviour
             //newBullet.GetComponent<Rigidbody>().velocity = SpawnTransform[i].forward * v;
             //newBullet.GetComponent<Rigidbody>().velocity = SpawnTransform.forward * v;
             other.GetComponent<Rigidbody>().AddForce(SpawnTransform.forward * speed); //*v
+            GetComponent<AudioSource>().Play();
 
         }
     }

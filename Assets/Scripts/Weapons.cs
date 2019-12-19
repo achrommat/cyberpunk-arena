@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class Weapons : MonoBehaviour
 {
     public GameObject bullet;
+    public GameObject LaserTarget;
     public GameObject Player;
     public GameObject ShootPos;
     public GameObject ShootFX;
@@ -38,6 +39,11 @@ public class Weapons : MonoBehaviour
             if (shooting == true)
             {
                 Shoot();
+                LaserTarget.SetActive(true);
+            }
+            else
+            {
+                LaserTarget.SetActive(false);
             }
         }    
     }

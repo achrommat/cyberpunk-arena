@@ -13,8 +13,8 @@ public class Teleport : MonoBehaviour
             other.transform.position = target.transform.position;
             GameObject FX1 = Instantiate(FX, transform.position, Quaternion.identity);
             GameObject FX2 = Instantiate(FX, target.transform.position, Quaternion.identity);
-            Destroy(FX1, 0.6f);
-            Destroy(FX2, 0.6f);
+            Destroy(FX1, 1.5f);
+            Destroy(FX2, 1.5f);
         }
     }
 }

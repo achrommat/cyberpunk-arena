@@ -22,10 +22,10 @@ public class PickUpAmmo : MonoBehaviour
             weapons = other.transform.GetChild(0).GetComponent<CharController>().Weapons;
             Debug.Log(weapons);
             GameObject vfx = Instantiate(VFX, transform.position, transform.rotation);
-            GameObject sfx = Instantiate(SFX, transform.position, transform.rotation);
+           // GameObject sfx = Instantiate(SFX, transform.position, transform.rotation);
             Destroy(vfx, 2);
-            Destroy(sfx, 2);
-
+            //  Destroy(sfx, 2);
+            GetComponent<AudioSource>().Play();
             if (Weapon && WeaponClass > 0)
             {
                 //Если поднял НЕ такую же пушку
