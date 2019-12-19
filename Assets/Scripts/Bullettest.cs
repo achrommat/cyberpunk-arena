@@ -45,37 +45,40 @@ public class Bullettest : MonoBehaviour
         if (lifetime > 0)
         {
             GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Time.deltaTime * speed + .1f))
+            if (ricochet >=0)
             {
-                Vector3 reflectDir = Vector3.Reflect(ray.direction, hit.normal);
-                float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
-                transform.eulerAngles = new Vector3(0, rot, 0);
-                // hitpos = hit.point;
-                if (sawblade)
+                Ray ray = new Ray(transform.position, transform.forward);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Time.deltaTime * speed + .1f))
                 {
-                    GameObject fx = Instantiate(HitVFX, hit.point, transform.rotation);
-                    damage *= Mathf.CeilToInt(1.5f);
-                    lifetime += 0.4f;
-                    speed += 2;
-
-                    if (ricochet == 2)
+                    Vector3 reflectDir = Vector3.Reflect(ray.direction, hit.normal);
+                    float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
+                    transform.eulerAngles = new Vector3(0, rot, 0);
+                    // hitpos = hit.point;
+                    if (sawblade)
                     {
-                        transform.GetChild(0).GetComponent<TrailRenderer>().startColor = Color.yellow;
-                    }
+                        GameObject fx = Instantiate(HitVFX, hit.point, transform.rotation);
+                        damage *= Mathf.CeilToInt(1.5f);
+                        lifetime += 0.4f;
+                        speed += 2;
 
-                    if (ricochet == 1)
-                    {
-                        transform.GetChild(0).GetComponent<TrailRenderer>().startColor = Color.red;
-                    }
+                        if (ricochet == 2)
+                        {
+                            transform.GetChild(0).GetComponent<TrailRenderer>().startColor = Color.yellow;
+                        }
+
+                        if (ricochet == 1)
+                        {
+                            transform.GetChild(0).GetComponent<TrailRenderer>().startColor = Color.red;
+                        }
 
 
-                    if (ricochet < 0)
-                    {
-                        Debug.Log("У СУКА");
+                        if (ricochet < 0)
+                        {
+                            Debug.Log("У СУКА");
 
+                        }
                     }
                 }
             }
