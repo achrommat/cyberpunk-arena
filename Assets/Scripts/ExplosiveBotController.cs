@@ -27,7 +27,7 @@ public class ExplosiveBotController : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
         if (canRun)
             Run();
         if (health < 1)
@@ -37,7 +37,7 @@ public class ExplosiveBotController : MonoBehaviour
     private void FixedUpdate()
     {
         if (velocity.magnitude > 0.5f && agent.remainingDistance <= 3f)
-            Jump();
+            Explode();
     }
 
     private void Run()
@@ -62,11 +62,12 @@ public class ExplosiveBotController : MonoBehaviour
         anim.SetBool("Move", shouldMove);        
     }
 
-    private void Jump()
+    private void Explode()
     {
-        col.enabled = false;
-        rb.AddForce(new Vector3(0, 1, 0), ForceMode.Impulse);
-        anim.SetBool("Jump", true);
+        agent.isStopped = true;
+        //col.enabled = false;
+        //rb.AddForce(new Vector3(0, 2, 0), ForceMode.Impulse);
+        //anim.SetBool("Jump", true);
     }
 
     private void OnAnimatorMove()
