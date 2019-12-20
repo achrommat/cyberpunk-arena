@@ -20,7 +20,9 @@ public class ExplosiveBotController : MonoBehaviour
     private Vector2 smoothDeltaPosition = Vector2.zero;
     private Vector2 velocity = Vector2.zero;
     private Transform target;
-    private NavMeshAgent agent;     
+    private NavMeshAgent agent;
+    bool dead = false;
+
 
     private void Start()
     {
@@ -35,14 +37,14 @@ public class ExplosiveBotController : MonoBehaviour
     private void Update()
     {        
         if (canRun)
-            Run();
-        if (health < 1)
-            RunExplosion();
+            Run();        
     }
 
     private void FixedUpdate()
     {
-        if (velocity.magnitude > 0.5f && agent.remainingDistance <= 3f)
+        if (health < 1)
+            RunExplosion();
+        if (velocity.magnitude > 0.5f && agent.remainingDistance <= 2f)
             Explode();
     }
 
@@ -88,8 +90,8 @@ public class ExplosiveBotController : MonoBehaviour
         {
             while (maxScale > explosionCharge.transform.localScale.x)
             {
-                timer += Time.deltaTime;
-                explosionCharge.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.deltaTime * growFactor;
+                timer += Time.fixedDeltaTime;
+                explosionCharge.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.fixedDeltaTime * growFactor;
                 yield return null;
             }
             yield return new WaitForSeconds(waitTime);
@@ -98,13 +100,13 @@ public class ExplosiveBotController : MonoBehaviour
 
     IEnumerator FillRadius()
     {
-        float timer = 0;
+        //float timer = 0;
         while (true)
         {
             while (maxSize > fillRadius.transform.localScale.x)
             {
-                timer += Time.deltaTime;
-                fillRadius.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.deltaTime * growFactor;
+                //timer += Time.fixedDeltaTime;
+                fillRadius.transform.localScale += new Vector3(0.1f, 0.1f, 0f) * Time.fixedDeltaTime * growFactor;
                 yield return null;
             }
             yield return new WaitForSeconds(waitTime);
@@ -119,8 +121,13 @@ public class ExplosiveBotController : MonoBehaviour
 
     public void RunExplosion()
     {
-        GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        //explosion.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        Destroy(gameObject);
+        if (dead == false)
+        {
+            GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(-90f, 0f, 0f));
+            explosion.GetComponent<SphereCollider>().radius = 2;            
+            Destroy(gameObject);
+            Destroy(explosion, 0.5f);
+            dead = true;
+        } 
     }
 }

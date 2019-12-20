@@ -34,6 +34,7 @@ public class InteractableController : MonoBehaviour
             return;
         }
         Destroy(gameObject);
+        Destroy(explosion, 0.5f);
     }
 
     private void Update()
