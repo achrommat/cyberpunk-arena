@@ -18,12 +18,14 @@ public class InteractableController : MonoBehaviour
 
     public void RunTrail()
     {
-        trail.GetComponent<ParticleSystem>().Play();
+        //trail.GetComponent<ParticleSystem>().Play();
+        trail.gameObject.SetActive(true);
     }
 
     public void RunExplosion()
     {
-        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        explosion.transform.localScale = new Vector3(3f, 3f, 3f);
         if (gameObject.name == "SM_Veh_Classic_0")
         {
             meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();

@@ -16,6 +16,27 @@ public class ExplosiveBotController : MonoBehaviour
     private Transform target;
     private NavMeshAgent agent;
 
+
+    public float maxSize;
+    public float growFactor;
+    public float waitTime;
+    public GameObject fillRadius;
+
+    IEnumerator FillRadius()
+    {
+        float timer = 0;
+        while (true)
+        {
+            while (maxSize > fillRadius.transform.localScale.x)
+            {
+                timer += Time.deltaTime;
+                fillRadius.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.deltaTime * growFactor;
+                yield return null;
+            }
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +86,8 @@ public class ExplosiveBotController : MonoBehaviour
     private void Explode()
     {
         agent.isStopped = true;
+        fillRadius.transform.parent.gameObject.SetActive(true);
+        StartCoroutine(FillRadius());
         //col.enabled = false;
         //rb.AddForce(new Vector3(0, 2, 0), ForceMode.Impulse);
         //anim.SetBool("Jump", true);
@@ -77,7 +100,7 @@ public class ExplosiveBotController : MonoBehaviour
 
     public void RunExplosion()
     {
-        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         Destroy(gameObject);
     }
 }

@@ -879,10 +879,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a907531bda7d554ba3687d44c169c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  explosive: {fileID: 2255156123212320311, guid: bb5c07f047ee313498b8444335d1635d,
-    type: 3}
+  health: 80
+  explosive: {fileID: 1630379916971388, guid: 3eefdf7ca6be6574fb3d409c10e05249, type: 3}
   trail: {fileID: 0}
+  blackMat: {fileID: 2100000, guid: c2eeee4c0bdd8564aa5a231e3d9510e4, type: 2}
 --- !u!95 &4747288187685300319
 Animator:
   serializedVersion: 3
