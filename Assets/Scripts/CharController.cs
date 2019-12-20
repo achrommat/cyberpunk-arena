@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
+    [Header("Stats")]
+    public float Health;
+    public float Armor;
+    public bool Dead;
+    public float RespawnTime;
+    float ActualRespTime;
+ 
     [Header("Sound FX")]
 
     public float FootStepsRate = 0.4f;
@@ -45,6 +52,11 @@ public class CharController : MonoBehaviour
 
     [Header("Target")]
     public GameObject Target;
+    public GameObject RespawnTarget;
+
+    [Header("VFX")]
+    public GameObject RespawnVFX;
+    public GameObject DeadVFX;
 
 
     private float m_GroundCheckDistance = 0.25f;
@@ -52,13 +64,22 @@ public class CharController : MonoBehaviour
     {
         charAnimator = GetComponent<Animator>();
         OnGround = true;
+        ActualRespTime = RespawnTime;
     }
     public void FixedUpdate()
     {
         UpdateAnimator();
         CheckGroundStatus();
-        MovePosition();
-        MoveRotation();
+        Death();
+        if(Dead == false)
+        {
+            MovePosition();
+            MoveRotation();
+        }
+        if (Dead == true)
+        {
+            Respawn();
+        }
     }
     void MovePosition()
     {
@@ -140,6 +161,7 @@ public class CharController : MonoBehaviour
 
         charAnimator.SetBool("Crouch", m_Crouching);
         charAnimator.SetBool("ongroundstay", ongroundstay);
+        charAnimator.SetBool("Dead", Dead);
 
     }
     void CheckGroundStatus()
@@ -167,10 +189,61 @@ public class CharController : MonoBehaviour
 
 
     }
+    void Death()
+    {
+        if (Health <= 0 && Health> -50)
+        {
+            Dead = true;
+            Weapons.transform.GetComponent<WeaponController>().shooting = false;
+        }
+        else if (Health <= -50)
+        {
+            if(Dead  == false)
+            {
+                Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
+                Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                transform.GetChild(4).gameObject.SetActive(false);
+                Weapons.SetActive(false);
+                Dead = true;
+                rb.velocity = Vector3.zero;
+            }
 
+        }
+        else
+        {
+            Dead = false;
+        }
+    }
+
+    void Respawn()
+    {
+        ActualRespTime -= Time.deltaTime;
+        if(ActualRespTime <=0)
+        {
+            ActualRespTime = RespawnTime;
+            Health = 100;
+            charAnimator.enabled = false;
+            charAnimator.enabled = true;
+            Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
+            transform.parent.gameObject.transform.position = resp;
+            Instantiate(RespawnVFX, transform.position, transform.rotation);
+            transform.GetChild(4).gameObject.SetActive(true);
+            Weapons.SetActive(true);
+            Dead = false;
+        }
+    }
+    //void Dead()
+    //{
+    //    if(Health <=0)
+    //    {
+
+    //    }
+    //}
     /// <summary>
     /// TEST
     /// </summary>
+    /// 
+
     public void FootStep()
     {
         if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
