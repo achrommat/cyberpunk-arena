@@ -8,6 +8,7 @@ public class CharController : MonoBehaviour
     public float Health;
     public float Armor;
     public bool Dead;
+    public bool DeadExtra;
     public float RespawnTime;
     float ActualRespTime;
  
@@ -71,8 +72,9 @@ public class CharController : MonoBehaviour
         UpdateAnimator();
         CheckGroundStatus();
         Death();
+        DeatExtra();
 
-        if(Dead == false && InControll)
+        if (Dead == false && InControll)
         {
             MovePosition();
             MoveRotation();
@@ -192,30 +194,30 @@ public class CharController : MonoBehaviour
     }
     void Death()
     {
-        if (Health <= 0 && Health> -50)
+        if (Health <= 0)
         {
             Dead = true;
             Weapons.transform.GetComponent<WeaponController>().shooting = false;
         }
-        else if (Health <= -50)
-        {
-            if(Dead  == false)
-            {
-                Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
-                Weapons.transform.GetComponent<WeaponController>().shooting = false;
-                transform.GetChild(4).gameObject.SetActive(false);
-                Weapons.SetActive(false);
-                Dead = true;
-                rb.velocity = Vector3.zero;
-            }
-
-        }
+     
         else
         {
             Dead = false;
         }
     }
-
+    void DeatExtra()
+    {
+        if (Health <= -50 && DeadExtra == false)
+        {
+            Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
+            Weapons.transform.GetComponent<WeaponController>().shooting = false;
+            transform.GetChild(4).gameObject.SetActive(false);
+            Weapons.SetActive(false);
+            rb.velocity = Vector3.zero;
+            DeadExtra = true;
+            Dead = true;
+        }
+    }
     void Respawn()
     {
         ActualRespTime -= Time.deltaTime;
@@ -230,7 +232,7 @@ public class CharController : MonoBehaviour
             Instantiate(RespawnVFX, transform.position, transform.rotation);
             transform.GetChild(4).gameObject.SetActive(true);
             Weapons.SetActive(true);
-            Dead = false;
+            DeadExtra = false;
         }
     }
     //void Dead()
