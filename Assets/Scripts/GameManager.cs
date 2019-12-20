@@ -11,6 +11,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         surface = FindObjectOfType<NavMeshSurface>();
-        //surface.BuildNavMesh();
+        surface.BuildNavMesh();
     }
 }
