@@ -57,7 +57,7 @@ public class CharController : MonoBehaviour
     [Header("VFX")]
     public GameObject RespawnVFX;
     public GameObject DeadVFX;
-
+    public bool InControll;
 
     private float m_GroundCheckDistance = 0.25f;
     private void Awake()
@@ -71,7 +71,8 @@ public class CharController : MonoBehaviour
         UpdateAnimator();
         CheckGroundStatus();
         Death();
-        if(Dead == false)
+
+        if(Dead == false && InControll)
         {
             MovePosition();
             MoveRotation();
@@ -121,7 +122,7 @@ public class CharController : MonoBehaviour
                 rotation = new Vector3(rotation.x, 0, rotation.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
                 aiming = true;
-                Debug.Log("aiming");
+
                 Weapons.transform.GetComponent<WeaponController>().shooting = true;
             }
             else
