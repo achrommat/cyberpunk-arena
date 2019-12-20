@@ -8,34 +8,19 @@ public class ExplosiveBotController : MonoBehaviour
     public GameObject explosive;
     public bool canRun;
     public int health;
+    public float maxSize;
+    public float growFactor;
+    public float waitTime;
+    public GameObject fillRadius;
+    public GameObject explosionCharge;
+
     private Animator anim;
     private Rigidbody rb;
     private Collider col;
     private Vector2 smoothDeltaPosition = Vector2.zero;
     private Vector2 velocity = Vector2.zero;
     private Transform target;
-    private NavMeshAgent agent;
-
-
-    public float maxSize;
-    public float growFactor;
-    public float waitTime;
-    public GameObject fillRadius;
-
-    IEnumerator FillRadius()
-    {
-        float timer = 0;
-        while (true)
-        {
-            while (maxSize > fillRadius.transform.localScale.x)
-            {
-                timer += Time.deltaTime;
-                fillRadius.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.deltaTime * growFactor;
-                yield return null;
-            }
-            yield return new WaitForSeconds(waitTime);
-        }
-    }
+    private NavMeshAgent agent;     
 
     private void Start()
     {
@@ -86,11 +71,45 @@ public class ExplosiveBotController : MonoBehaviour
     private void Explode()
     {
         agent.isStopped = true;
-        fillRadius.transform.parent.gameObject.SetActive(true);
+        explosionCharge.SetActive(true);
+        StartCoroutine(ScaleCharge());
+        fillRadius.transform.parent.gameObject.SetActive(true);       
         StartCoroutine(FillRadius());
         //col.enabled = false;
         //rb.AddForce(new Vector3(0, 2, 0), ForceMode.Impulse);
         //anim.SetBool("Jump", true);
+    }
+
+    IEnumerator ScaleCharge()
+    {
+        float timer = 0;
+        float maxScale = 5;
+        while (true)
+        {
+            while (maxScale > explosionCharge.transform.localScale.x)
+            {
+                timer += Time.deltaTime;
+                explosionCharge.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.deltaTime * growFactor;
+                yield return null;
+            }
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    IEnumerator FillRadius()
+    {
+        float timer = 0;
+        while (true)
+        {
+            while (maxSize > fillRadius.transform.localScale.x)
+            {
+                timer += Time.deltaTime;
+                fillRadius.transform.localScale += new Vector3(0.1f, 0.1f, 0) * Time.deltaTime * growFactor;
+                yield return null;
+            }
+            yield return new WaitForSeconds(waitTime);
+            RunExplosion();
+        }
     }
 
     private void OnAnimatorMove()
@@ -101,6 +120,7 @@ public class ExplosiveBotController : MonoBehaviour
     public void RunExplosion()
     {
         GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        //explosion.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         Destroy(gameObject);
     }
 }
