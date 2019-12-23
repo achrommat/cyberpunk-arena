@@ -25,6 +25,8 @@ public class CharController : MonoBehaviour
     public float speed;
     public FixedJoystick variableJoystick;
     public Joystick variableJoystick2;
+    public Joystick ShootJoystick;
+
     public Rigidbody rb;
     Vector3 m_EulerAngleVelocity;
     Animator charAnimator;
@@ -117,15 +119,22 @@ public class CharController : MonoBehaviour
     {
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
-        if(HaveTarget == false)
+        variableJoystick2.DeadZone = 0.1f;
+        Debug.Log(rotation.z + "   " + rotation.x);
+ 
+        //variableJoystick2.HandleRange = 2;
+        if (HaveTarget == false)
         {
             if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
             {
                 rotation = new Vector3(rotation.x, 0, rotation.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
                 aiming = true;
+                if(Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= 1)
+                   Weapons.transform.GetComponent<WeaponController>().shooting = true;
+                else
+                   Weapons.transform.GetComponent<WeaponController>().shooting = false;
 
-                Weapons.transform.GetComponent<WeaponController>().shooting = true;
             }
             else
             {

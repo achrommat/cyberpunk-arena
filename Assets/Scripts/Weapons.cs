@@ -41,10 +41,10 @@ public class Weapons : MonoBehaviour
                 Shoot();
                 LaserTarget.SetActive(true);
             }
-            else
-            {
-                LaserTarget.SetActive(false);
-            }
+            //else
+            //{
+            //    LaserTarget.SetActive(false);
+            //}
         }    
     }
     public void Shoot()
