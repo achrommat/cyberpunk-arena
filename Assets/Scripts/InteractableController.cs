@@ -26,6 +26,7 @@ public class InteractableController : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         explosion.transform.localScale = new Vector3(3f, 3f, 3f);
+        Destroy(explosion, 1f);
         if (gameObject.name == "SM_Veh_Classic_0")
         {
             meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
@@ -33,8 +34,7 @@ public class InteractableController : MonoBehaviour
                 meshRenderer.material = blackMat;
             return;
         }
-        Destroy(gameObject);
-        Destroy(explosion, 0.5f);
+        Destroy(gameObject);        
     }
 
     private void Update()
