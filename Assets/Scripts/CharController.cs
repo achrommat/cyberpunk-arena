@@ -120,7 +120,6 @@ public class CharController : MonoBehaviour
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
         //variableJoystick2.DeadZone = 0.1f;
-        Debug.Log(rotation.z + "   " + rotation.x);
           
          //variableJoystick2.HandleRange = 2;
         if (HaveTarget == false)
@@ -154,10 +153,14 @@ public class CharController : MonoBehaviour
     }
     void UpdateAnimator()
     {
-        // update the animator parameters
-        //charAnimator.SetFloat("Y", variableJoystick2.Vertical);
-        //charAnimator.SetFloat("X", variableJoystick2.Horizontal);
+        Vector3 localMoove = transform.InverseTransformDirection(movement);
+        float Z = localMoove.z;
+        float X = localMoove.x;
 
+        // update the animator parameters
+        charAnimator.SetFloat("Y", Z, 0.1f, Time.deltaTime);
+        charAnimator.SetFloat("X", X, 0.1f, Time.deltaTime);
+       
 
         charAnimator.SetFloat("Speed", run);
         if (!Sprinting)
