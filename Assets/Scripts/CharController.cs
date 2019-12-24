@@ -121,8 +121,8 @@ public class CharController : MonoBehaviour
         rotation.z = variableJoystick2.Vertical;
         //variableJoystick2.DeadZone = 0.1f;
         Debug.Log(rotation.z + "   " + rotation.x);
- 
-        //variableJoystick2.HandleRange = 2;
+          
+         //variableJoystick2.HandleRange = 2;
         if (HaveTarget == false)
         {
             if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
