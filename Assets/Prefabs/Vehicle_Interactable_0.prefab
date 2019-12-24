@@ -882,6 +882,8 @@ MonoBehaviour:
   health: 80
   explosive: {fileID: 1630379916971388, guid: 3eefdf7ca6be6574fb3d409c10e05249, type: 3}
   trail: {fileID: 0}
+  explosionDamageZone: {fileID: 4431937248861174585, guid: 8031f428f51fd314996f7b7abdb4b458,
+    type: 3}
   blackMat: {fileID: 2100000, guid: c2eeee4c0bdd8564aa5a231e3d9510e4, type: 2}
 --- !u!95 &4747288187685300319
 Animator:

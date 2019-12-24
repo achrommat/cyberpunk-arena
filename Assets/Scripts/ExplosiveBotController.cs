@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ExplosiveBotController : MonoBehaviour
 {
     public GameObject explosive;
+    public GameObject explosionDamageZone;
     public bool canRun;
     public int health;
     public float maxSize;
@@ -85,7 +86,7 @@ public class ExplosiveBotController : MonoBehaviour
     IEnumerator ScaleCharge()
     {
         float timer = 0;
-        float maxScale = 5;
+        float maxScale = 6;
         while (true)
         {
             while (maxScale > explosionCharge.transform.localScale.x)
@@ -124,9 +125,10 @@ public class ExplosiveBotController : MonoBehaviour
         if (dead == false)
         {
             GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(-90f, 0f, 0f));
-            explosion.GetComponent<SphereCollider>().radius = 2;            
+            GameObject explosionZone = Instantiate(explosionDamageZone, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Destroy(explosion, 3f);
+            Destroy(explosionZone, 0.5f);
             Destroy(gameObject);
-            Destroy(explosion, 0.5f);
             dead = true;
         } 
     }

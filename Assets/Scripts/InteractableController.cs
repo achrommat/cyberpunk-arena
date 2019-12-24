@@ -7,6 +7,7 @@ public class InteractableController : MonoBehaviour
     public int health;
     public GameObject explosive;
     public GameObject trail;
+    public GameObject explosionDamageZone;
     public Material blackMat;
     private Animator anim;
     private Component[] meshRenderers;
@@ -25,16 +26,20 @@ public class InteractableController : MonoBehaviour
     public void RunExplosion()
     {
         GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        explosion.transform.localScale = new Vector3(3f, 3f, 3f);
-        Destroy(explosion, 1f);
+        GameObject explosionZone = Instantiate(explosionDamageZone, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        explosion.transform.localScale = new Vector3(3f, 3f, 3f);        
+        Destroy(explosion, 3f);
+        Destroy(explosionZone, 0.5f);
         if (gameObject.name == "SM_Veh_Classic_0")
         {
+            explosionZone.transform.localScale = new Vector3(4f, 4f, 4f);
             meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer meshRenderer in meshRenderers)
                 meshRenderer.material = blackMat;
             return;
         }
-        Destroy(gameObject);        
+        explosionZone.transform.localScale = new Vector3(3f, 3f, 3f);
+        Destroy(gameObject);
     }
 
     private void Update()

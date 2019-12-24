@@ -19274,8 +19274,6 @@ GameObject:
   - component: {fileID: 198847149315451558}
   - component: {fileID: 199433290025226968}
   - component: {fileID: 114673430926704334}
-  - component: {fileID: -439415352463712947}
-  - component: {fileID: -746320528973059729}
   m_Layer: 0
   m_Name: NukeYellow
   m_TagString: Untagged
@@ -24098,32 +24096,6 @@ MonoBehaviour:
   destroyWhenDone: 1
   soundPrefabIsChild: 0
   pitchRandomMultiplier: 1.1
---- !u!114 &-439415352463712947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630379916971388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc08e95239bca741826b8b2cb886ab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1000
---- !u!135 &-746320528973059729
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630379916971388}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1760428368767870
 GameObject:
   m_ObjectHideFlags: 0

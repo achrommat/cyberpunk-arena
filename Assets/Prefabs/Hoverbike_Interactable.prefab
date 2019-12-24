@@ -59,6 +59,8 @@ MonoBehaviour:
   health: 50
   explosive: {fileID: 1630379916971388, guid: 3eefdf7ca6be6574fb3d409c10e05249, type: 3}
   trail: {fileID: 8494602757819248087}
+  explosionDamageZone: {fileID: 4431937248861174585, guid: 8031f428f51fd314996f7b7abdb4b458,
+    type: 3}
   blackMat: {fileID: 0}
 --- !u!1001 &9202608702471316584
 PrefabInstance:
