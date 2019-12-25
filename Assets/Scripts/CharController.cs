@@ -67,6 +67,7 @@ public class CharController : MonoBehaviour
     {
         charAnimator = GetComponent<Animator>();
         OnGround = true;
+        Audio = GetComponent<AudioSource>();
         ActualRespTime = RespawnTime;
     }
     public void FixedUpdate()
@@ -107,24 +108,28 @@ public class CharController : MonoBehaviour
         //if (movement.z > -0.1 && movement.z < 0.1)
         //    movement.z = 0;
 
-        rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
-
         run = (Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) * 2;
-        if (run > 1)
+        if ((movement.x <= -0.3 || movement.x >= 0.3) || (movement.z <= -0.3 || movement.z >= 0.3))
+        {
+            rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
             run = 1;
-        if (run < 0.1)
+        }
+        else
+        {
             run = 0;
+        }
+   
     }
     void MoveRotation()
     {
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
-        variableJoystick.DeadZone = 0.1f;
+        //variableJoystick.DeadZone = 0.1f;
           
          //variableJoystick2.HandleRange = 2;
         if (HaveTarget == false)
         {
-            if ((rotation.x <= -0.1 || rotation.x >= 0.1) || (rotation.z <= -0.1 || rotation.z >= 0.1))
+            if ((rotation.x <= -0.3 || rotation.x >= 0.3) || (rotation.z <= -0.3 || rotation.z >= 0.3))
             {
                 rotation = new Vector3(rotation.x, 0, rotation.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
@@ -161,13 +166,13 @@ public class CharController : MonoBehaviour
         // update the animator parameters
         charAnimator.SetFloat("Y", Z, 0.1f, Time.deltaTime);
         charAnimator.SetFloat("X", X, 0.1f, Time.deltaTime);
-       
 
         charAnimator.SetFloat("Speed", run);
         if (!Sprinting)
             charAnimator.SetFloat("Speed", 1, AnimatorSprintDampValue, Time.deltaTime);
         else
             charAnimator.SetFloat("Speed", 2.0f, AnimatorRunDampValue, Time.deltaTime);
+
 
         charAnimator.SetBool("Aiming", aiming);
        // charAnimator.SetBool("Jump", Jump);
@@ -262,23 +267,23 @@ public class CharController : MonoBehaviour
 
     public void FootStep()
     {
-        if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
-        {
-            int FootStepAudio = 0;
+      //  if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
+        //{
+        //    int FootStepAudio = 0;
 
-            if (Footsteps.Length > 1)
-            {
-                FootStepAudio = Random.Range(0, Footsteps.Length);
-            }
+        //    if (Footsteps.Length > 1)
+        //    {
+        //        FootStepAudio = Random.Range(0, Footsteps.Length);
+        //    }
 
-            float FootStepVolume = charAnimator.GetFloat("Speed") * GeneralFootStepsVolume;
-            if (aiming)
-                FootStepVolume *= 0.5f;
+        //    //float FootStepVolume = charAnimator.GetFloat("Speed") * GeneralFootStepsVolume;
+        //    //if (aiming)
+        //    //    FootStepVolume *= 0.5f;
 
-            Audio.PlayOneShot(Footsteps[FootStepAudio], FootStepVolume);
+        //    Audio.PlayOneShot(Footsteps[FootStepAudio], 1f);
 
-           // MakeNoise(FootStepVolume * 10f);
-            LastFootStepTime = Time.time;
-        }
+        //   // MakeNoise(FootStepVolume * 10f);
+        //    LastFootStepTime = Time.time;
+        //}
     }
 }
