@@ -74,7 +74,7 @@ public class CharController : MonoBehaviour
         UpdateAnimator();
         CheckGroundStatus();
         Death();
-        DeatExtra();
+        DeathExtra();
 
         if (Dead == false && InControll)
         {
@@ -119,7 +119,7 @@ public class CharController : MonoBehaviour
     {
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
-        //variableJoystick2.DeadZone = 0.1f;
+        variableJoystick.DeadZone = 0.1f;
           
          //variableJoystick2.HandleRange = 2;
         if (HaveTarget == false)
@@ -128,6 +128,7 @@ public class CharController : MonoBehaviour
             {
                 rotation = new Vector3(rotation.x, 0, rotation.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
+
                 aiming = true;
                 if(Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= 0.95)
                    Weapons.transform.GetComponent<WeaponController>().shooting = true;
@@ -217,7 +218,7 @@ public class CharController : MonoBehaviour
             Dead = false;
         }
     }
-    void DeatExtra()
+    void DeathExtra()
     {
         if (Health <= -50 && DeadExtra == false)
         {
