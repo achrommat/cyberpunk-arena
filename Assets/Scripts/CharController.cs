@@ -14,7 +14,7 @@ public class CharController : MonoBehaviour
  
     [Header("Sound FX")]
 
-    public float FootStepsRate = 0.4f;
+    public float FootStepsRate = 0.2f;
     public float GeneralFootStepsVolume = 1.0f;
     public AudioClip[] Footsteps;
     private float LastFootStepTime = 0.0f;
@@ -280,23 +280,40 @@ public class CharController : MonoBehaviour
 
     public void FootStep()
     {
-      //  if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
-        //{
-        //    int FootStepAudio = 0;
+        // if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
+        if(!aiming)
+        {
+            int FootStepAudio = 0;
 
-        //    if (Footsteps.Length > 1)
-        //    {
-        //        FootStepAudio = Random.Range(0, Footsteps.Length);
-        //    }
+            if (Footsteps.Length > 1)
+            {
+                FootStepAudio = Random.Range(0, Footsteps.Length);
+            }
 
-        //    //float FootStepVolume = charAnimator.GetFloat("Speed") * GeneralFootStepsVolume;
-        //    //if (aiming)
-        //    //    FootStepVolume *= 0.5f;
+            //float FootStepVolume = charAnimator.GetFloat("Speed") * GeneralFootStepsVolume;
+            //if (aiming)
+            //    FootStepVolume *= 0.5f;
 
-        //    Audio.PlayOneShot(Footsteps[FootStepAudio], 1f);
+            Audio.PlayOneShot(Footsteps[FootStepAudio], 1f);
 
-        //   // MakeNoise(FootStepVolume * 10f);
-        //    LastFootStepTime = Time.time;
-        //}
+           // MakeNoise(FootStepVolume * 10f);
+          //  LastFootStepTime = Time.time;
+        }
+        else
+        {
+            if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
+            {
+                int FootStepAudio = 0;
+
+                if (Footsteps.Length > 1)
+                {
+                    FootStepAudio = Random.Range(0, Footsteps.Length);
+                }
+                Audio.PlayOneShot(Footsteps[FootStepAudio], 1f);
+
+                LastFootStepTime = Time.time;
+
+            }
+        }
     }
 }
