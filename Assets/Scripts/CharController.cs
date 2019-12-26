@@ -22,7 +22,10 @@ public class CharController : MonoBehaviour
 
     [Header("Main")]
 
-    public float speed;
+    private float speed;
+    public float startspeed;
+    public float speedmody;
+    public float speedaim;
     public FixedJoystick variableJoystick;
     public Joystick variableJoystick2;
     public Joystick ShootJoystick;
@@ -86,6 +89,8 @@ public class CharController : MonoBehaviour
         {
             Respawn();
         }
+
+        speed = startspeed + speedaim + speedmody;
     }
     void MovePosition()
     {
@@ -108,11 +113,13 @@ public class CharController : MonoBehaviour
         //if (movement.z > -0.1 && movement.z < 0.1)
         //    movement.z = 0;
 
-        run = (Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) * 2;
-        if ((movement.x <= -0.3 || movement.x >= 0.3) || (movement.z <= -0.3 || movement.z >= 0.3))
+        //run = (Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) * 2;
+        //if ((movement.x <= -0.3 || movement.x >= 0.3) || (movement.z <= -0.3 || movement.z >= 0.3))
+        Vector3 localMoove = transform.InverseTransformDirection(movement);
+        if ((localMoove.x <= -0.3 || localMoove.x >= 0.3) || (localMoove.z <= -0.3 || localMoove.z >= 0.3))
         {
             rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
-            run = 1;
+            run = (Mathf.Abs(localMoove.x) + Mathf.Abs(localMoove.z));
         }
         else
         {
@@ -124,14 +131,18 @@ public class CharController : MonoBehaviour
     {
         rotation.x = variableJoystick2.Horizontal;
         rotation.z = variableJoystick2.Vertical;
+        rotation = new Vector3(rotation.x, 0, rotation.z);
+
         //variableJoystick.DeadZone = 0.1f;
-          
-         //variableJoystick2.HandleRange = 2;
+
+        //variableJoystick2.HandleRange = 2;
+        Vector3 localMoove = transform.InverseTransformDirection(rotation);
+
         if (HaveTarget == false)
         {
-            if ((rotation.x <= -0.3 || rotation.x >= 0.3) || (rotation.z <= -0.3 || rotation.z >= 0.3))
+            if ((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2))
             {
-                rotation = new Vector3(rotation.x, 0, rotation.z);
+                speedaim = -3;
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
 
                 aiming = true;
@@ -143,6 +154,7 @@ public class CharController : MonoBehaviour
             }
             else
             {
+                speedaim = 0;
                 aiming = false;
                 movement = new Vector3(movement.x, 0, movement.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
@@ -153,6 +165,7 @@ public class CharController : MonoBehaviour
         {
 
         }
+
         //Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
         //rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
 
