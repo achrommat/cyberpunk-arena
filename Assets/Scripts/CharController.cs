@@ -11,7 +11,7 @@ public class CharController : MonoBehaviour
     public bool DeadExtra;
     public float RespawnTime;
     float ActualRespTime;
- 
+    
     [Header("Sound FX")]
 
     public float FootStepsRate = 0.2f;
@@ -27,6 +27,8 @@ public class CharController : MonoBehaviour
     public float speedmody;
     public float speedaim;
     public float speedsetting =1;
+    public float RotationDeadZone = 0.3f;
+    public float MovementDeadZone = 0.3f;
     public FixedJoystick variableJoystick;
     public Joystick variableJoystick2;
     public Joystick ShootJoystick;
@@ -91,7 +93,7 @@ public class CharController : MonoBehaviour
             Respawn();
         }
 
-        speed = (startspeed + speedaim + speedmody)* speedsetting;
+        speed = (startspeed + speedaim + speedmody);//* speedsetting;
     }
     void MovePosition()
     {
@@ -245,7 +247,8 @@ public class CharController : MonoBehaviour
         {
             Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
             Weapons.transform.GetComponent<WeaponController>().shooting = false;
-            transform.GetChild(4).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
             Weapons.SetActive(false);
             rb.velocity = Vector3.zero;
             DeadExtra = true;
@@ -264,7 +267,9 @@ public class CharController : MonoBehaviour
             Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
             transform.parent.gameObject.transform.position = resp;
             Instantiate(RespawnVFX, transform.position, transform.rotation);
-            transform.GetChild(4).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(1).gameObject.SetActive(true);
+
             Weapons.SetActive(true);
             DeadExtra = false;
         }

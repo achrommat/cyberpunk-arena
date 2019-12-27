@@ -11,38 +11,51 @@ public class Bullettest : MonoBehaviour
     public GameObject HitVFX;
     public GameObject HitDecal;
     public float lifetime = 1;
+    float lifetimer;
     public int ricochet = 0;
     public Vector3 hitpos;
     public bool sawblade;
-     void FixedUpdate()
+    public GameObject BulletPool;
+    public void OnEnable()
     {
-        lifetime -= Time.fixedDeltaTime;
+        lifetimer = lifetime;
+    }
+    void FixedUpdate()
+    {
+        lifetimer -= Time.fixedDeltaTime;
         if (sawblade == true)
         {
-            if (ricochet <= 0||(lifetime <=0 && ricochet ==1))
+            if (ricochet <= 0||(lifetimer <= 0 && ricochet ==1))
             {
                 transform.GetChild(1).gameObject.SetActive(true);
                 transform.GetChild(2).gameObject.SetActive(false);
-                Destroy(gameObject,1f);
-                lifetime = 0;
+                // Destroy(gameObject,1f);
+                lifetimer = 0;
+                gameObject.transform.SetParent(BulletPool.transform);
+                gameObject.SetActive(false);
+
 
             }
-            else if (lifetime <=0)
+            else if (lifetimer <= 0)
             {
-                Destroy(gameObject);
+                // Destroy(gameObject);
+                gameObject.transform.SetParent(BulletPool.transform);
+                gameObject.SetActive(false);
             }
          }
         else if (sawblade == false)
         {
-            if (lifetime <= 0)
+            if (lifetimer <= 0)
             {
-                Destroy(gameObject);
+                // Destroy(gameObject);
+                gameObject.transform.SetParent(BulletPool.transform);
+                gameObject.SetActive(false);
             }
         }
 
 
 
-        if (lifetime > 0)
+        if (lifetimer > 0)
         {
             GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
             if (ricochet >0)
@@ -60,7 +73,7 @@ public class Bullettest : MonoBehaviour
                     {
                         GameObject fx = Instantiate(HitVFX, hit.point, transform.rotation);
                         damage *= Mathf.CeilToInt(1.5f);
-                        lifetime += 0.4f;
+                        lifetimer += 0.4f;
                         speed += 2;
 
                         if (ricochet == 2)
@@ -114,10 +127,12 @@ public class Bullettest : MonoBehaviour
                 BulletHit(other, true);
             }
         }
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Enemy"))
         {
             other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
-            Destroy(gameObject);
+          //  Destroy(gameObject);
+            gameObject.transform.SetParent(BulletPool.transform);
+            gameObject.SetActive(false);
         }
     }
 
@@ -127,7 +142,9 @@ public class Bullettest : MonoBehaviour
         if (shouldRotate)
             rotation = Quaternion.LookRotation(transform.position, other.transform.position);
 
-        GameObject hit = Instantiate(HitVFX, transform.position, rotation);
-        Destroy(gameObject);
+      //  GameObject hit = Instantiate(HitVFX, transform.position, rotation);
+        //  Destroy(gameObject);
+        gameObject.transform.SetParent(BulletPool.transform);
+        gameObject.SetActive(false);
     }
 }

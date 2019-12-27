@@ -19,10 +19,11 @@ public class Weapons : MonoBehaviour
     public bool shooting;
     public int Ammo;
     public bool Ripper;
+    public GameObject BulletPool;
 
     public float ShootCD= 1;
     protected float ShootTimer = 0;
-
+ 
     public void Update()
     {
         if(ShootTimer>=0)
@@ -75,9 +76,15 @@ public class Weapons : MonoBehaviour
             else
             {
                 Source.PlayOneShot(Clip);
-             //   ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
-                GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
-            //    Destroy(newbullet, BulletLifeTime);
+                //   ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+                //GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
+                GameObject newbullet = BulletPool.transform.GetChild(0).gameObject;
+                newbullet.transform.position = ShootPos.transform.position;
+                newbullet.transform.rotation = ShootPos.transform.rotation;
+                newbullet.transform.SetParent(null);
+                newbullet.SetActive(true);
+
+                //    Destroy(newbullet, BulletLifeTime);
                 //ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 Ammo -= 1;
                 if (Ripper == true)
