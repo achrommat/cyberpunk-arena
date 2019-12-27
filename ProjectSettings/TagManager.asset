@@ -21,6 +21,7 @@ TagManager:
   - Walls
   - Interactable
   - ExplosiveBot
+  - Items
   layers:
   - Default
   - TransparentFX

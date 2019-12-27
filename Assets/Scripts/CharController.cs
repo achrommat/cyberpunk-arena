@@ -26,6 +26,7 @@ public class CharController : MonoBehaviour
     public float startspeed;
     public float speedmody;
     public float speedaim;
+    public float speedsetting =1;
     public FixedJoystick variableJoystick;
     public Joystick variableJoystick2;
     public Joystick ShootJoystick;
@@ -90,7 +91,7 @@ public class CharController : MonoBehaviour
             Respawn();
         }
 
-        speed = startspeed + speedaim + speedmody;
+        speed = (startspeed + speedaim + speedmody)* speedsetting;
     }
     void MovePosition()
     {
@@ -180,7 +181,9 @@ public class CharController : MonoBehaviour
         charAnimator.SetFloat("Y", Z, 0.1f, Time.deltaTime);
         charAnimator.SetFloat("X", X, 0.1f, Time.deltaTime);
 
-        charAnimator.SetFloat("Speed", run);
+        charAnimator.SetFloat("Run", run);
+        charAnimator.SetFloat("Speed", speed);
+
         if (!Sprinting)
             charAnimator.SetFloat("Speed", 1, AnimatorSprintDampValue, Time.deltaTime);
         else
