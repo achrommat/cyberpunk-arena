@@ -65,8 +65,13 @@ public class Weapons : MonoBehaviour
                 for (int i = 0; i < 5; i++)
                 {
                     ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter) + pool[i], 0);
-                    GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
-                    Destroy(newbullet, BulletLifeTime);
+                    //GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
+                    //Destroy(newbullet, BulletLifeTime);
+                    GameObject newbullet = BulletPool.transform.GetChild(0).gameObject;
+                    newbullet.transform.position = ShootPos.transform.position;
+                    newbullet.transform.rotation = ShootPos.transform.rotation;
+                    newbullet.transform.SetParent(null);
+                    newbullet.SetActive(true);
                     ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     Ammo -= 1;
                 }
