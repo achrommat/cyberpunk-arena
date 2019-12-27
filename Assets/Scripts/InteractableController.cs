@@ -29,7 +29,7 @@ public class InteractableController : MonoBehaviour
         GameObject explosionZone = Instantiate(explosionDamageZone, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         explosion.transform.localScale = new Vector3(3f, 3f, 3f);        
         Destroy(explosion, 3f);
-        Destroy(explosionZone, 0.5f);
+        Destroy(explosionZone, 0.2f);
         if (gameObject.name == "SM_Veh_Classic_0")
         {
             explosionZone.transform.localScale = new Vector3(4f, 4f, 4f);

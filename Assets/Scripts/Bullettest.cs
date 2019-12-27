@@ -129,7 +129,7 @@ public class Bullettest : MonoBehaviour
         }
         if (other.CompareTag("Enemy"))
         {
-            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+            other.transform.GetComponent<EnemyController>().health -= damage;
           //  Destroy(gameObject);
             gameObject.transform.SetParent(BulletPool.transform);
             gameObject.SetActive(false);

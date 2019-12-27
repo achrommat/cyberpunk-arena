@@ -127,7 +127,7 @@ public class ExplosiveBotController : MonoBehaviour
             GameObject explosion = Instantiate(explosive, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(-90f, 0f, 0f));
             GameObject explosionZone = Instantiate(explosionDamageZone, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             Destroy(explosion, 3f);
-            Destroy(explosionZone, 0.5f);
+            Destroy(explosionZone, 0.2f);
             Destroy(gameObject);
             dead = true;
         } 
