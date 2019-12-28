@@ -16,6 +16,8 @@ public class Bullettest : MonoBehaviour
     public Vector3 hitpos;
     public bool sawblade;
     public GameObject BulletPool;
+    public GameObject VFXpool;
+
     public void OnEnable()
     {
         lifetimer = lifetime;
@@ -114,10 +116,14 @@ public class Bullettest : MonoBehaviour
         {
             if (ricochet > 0)
             {
-                //Vector3 reflectDir = Vector3.Reflect(transform.position, other.transform.position).normalized;
-                //float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
-                //transform.eulerAngles = new Vector3(0, rot, 0);
-                // GameObject hit = Instantiate(HitVFX, hitpos, Quaternion.LookRotation(transform.position, other.transform.position));
+                Vector3 reflectDir = Vector3.Reflect(transform.position, other.transform.position).normalized;
+                float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, rot, 0);
+                //VFXpool.transform.GetChild(0).GetChild(0).SetParent(null);
+                //VFXpool.transform.GetChild(0).GetChild(0).transform.position = hitpos;
+                //VFXpool.transform.GetChild(0).GetChild(0).transform.rotation = Quaternion.LookRotation(transform.position, other.transform.position);
+                //VFXpool.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+               // GameObject hit = Instantiate(HitVFX, hitpos, Quaternion.LookRotation(transform.position, other.transform.position));
                 ricochet--;
             }
             else
@@ -131,6 +137,13 @@ public class Bullettest : MonoBehaviour
         {
             other.transform.GetComponent<EnemyController>().health -= damage;
           //  Destroy(gameObject);
+            gameObject.transform.SetParent(BulletPool.transform);
+            gameObject.SetActive(false);
+        }
+        if (other.CompareTag("Player"))
+        {
+            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+            //  Destroy(gameObject);
             gameObject.transform.SetParent(BulletPool.transform);
             gameObject.SetActive(false);
         }

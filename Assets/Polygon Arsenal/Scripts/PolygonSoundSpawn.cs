@@ -8,6 +8,7 @@ namespace PolygonArsenal
     {
 
         public GameObject prefabSound;
+        public Transform VFXpool;
 
         public bool destroyWhenDone = true;
         public bool soundPrefabIsChild = false;
@@ -15,7 +16,8 @@ namespace PolygonArsenal
         public float pitchRandomMultiplier = 1f;
 
         // Use this for initialization
-        void Start()
+
+        private void OnEnable()
         {
             //Spawn the sound object
             GameObject m_Sound = Instantiate(prefabSound, transform.position, Quaternion.identity);
@@ -39,6 +41,9 @@ namespace PolygonArsenal
             {
                 float life = m_Source.clip.length / m_Source.pitch;
                 Destroy(m_Sound, life);
+                gameObject.transform.SetParent(VFXpool);
+                gameObject.SetActive(false);
+            
             }
         }
     }
