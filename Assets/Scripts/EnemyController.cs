@@ -4,16 +4,19 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 { 
     [Header("Stats")]
-    public int health;
-    public int meleeDamage;
+    public int maxHealth;
+    public int damage;
     public float respawnTime;
     private float actualRespTime;
+    public int currentHealth;
 
     [Header("Weapons")]
     public GameObject weapon;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask playerLayer;
+    public float attackRate = 1f;
+    public float nextAttackTime = 0f;
 
     public GameObject RespawnTarget;
 
@@ -25,13 +28,14 @@ public class EnemyController : MonoBehaviour
     private Rigidbody rb;
     private Vector2 smoothDeltaPosition = Vector2.zero;
     private Vector2 velocity = Vector2.zero;
-    private Transform target;
-    private NavMeshAgent agent;
+    public Transform target;
+    public NavMeshAgent agent;
     private bool dead = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         target = PlayerManager.instance.player.transform;
@@ -46,32 +50,25 @@ public class EnemyController : MonoBehaviour
         DeathHandler();
     }
 
-    private void FaceTarget()
+    public void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    private void Attack()
+    public virtual void Attack()
     {
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
-
-        foreach(Collider enemy in hitEnemies)
-        {
-            target.GetComponent<CharController>().Health -= meleeDamage;
-        }
     }
 
-    private void Run()
+    public virtual void Run()
     {
         agent.SetDestination(target.position);
 
         float distance = Vector3.Distance(target.position, transform.position);
 
         if (distance <= agent.stoppingDistance)
-        {
-            Attack();
+        {            
             FaceTarget();
         }
 
@@ -101,7 +98,7 @@ public class EnemyController : MonoBehaviour
 
     void DeathHandler()
     {
-        if (health < 1)
+        if (currentHealth < 1)
         {
             dead = true;
             Respawn();
@@ -126,7 +123,7 @@ public class EnemyController : MonoBehaviour
 
     void Respawn()
     {
-        health = 100;
+        currentHealth = maxHealth;
         dead = false;
         /*charAnimator.enabled = false;
         charAnimator.enabled = true;*/
@@ -141,6 +138,13 @@ public class EnemyController : MonoBehaviour
             //Instantiate(respawnVFX, transform.position, transform.rotation);
             //transform.GetChild(0).gameObject.SetActive(true);
         }*/
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!attackPoint)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
 }
