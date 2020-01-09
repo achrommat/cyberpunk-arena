@@ -41,8 +41,8 @@ namespace PolygonArsenal
             {
                 float life = m_Source.clip.length / m_Source.pitch;
                 Destroy(m_Sound, life);
-                gameObject.transform.SetParent(VFXpool);
-                gameObject.SetActive(false);
+                //gameObject.transform.SetParent(VFXpool);
+                //gameObject.SetActive(false);
             
             }
         }

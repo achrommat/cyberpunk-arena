@@ -135,10 +135,13 @@ public class Bullettest : MonoBehaviour
         }
         if (other.CompareTag("Enemy"))
         {
-            other.transform.GetComponent<EnemyController>().health -= damage;
-          //  Destroy(gameObject);
-            gameObject.transform.SetParent(BulletPool.transform);
-            gameObject.SetActive(false);
+            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+             //  Destroy(gameObject);
+            if (lifetime < 0)
+            {
+                gameObject.transform.SetParent(BulletPool.transform);
+                gameObject.SetActive(false);
+            }
         }
         if (other.CompareTag("Player"))
         {

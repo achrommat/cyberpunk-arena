@@ -153,6 +153,7 @@ public class CharController : MonoBehaviour
                    Weapons.transform.GetComponent<WeaponController>().shooting = true;
                 else
                    Weapons.transform.GetComponent<WeaponController>().shooting = false;
+              //  Target.transform.GetChild(0).gameObject.SetActive(true);
 
             }
             else
@@ -162,6 +163,7 @@ public class CharController : MonoBehaviour
                 movement = new Vector3(movement.x, 0, movement.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
                 Weapons.transform.GetComponent<WeaponController>().shooting = false;
+            //    Target.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
         else
@@ -215,7 +217,7 @@ public class CharController : MonoBehaviour
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
         {
             OnGround = true;
-            charAnimator.applyRootMotion = true;
+        //    charAnimator.applyRootMotion = true;
         }
         else
         {

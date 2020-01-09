@@ -42,10 +42,10 @@ public class Weapons : MonoBehaviour
                 Shoot();
                 LaserTarget.SetActive(true);
             }
-            //else
-            //{
-            //    LaserTarget.SetActive(false);
-            //}
+            else
+            {
+                LaserTarget.SetActive(false);
+            }
         }    
     }
     public void Shoot()
@@ -69,7 +69,7 @@ public class Weapons : MonoBehaviour
                     //Destroy(newbullet, BulletLifeTime);
                     GameObject newbullet = BulletPool.transform.GetChild(0).gameObject;
                     newbullet.transform.position = ShootPos.transform.position;
-                    newbullet.transform.rotation = ShootPos.transform.rotation;
+                    newbullet.transform.rotation = ShootPos.transform.localRotation;
                     newbullet.transform.SetParent(null);
                     newbullet.SetActive(true);
                     ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -81,8 +81,8 @@ public class Weapons : MonoBehaviour
             else
             {
                 Source.PlayOneShot(Clip);
-                //   ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
-                //GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
+                   ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+               // GameObject newbullet = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
                 GameObject newbullet = BulletPool.transform.GetChild(0).gameObject;
                 newbullet.transform.position = ShootPos.transform.position;
                 newbullet.transform.rotation = ShootPos.transform.rotation;
