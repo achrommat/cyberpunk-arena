@@ -55,13 +55,13 @@ public class Weapons : MonoBehaviour
             if (multishot == true)
             {
                 Source.PlayOneShot(Clip);
-                ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+               // ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
                 //GameObject newbullet1 = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
                 //        ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter)-25, 0);
                 //        GameObject newbullet2 = Instantiate(bullet, ShootPos.transform.position, ShootPos.transform.rotation);
                 //         Destroy(newbullet1, BulletLifeTime);
                 //        Destroy(newbullet2, BulletLifeTime);
-                int[] pool = { -20, -10, 0, 20, 10 };
+                int[] pool = { -5, -2, 0, 2, 5 };
                 for (int i = 0; i < 5; i++)
                 {
                     ShootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter) + pool[i], 0);
@@ -69,7 +69,7 @@ public class Weapons : MonoBehaviour
                     //Destroy(newbullet, BulletLifeTime);
                     GameObject newbullet = BulletPool.transform.GetChild(0).gameObject;
                     newbullet.transform.position = ShootPos.transform.position;
-                    newbullet.transform.rotation = ShootPos.transform.localRotation;
+                    newbullet.transform.rotation = ShootPos.transform.rotation;
                     newbullet.transform.SetParent(null);
                     newbullet.SetActive(true);
                     ShootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
