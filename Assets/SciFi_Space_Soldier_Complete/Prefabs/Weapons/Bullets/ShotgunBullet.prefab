@@ -109,8 +109,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.061331607}
-  m_Center: {x: 0, y: 0, z: -0.041477185}
+  m_Size: {x: 0.1, y: 0.1, z: 0.7104116}
+  m_Center: {x: 0, y: 0, z: 0.2830628}
 --- !u!114 &-2058507331622125335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   HitVFX: {fileID: 152416, guid: 07834224d379c644dbd1b5dc3a411a8a, type: 3}
   HitDecal: {fileID: 177838, guid: 158cd3742a8512d478cfd1d8cc7b00ab, type: 3}
   lifetime: 1
+  through: 0
   ricochet: 0
   hitpos: {x: 0, y: 0, z: 0}
   sawblade: 0

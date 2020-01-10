@@ -55,10 +55,25 @@ public class PipaController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             hit = true;
-            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
-            gameObject.transform.parent = other.transform.GetChild(0).GetChild(0).transform;
+            other.GetComponent<CharController>().Health -= damage;
+            gameObject.transform.parent = other.transform.GetChild(0).transform;
             //  Destroy(gameObject);
             if(lifetime <0)
+            {
+                gameObject.transform.SetParent(BulletPool.transform);
+                gameObject.SetActive(false);
+            }
+        }
+
+
+        if (other.CompareTag("Player"))
+        {
+            hit = true;
+            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+            gameObject.transform.parent = other.transform.GetChild(0).GetChild(1).transform;
+            
+            //  Destroy(gameObject);
+            if (lifetime < 0)
             {
                 gameObject.transform.SetParent(BulletPool.transform);
                 gameObject.SetActive(false);

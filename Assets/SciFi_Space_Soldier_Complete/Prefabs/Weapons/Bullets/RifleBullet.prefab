@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6510178}
   - component: {fileID: -2058507331622125335}
   m_Layer: 13
-  m_Name: TestBullet
+  m_Name: RifleBullet
   m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,8 +109,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.5}
-  m_Center: {x: 0, y: 0, z: -0.03}
+  m_Size: {x: 0.10000001, y: 0.10000001, z: 0.7246438}
+  m_Center: {x: 0, y: 0, z: 0.2760443}
 --- !u!114 &-2058507331622125335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +127,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   damage: 10
+  speed: 60
   HitVFX: {fileID: 152416, guid: 07834224d379c644dbd1b5dc3a411a8a, type: 3}
   HitDecal: {fileID: 177838, guid: 158cd3742a8512d478cfd1d8cc7b00ab, type: 3}
+  lifetime: 1
+  through: 0
+  ricochet: 0
+  hitpos: {x: 0, y: 0, z: 0}
+  sawblade: 0
+  BulletPool: {fileID: 0}
+  VFXpool: {fileID: 0}
 --- !u!1 &129672
 GameObject:
   m_ObjectHideFlags: 0
