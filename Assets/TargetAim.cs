@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetAim : MonoBehaviour
 {
     bool HaveTarget;
-  //  public List<Transform> target = new List<Transform>();
+    //  public List<Transform> target = new List<Transform>();
     public GameObject body;
     private Quaternion shootrot;
     private Quaternion playeryrot;
@@ -59,11 +59,11 @@ public class TargetAim : MonoBehaviour
                         target = closestGo;
                     }
                 }
-                if(AimHelper || AutoAim)
+                if (AimHelper || AutoAim)
                 {
                     //transform.GetChild(0).LookAt(new Vector3(target.transform.position.x, target.transform.position.y +1, target.transform.position.z));
                     Shootpos.transform.LookAt(target.transform.GetChild(2).position);
-                  
+
                 }
                 if (AutoAim)
                 {

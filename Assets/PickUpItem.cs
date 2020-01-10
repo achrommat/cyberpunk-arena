@@ -8,9 +8,9 @@ public class PickUpItem : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Items"))
+        if (other.CompareTag("Items"))
         {
-            if(place[other.GetComponent<ItemController>().place].transform.childCount > 0)
+            if (place[other.GetComponent<ItemController>().place].transform.childCount > 0)
             {
                 Destroy(place[other.GetComponent<ItemController>().place].transform.GetChild(0).gameObject);
             }

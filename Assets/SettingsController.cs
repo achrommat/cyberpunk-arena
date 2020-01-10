@@ -12,12 +12,12 @@ public class SettingsController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
         Player.GetComponent<CharController>().speedsetting = Slider.value;
-        Value.text =""+ Slider.value;
+        Value.text = "" + Slider.value;
     }
 }

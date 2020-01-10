@@ -27,7 +27,7 @@ public class CharController : MonoBehaviour
     public float startspeed;
     public float speedmody;
     public float speedaim;
-    public float speedsetting =1;
+    public float speedsetting = 1;
     public float RotationDeadZone = 0.3f;
     public float MovementDeadZone = 0.3f;
     public Joystick variableJoystick;
@@ -102,7 +102,7 @@ public class CharController : MonoBehaviour
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
-           
+
             direction = Vector3.forward * movement.z + Vector3.right * movement.x;
             direction = direction.normalized;
         }
@@ -112,7 +112,7 @@ public class CharController : MonoBehaviour
             movement.z = variableJoystick.Vertical;
             direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         }
-  
+
         Vector3 localMoove = transform.InverseTransformDirection(movement);
         if ((localMoove.x <= -0.3 || localMoove.x >= 0.3) || (localMoove.z <= -0.3 || localMoove.z >= 0.3))
         {
@@ -123,12 +123,12 @@ public class CharController : MonoBehaviour
         {
             run = 0;
         }
-   
+
     }
     public void AutoaimShootON()
     {
         // yield return (new WaitForSeconds(1));
-        speedaim = -3; 
+        speedaim = -3;
         aiming = true;
         Weapons.transform.GetComponent<WeaponController>().shooting = true;
         autoaim = true;
@@ -137,7 +137,7 @@ public class CharController : MonoBehaviour
 
     public void AutoaimShootOFF()
     {
-         // yield return (new WaitForSeconds(1));
+        // yield return (new WaitForSeconds(1));
         speedaim = +3;
         aiming = false;
         Weapons.transform.GetComponent<WeaponController>().shooting = false;
@@ -157,17 +157,17 @@ public class CharController : MonoBehaviour
 
         if (HaveTarget == false && !autoaim)
         {
-            if (((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2)) )
+            if (((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2)))
             {
                 speedaim = -3;
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
 
                 aiming = true;
-                if(Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= 0.95)
-                   Weapons.transform.GetComponent<WeaponController>().shooting = true;
+                if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= 0.95)
+                    Weapons.transform.GetComponent<WeaponController>().shooting = true;
                 else
-                   Weapons.transform.GetComponent<WeaponController>().shooting = false;
-              //  Target.transform.GetChild(0).gameObject.SetActive(true);
+                    Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                //  Target.transform.GetChild(0).gameObject.SetActive(true);
 
             }
             else
@@ -177,7 +177,7 @@ public class CharController : MonoBehaviour
                 movement = new Vector3(movement.x, 0, movement.z);
                 gameObject.transform.parent.LookAt(transform.parent.position + movement * Time.deltaTime);
                 Weapons.transform.GetComponent<WeaponController>().shooting = false;
-            //    Target.transform.GetChild(0).gameObject.SetActive(false);
+                //    Target.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
         else
@@ -206,7 +206,7 @@ public class CharController : MonoBehaviour
 
 
         charAnimator.SetBool("Aiming", aiming);
-       // charAnimator.SetBool("Jump", Jump);
+        // charAnimator.SetBool("Jump", Jump);
 
         charAnimator.SetBool("OnGround", OnGround);
 
@@ -219,16 +219,16 @@ public class CharController : MonoBehaviour
     void CheckGroundStatus()
     {
         RaycastHit hitInfo;
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         // helper to visualise the ground check ray in the scene view
         //Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
-        #endif
+#endif
         // 0.1f is a small offset to start the ray from inside the character
         // it is also good to note that the transform position in the sample assets is at the base of the character
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
         {
             OnGround = true;
-        //    charAnimator.applyRootMotion = true;
+            //    charAnimator.applyRootMotion = true;
         }
         else
         {
@@ -248,7 +248,7 @@ public class CharController : MonoBehaviour
             Dead = true;
             Weapons.transform.GetComponent<WeaponController>().shooting = false;
         }
-     
+
         else
         {
             Dead = false;
@@ -262,7 +262,7 @@ public class CharController : MonoBehaviour
             Weapons.transform.GetComponent<WeaponController>().shooting = false;
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
-            if(gameObject.CompareTag("Enemy"))
+            if (gameObject.CompareTag("Enemy"))
             {
                 transform.GetComponent<CapsuleCollider>().enabled = false;
                 transform.GetComponent<Rigidbody>().useGravity = false;
@@ -283,7 +283,7 @@ public class CharController : MonoBehaviour
     void Respawn()
     {
         ActualRespTime -= Time.deltaTime;
-        if(ActualRespTime <=0)
+        if (ActualRespTime <= 0)
         {
             ActualRespTime = RespawnTime;
             Health = 100;
@@ -312,7 +312,7 @@ public class CharController : MonoBehaviour
     public void FootStep()
     {
         // if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))
-        if(!aiming)
+        if (!aiming)
         {
             int FootStepAudio = 0;
 
@@ -327,8 +327,8 @@ public class CharController : MonoBehaviour
 
             Audio.PlayOneShot(Footsteps[FootStepAudio], 1f);
 
-           // MakeNoise(FootStepVolume * 10f);
-          //  LastFootStepTime = Time.time;
+            // MakeNoise(FootStepVolume * 10f);
+            //  LastFootStepTime = Time.time;
         }
         else
         {

@@ -13,9 +13,9 @@ public class StatsGui : MonoBehaviour
     }
     void FixedUpdate()
     {
-        for(int i = 0; i < Weapons.transform.childCount; i++)
+        for (int i = 0; i < Weapons.transform.childCount; i++)
         {
-            
+
             transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "" + Player.GetComponent<CharController>().Health;
             transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + Player.GetComponent<CharController>().Armor;
             if (Weapons.transform.GetChild(i).gameObject.active)

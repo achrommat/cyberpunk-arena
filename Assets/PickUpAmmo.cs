@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpAmmo : MonoBehaviour
 {
-    public bool Weapon; 
+    public bool Weapon;
     public int WeaponClass = 0; // 0==нихуя, 1 = Rifle, 2 = Shotgun, 3 = Rocket, 4 = Ripper,5 = PlasmaGun, 6 = Railgun, 7 = BFG;
     public int AmmoClass = 0; // 0 == нихуя, 1 = Light, 2 = Extra, 3 = Energy
     public int Health;
@@ -19,9 +19,9 @@ public class PickUpAmmo : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            if(Health ==0 && Armor ==0)
+            if (Health == 0 && Armor == 0)
             {
                 weapons = other.transform.GetChild(0).GetComponent<CharController>().Weapons;
                 GameObject vfx = Instantiate(VFX, transform.position, transform.rotation);
@@ -78,7 +78,7 @@ public class PickUpAmmo : MonoBehaviour
                 GetComponent<BoxCollider>().enabled = false;
                 timer = CD;
             }
-        }   
+        }
     }
     public void FixedUpdate()
     {

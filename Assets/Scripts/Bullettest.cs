@@ -19,8 +19,8 @@ public class Bullettest : MonoBehaviour
     public bool sawblade;
     public GameObject BulletPool;
     public GameObject VFXpool;
-    bool hit = false; 
-    public float hittime =1;
+    bool hit = false;
+    public float hittime = 1;
 
 
     public void OnEnable()
@@ -37,20 +37,20 @@ public class Bullettest : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(hit  == true)
+        if (hit == true)
         {
             hittime -= Time.deltaTime;
-            if(hittime <=0)
+            if (hittime <= 0)
             {
                 gameObject.transform.SetParent(BulletPool.transform);
                 gameObject.SetActive(false);
             }
         }
-       
+
         lifetimer -= Time.fixedDeltaTime;
         if (sawblade == true)
         {
-            if (ricochet <= 0||(lifetimer <= 0 && ricochet ==1))
+            if (ricochet <= 0 || (lifetimer <= 0 && ricochet == 1))
             {
                 transform.GetChild(1).gameObject.SetActive(true);
                 transform.GetChild(2).gameObject.SetActive(false);
@@ -61,13 +61,13 @@ public class Bullettest : MonoBehaviour
 
 
             }
-            else if (lifetimer <= 0 &&  hittime <= 0)
+            else if (lifetimer <= 0 && hittime <= 0)
             {
                 // Destroy(gameObject);
                 gameObject.transform.SetParent(BulletPool.transform);
                 gameObject.SetActive(false);
             }
-         }
+        }
         else if (sawblade == false)
         {
             if (lifetimer <= 0 && !hit)
@@ -83,7 +83,7 @@ public class Bullettest : MonoBehaviour
         if (lifetimer > 0 && hit == false)
         {
             GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
-            if (ricochet >0)
+            if (ricochet > 0)
             {
                 Ray ray = new Ray(transform.position, transform.forward);
                 RaycastHit hit;
@@ -121,7 +121,7 @@ public class Bullettest : MonoBehaviour
                 }
             }
         }
-      
+
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -145,7 +145,7 @@ public class Bullettest : MonoBehaviour
                 float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
                 transform.eulerAngles = new Vector3(0, rot, 0);
                 hit = true;
-                 //VFXpool.transform.GetChild(0).GetChild(0).SetParent(null);
+                //VFXpool.transform.GetChild(0).GetChild(0).SetParent(null);
                 //VFXpool.transform.GetChild(0).GetChild(0).transform.position = hitpos;
                 //VFXpool.transform.GetChild(0).GetChild(0).transform.rotation = Quaternion.LookRotation(transform.position, other.transform.position);
                 //VFXpool.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
@@ -154,7 +154,7 @@ public class Bullettest : MonoBehaviour
             }
             else
             {
-          //      transform.GetChild(0).gameObject.SetActive(false);
+                //      transform.GetChild(0).gameObject.SetActive(false);
                 transform.GetChild(2).gameObject.SetActive(true);
                 transform.GetComponent<MeshRenderer>().enabled = false;
                 hit = true;
@@ -166,7 +166,7 @@ public class Bullettest : MonoBehaviour
         {
             other.transform.GetComponent<CharController>().Health -= damage;
             transform.GetChild(1).gameObject.SetActive(true);
-           // transform.GetChild(0).gameObject.SetActive(false);
+            // transform.GetChild(0).gameObject.SetActive(false);
             if (currentThrough <= 0)
             {
                 hit = true;
@@ -175,7 +175,7 @@ public class Bullettest : MonoBehaviour
             else
             {
                 currentThrough -= 1;
-               // transform.GetChild(1).gameObject.SetActive(false);
+                // transform.GetChild(1).gameObject.SetActive(false);
             }
             //  Destroy(gameObject);
         }
