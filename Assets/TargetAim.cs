@@ -5,45 +5,105 @@ using UnityEngine;
 public class TargetAim : MonoBehaviour
 {
     bool HaveTarget;
-    public List<Transform> target = new List<Transform>();
+  //  public List<Transform> target = new List<Transform>();
     public GameObject body;
-    private Quaternion bodyrot;
+    private Quaternion shootrot;
+    private Quaternion playeryrot;
+
+    public Transform Shootpos;
+    public GameObject target;
+
+    public float range = 250;
+    public List<GameObject> Enemies;
+    public bool AimHelper = false;
+    public bool AutoAim = false;
 
     private void Awake()
     {
-        bodyrot = body.transform.localRotation;
+        shootrot = Shootpos.transform.localRotation;
+        playeryrot = transform.parent.localRotation;
     }
-    private void Update()
+
+
+
+
+    void FixedUpdate()
     {
-        if(HaveTarget == true)
+        if (Enemies.Count > 0 && transform.parent.GetComponent<CharController>().aiming)
         {
-            transform.GetChild(0).LookAt(target[0]);
-            body.transform.LookAt(target[0]);
+            float distance = range;
+            GameObject closestGo = null;
+            foreach (GameObject go in Enemies)
+            {
+                if (go == null)
+                {
+                    target = null;
+                    Enemies.Remove(go);
+                }
+                else
+                {
+                    if (go.GetComponent<CharController>().Health <= 0)
+                    {
+                        target = null;
+                        Enemies.Remove(go);
+                    }
+                    else
+                    {
+                        Vector3 diff = go.transform.position - transform.position;
+                        float curDistance = diff.sqrMagnitude;
+                        if (curDistance < distance)
+                        {
+                            closestGo = go;
+                            distance = curDistance;
+                        }
+                        target = closestGo;
+                    }
+                }
+                if(AimHelper || AutoAim)
+                {
+                    //transform.GetChild(0).LookAt(new Vector3(target.transform.position.x, target.transform.position.y +1, target.transform.position.z));
+                    Shootpos.transform.LookAt(target.transform.GetChild(2).position);
+                  
+                }
+                if (AutoAim)
+                {
+                    //transform.GetChild(0).LookAt(new Vector3(target.transform.position.x, target.transform.position.y +1, target.transform.position.z));
+                    transform.parent.LookAt(new Vector3(target.transform.position.x, transform.parent.parent.position.y, target.transform.position.z));
+
+                }
+            }
         }
         else
         {
-            transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, 0);
-            body.transform.localRotation = bodyrot;
+            if (AimHelper)
+            {
+                target = null;
+                // transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, 0);
+                Shootpos.transform.localRotation = shootrot;
+            }
+            if (AutoAim)
+            {
+                target = null;
+                transform.parent.LookAt(transform.parent.position + transform.parent.GetComponent<CharController>().movement * Time.deltaTime);
+            }
         }
 
     }
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            target.Add(other.transform);
+            Enemies.Add(other.gameObject);
             HaveTarget = true;
         }
     }
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            target.Remove(other.transform);
-            if (target.Count == 0)
-            {
-                HaveTarget = false;
-            }
+            Enemies.Remove(other.gameObject);
+            HaveTarget = false;
+
         }
     }
 }

@@ -31,22 +31,22 @@ public class Weapons : MonoBehaviour
             ShootTimer -= Time.deltaTime;
         }
 
-        if (ShootTimer <= 0)
+        if (shooting == true)
         {
-            if (Ripper == true)
+            LaserTarget.SetActive(true);
+            if (ShootTimer <= 0)
             {
-                transform.GetChild(0).gameObject.SetActive(true);
-            }
-            if (shooting == true)
-            {
+                if (Ripper == true)
+                {
+                    transform.GetChild(0).gameObject.SetActive(true);
+                }
                 Shoot();
-                LaserTarget.SetActive(true);
             }
-            else
-            {
-                LaserTarget.SetActive(false);
-            }
-        }    
+        }
+        else
+        {
+            LaserTarget.SetActive(false);
+        }
     }
     public void Shoot()
     {

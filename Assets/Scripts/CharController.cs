@@ -11,7 +11,8 @@ public class CharController : MonoBehaviour
     public bool DeadExtra;
     public float RespawnTime;
     float ActualRespTime;
-    
+    bool autoaim = false;
+
     [Header("Sound FX")]
 
     public float FootStepsRate = 0.2f;
@@ -29,7 +30,7 @@ public class CharController : MonoBehaviour
     public float speedsetting =1;
     public float RotationDeadZone = 0.3f;
     public float MovementDeadZone = 0.3f;
-    public FixedJoystick variableJoystick;
+    public Joystick variableJoystick;
     public Joystick variableJoystick2;
     public Joystick ShootJoystick;
 
@@ -49,7 +50,7 @@ public class CharController : MonoBehaviour
     bool m_Crouching;
     bool OnGround;
     bool ongroundstay;
-    bool aiming;
+    public bool aiming;
     bool Jump;
     bool HaveTarget;
     float run;
@@ -111,13 +112,7 @@ public class CharController : MonoBehaviour
             movement.z = variableJoystick.Vertical;
             direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         }
-        //if (movement.x > -0.1 && movement.z < 0.1)
-        //    movement.x = 0;
-        //if (movement.z > -0.1 && movement.z < 0.1)
-        //    movement.z = 0;
-
-        //run = (Mathf.Abs(movement.x) + Mathf.Abs(movement.z)) * 2;
-        //if ((movement.x <= -0.3 || movement.x >= 0.3) || (movement.z <= -0.3 || movement.z >= 0.3))
+  
         Vector3 localMoove = transform.InverseTransformDirection(movement);
         if ((localMoove.x <= -0.3 || localMoove.x >= 0.3) || (localMoove.z <= -0.3 || localMoove.z >= 0.3))
         {
@@ -130,6 +125,25 @@ public class CharController : MonoBehaviour
         }
    
     }
+    public void AutoaimShootON()
+    {
+        // yield return (new WaitForSeconds(1));
+        speedaim = -3; 
+        aiming = true;
+        Weapons.transform.GetComponent<WeaponController>().shooting = true;
+        autoaim = true;
+
+    }
+
+    public void AutoaimShootOFF()
+    {
+         // yield return (new WaitForSeconds(1));
+        speedaim = +3;
+        aiming = false;
+        Weapons.transform.GetComponent<WeaponController>().shooting = false;
+        autoaim = false;
+
+    }
     void MoveRotation()
     {
         rotation.x = variableJoystick2.Horizontal;
@@ -141,9 +155,9 @@ public class CharController : MonoBehaviour
         //variableJoystick2.HandleRange = 2;
         Vector3 localMoove = transform.InverseTransformDirection(rotation);
 
-        if (HaveTarget == false)
+        if (HaveTarget == false && !autoaim)
         {
-            if ((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2))
+            if (((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2)) )
             {
                 speedaim = -3;
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
@@ -170,9 +184,6 @@ public class CharController : MonoBehaviour
         {
 
         }
-
-        //Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
-        //rb.MoveRotation(rb.rotation * deltaRotation);//* direction2 * speed * Time.fixedDeltaTime, ForceMode.VelocityChange
 
     }
     void UpdateAnimator()
@@ -251,6 +262,18 @@ public class CharController : MonoBehaviour
             Weapons.transform.GetComponent<WeaponController>().shooting = false;
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
+            if(gameObject.CompareTag("Enemy"))
+            {
+                transform.GetComponent<CapsuleCollider>().enabled = false;
+                transform.GetComponent<Rigidbody>().useGravity = false;
+
+            }
+            else
+            {
+                transform.parent.GetComponent<CapsuleCollider>().enabled = false;
+                transform.parent.GetComponent<Rigidbody>().useGravity = false;
+
+            }
             Weapons.SetActive(false);
             rb.velocity = Vector3.zero;
             DeadExtra = true;
@@ -271,23 +294,21 @@ public class CharController : MonoBehaviour
             Instantiate(RespawnVFX, transform.position, transform.rotation);
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(true);
-
+            if (gameObject.CompareTag("Enemy"))
+            {
+                transform.GetComponent<CapsuleCollider>().enabled = true;
+                transform.GetComponent<Rigidbody>().useGravity = true;
+            }
+            else
+            {
+                transform.parent.GetComponent<CapsuleCollider>().enabled = true;
+                transform.parent.GetComponent<Rigidbody>().useGravity = true;
+            }
             Weapons.SetActive(true);
             DeadExtra = false;
+
         }
     }
-    //void Dead()
-    //{
-    //    if(Health <=0)
-    //    {
-
-    //    }
-    //}
-    /// <summary>
-    /// TEST
-    /// </summary>
-    /// 
-
     public void FootStep()
     {
         // if (Footsteps.Length > 0 && Time.time >= (LastFootStepTime + FootStepsRate))

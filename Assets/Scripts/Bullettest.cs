@@ -11,19 +11,42 @@ public class Bullettest : MonoBehaviour
     public GameObject HitVFX;
     public GameObject HitDecal;
     public float lifetime = 1;
+    public int through = 0;
+    int currentThrough = 0;
     float lifetimer;
     public int ricochet = 0;
     public Vector3 hitpos;
     public bool sawblade;
     public GameObject BulletPool;
     public GameObject VFXpool;
+    bool hit = false; 
+    public float hittime =1;
+
 
     public void OnEnable()
     {
+        hittime = 1;
+        currentThrough = through;
         lifetimer = lifetime;
+        hit = false;
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(false);
+
+        transform.GetComponent<MeshRenderer>().enabled = true;
     }
     void FixedUpdate()
     {
+        if(hit  == true)
+        {
+            hittime -= Time.deltaTime;
+            if(hittime <=0)
+            {
+                gameObject.transform.SetParent(BulletPool.transform);
+                gameObject.SetActive(false);
+            }
+        }
+       
         lifetimer -= Time.fixedDeltaTime;
         if (sawblade == true)
         {
@@ -38,7 +61,7 @@ public class Bullettest : MonoBehaviour
 
 
             }
-            else if (lifetimer <= 0)
+            else if (lifetimer <= 0 &&  hittime <= 0)
             {
                 // Destroy(gameObject);
                 gameObject.transform.SetParent(BulletPool.transform);
@@ -47,7 +70,7 @@ public class Bullettest : MonoBehaviour
          }
         else if (sawblade == false)
         {
-            if (lifetimer <= 0)
+            if (lifetimer <= 0 && !hit)
             {
                 // Destroy(gameObject);
                 gameObject.transform.SetParent(BulletPool.transform);
@@ -57,7 +80,7 @@ public class Bullettest : MonoBehaviour
 
 
 
-        if (lifetimer > 0)
+        if (lifetimer > 0 && hit == false)
         {
             GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
             if (ricochet >0)
@@ -106,6 +129,8 @@ public class Bullettest : MonoBehaviour
         {
             BulletHit(other, false);
             other.GetComponent<InteractableController>().health -= damage;
+            hit = true;
+
         }
         else if (other.CompareTag("ExplosiveBot"))
         {
@@ -119,37 +144,48 @@ public class Bullettest : MonoBehaviour
                 Vector3 reflectDir = Vector3.Reflect(transform.position, other.transform.position).normalized;
                 float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
                 transform.eulerAngles = new Vector3(0, rot, 0);
-                //VFXpool.transform.GetChild(0).GetChild(0).SetParent(null);
+                hit = true;
+                 //VFXpool.transform.GetChild(0).GetChild(0).SetParent(null);
                 //VFXpool.transform.GetChild(0).GetChild(0).transform.position = hitpos;
                 //VFXpool.transform.GetChild(0).GetChild(0).transform.rotation = Quaternion.LookRotation(transform.position, other.transform.position);
                 //VFXpool.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-               // GameObject hit = Instantiate(HitVFX, hitpos, Quaternion.LookRotation(transform.position, other.transform.position));
+                // GameObject hit = Instantiate(HitVFX, hitpos, Quaternion.LookRotation(transform.position, other.transform.position));
                 ricochet--;
             }
             else
             {
+          //      transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(2).gameObject.SetActive(true);
+                transform.GetComponent<MeshRenderer>().enabled = false;
+                hit = true;
                 //тут надо добить поворот попадения - Quaternion или забить хуй (пока второй вариант)
                 //возможно надо делать через рейкаст (пример в PrBullet)
-                BulletHit(other, true);
             }
         }
         if (other.CompareTag("Enemy"))
         {
-            other.transform.GetComponent<BaseEnemyController>().currentHealth -= damage;
-             //  Destroy(gameObject);
-            if (lifetime < 0)
+            other.transform.GetComponent<CharController>().Health -= damage;
+            transform.GetChild(1).gameObject.SetActive(true);
+           // transform.GetChild(0).gameObject.SetActive(false);
+            if (currentThrough <= 0)
             {
-                gameObject.transform.SetParent(BulletPool.transform);
-                gameObject.SetActive(false);
+                hit = true;
+                transform.GetComponent<MeshRenderer>().enabled = false;
             }
-        }
-        if (other.CompareTag("Player"))
-        {
-            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+            else
+            {
+                currentThrough -= 1;
+               // transform.GetChild(1).gameObject.SetActive(false);
+            }
             //  Destroy(gameObject);
-            gameObject.transform.SetParent(BulletPool.transform);
-            gameObject.SetActive(false);
         }
+        //if (other.CompareTag("Player"))
+        //{
+        //    other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+        //    //  Destroy(gameObject);
+        //    gameObject.transform.SetParent(BulletPool.transform);
+        //    gameObject.SetActive(false);
+        //}
     }
 
     private void BulletHit(Collider other, bool shouldRotate)
@@ -158,9 +194,12 @@ public class Bullettest : MonoBehaviour
         if (shouldRotate)
             rotation = Quaternion.LookRotation(transform.position, other.transform.position);
 
-      //  GameObject hit = Instantiate(HitVFX, transform.position, rotation);
+        //  GameObject hit = Instantiate(HitVFX, transform.position, rotation);
         //  Destroy(gameObject);
-        gameObject.transform.SetParent(BulletPool.transform);
-        gameObject.SetActive(false);
+        if (lifetime < 0)
+        {
+            gameObject.transform.SetParent(BulletPool.transform);
+            gameObject.SetActive(false);
+        }
     }
 }
