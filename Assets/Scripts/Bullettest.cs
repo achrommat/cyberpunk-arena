@@ -32,6 +32,7 @@ public class Bullettest : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(false);
+        transform.GetChild(4).gameObject.SetActive(false);
 
         transform.GetComponent<MeshRenderer>().enabled = true;
     }
@@ -130,12 +131,16 @@ public class Bullettest : MonoBehaviour
             BulletHit(other, false);
             other.GetComponent<InteractableController>().health -= damage;
             hit = true;
-
+            transform.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(3).gameObject.SetActive(true);
         }
         else if (other.CompareTag("ExplosiveBot"))
         {
             BulletHit(other, false);
             other.GetComponent<ExplosiveBotController>().health -= damage;
+            transform.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(3).gameObject.SetActive(true);
+
         }
         if (other.CompareTag("Walls"))
         {
