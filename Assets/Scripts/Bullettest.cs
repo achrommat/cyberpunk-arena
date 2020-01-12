@@ -170,7 +170,10 @@ public class Bullettest : MonoBehaviour
         }
         if (other.CompareTag("Enemy"))
         {
-            other.transform.GetComponent<CharController>().Health -= damage;
+            if (other.transform.GetComponent<CharController>())
+                other.transform.GetComponent<CharController>().Health -= damage;
+            else
+                other.transform.GetComponent<BaseEnemyController>().currentHealth -= damage;
             transform.GetChild(1).gameObject.SetActive(true);
             // transform.GetChild(0).gameObject.SetActive(false);
             if (currentThrough <= 0)

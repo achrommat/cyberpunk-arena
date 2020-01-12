@@ -17,7 +17,7 @@ public class TargetAim : MonoBehaviour
     public List<GameObject> Enemies;
     public bool AimHelper = false;
     public bool AutoAim = false;
-
+    
     private void Awake()
     {
         shootrot = Shootpos.transform.localRotation;
@@ -42,7 +42,8 @@ public class TargetAim : MonoBehaviour
                 }
                 else
                 {
-                    if (go.GetComponent<CharController>().Health <= 0)
+                    float enemyHealth = go.GetComponent<CharController>() ? go.GetComponent<CharController>().Health : go.GetComponent<BaseEnemyController>().currentHealth;
+                    if (enemyHealth <= 0)
                     {
                         target = null;
                         Enemies.Remove(go);

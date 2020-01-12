@@ -72,11 +72,7 @@ public class BaseEnemyController : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil) + pool[i], 0);
-                GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
-                newbullet.transform.position = shootPos.transform.position;
-                newbullet.transform.rotation = shootPos.transform.rotation;
-                newbullet.transform.SetParent(null);
-                newbullet.SetActive(true);
+                CreateBullet();
                 shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
         }
@@ -84,12 +80,18 @@ public class BaseEnemyController : MonoBehaviour
         {
             audioSource.PlayOneShot(shotClip);
             shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil), 0);
-            GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
-            newbullet.transform.position = shootPos.transform.position;
-            newbullet.transform.rotation = shootPos.transform.rotation;
-            newbullet.transform.SetParent(null);
-            newbullet.SetActive(true);
+            CreateBullet();
         }
+    }
+
+    private void CreateBullet()
+    {
+        GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
+        newbullet.GetComponent<BaseEnemyBulletController>().damage = this.damage;
+        newbullet.transform.position = shootPos.transform.position;
+        newbullet.transform.rotation = shootPos.transform.rotation;
+        newbullet.transform.SetParent(null);
+        newbullet.SetActive(true);
     }
 
     public virtual void Run()

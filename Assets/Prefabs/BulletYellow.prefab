@@ -4872,7 +4872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  speed: 10
+  speed: 50
   lifetime: 2
   hitVFX: {fileID: 0}
   bulletPool: {fileID: 0}
