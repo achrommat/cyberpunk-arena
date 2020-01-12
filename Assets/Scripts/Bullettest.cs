@@ -129,6 +129,7 @@ public class Bullettest : MonoBehaviour
         if (other.CompareTag("Interactable"))
         {
             BulletHit(other, false);
+            if (other.GetComponent<InteractableController>()!= null)
             other.GetComponent<InteractableController>().health -= damage;
             hit = true;
             transform.GetComponent<MeshRenderer>().enabled = false;

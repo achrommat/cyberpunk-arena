@@ -62,6 +62,7 @@ public class TargetAim : MonoBehaviour
                 if (AimHelper || AutoAim)
                 {
                     //transform.GetChild(0).LookAt(new Vector3(target.transform.position.x, target.transform.position.y +1, target.transform.position.z));
+                    if(target.transform.GetChild(2).position!=null)
                     Shootpos.transform.LookAt(target.transform.GetChild(2).position);
 
                 }
