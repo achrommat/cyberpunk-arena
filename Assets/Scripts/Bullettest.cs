@@ -184,6 +184,23 @@ public class Bullettest : MonoBehaviour
             }
             //  Destroy(gameObject);
         }
+        if (other.CompareTag("Club"))
+        {
+            other.transform.GetComponent<RandomDance>().HP -= damage;
+            transform.GetChild(1).gameObject.SetActive(true);
+            // transform.GetChild(0).gameObject.SetActive(false);
+            if (currentThrough <= 0)
+            {
+                hit = true;
+                transform.GetComponent<MeshRenderer>().enabled = false;
+            }
+            else
+            {
+                currentThrough -= 1;
+                // transform.GetChild(1).gameObject.SetActive(false);
+            }
+            //  Destroy(gameObject);
+        }
         //if (other.CompareTag("Player"))
         //{
         //    other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;

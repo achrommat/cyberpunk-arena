@@ -20,7 +20,14 @@ public class PipaController : MonoBehaviour
 
     public void OnEnable()
     {
+ 
         lifetimer = lifetime;
+        hit = false;
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(false);
+        transform.GetChild(4).gameObject.SetActive(false);
+
     }
     void FixedUpdate()
     {
@@ -35,19 +42,11 @@ public class PipaController : MonoBehaviour
         if (lifetimer > 0 && hit == false)
         {
             GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
-            if (ricochet > 0)
-            {
-                Ray ray = new Ray(transform.position, transform.forward);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, Time.deltaTime * speed + .1f))
-                {
-                    Vector3 reflectDir = Vector3.Reflect(ray.direction, hit.normal);
-                    float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
-                    transform.eulerAngles = new Vector3(0, rot, 0);
-                    // hitpos = hit.point;
-                }
-            }
+        }
+        else 
+        {
+            gameObject.transform.SetParent(BulletPool.transform);
+            gameObject.SetActive(false);
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -56,15 +55,22 @@ public class PipaController : MonoBehaviour
         {
             hit = true;
             other.GetComponent<CharController>().Health -= damage;
-            gameObject.transform.parent = other.transform.GetChild(0).transform;
+            //gameObject.transform.parent = other.transform.GetChild(0).transform;
             //  Destroy(gameObject);
-            if (lifetime < 0)
+            if (lifetimer < 0)
             {
                 gameObject.transform.SetParent(BulletPool.transform);
                 gameObject.SetActive(false);
             }
         }
-
+        if (other.CompareTag("Club"))
+        {
+            other.transform.GetComponent<RandomDance>().HP -= damage;
+            transform.GetChild(1).gameObject.SetActive(true);
+            // transform.GetChild(0).gameObject.SetActive(false);
+            hit = true;
+            //  Destroy(gameObject);
+        }
 
         if (other.CompareTag("Player"))
         {
@@ -73,22 +79,15 @@ public class PipaController : MonoBehaviour
             gameObject.transform.parent = other.transform.GetChild(0).GetChild(1).transform;
 
             //  Destroy(gameObject);
-            if (lifetime < 0)
-            {
-                gameObject.transform.SetParent(BulletPool.transform);
-                gameObject.SetActive(false);
-            }
+     
         }
         if (other.CompareTag("Walls"))
         {
+            transform.GetChild(2).gameObject.SetActive(true);
             hit = true;
-            gameObject.transform.parent = other.transform;
+            // gameObject.transform.parent = other.transform;
             //  Destroy(gameObject);
-            if (lifetime < 0)
-            {
-                gameObject.transform.SetParent(BulletPool.transform);
-                gameObject.SetActive(false);
-            }
+
         }
 
     }

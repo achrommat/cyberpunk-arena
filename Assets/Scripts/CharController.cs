@@ -12,6 +12,7 @@ public class CharController : MonoBehaviour
     public float RespawnTime;
     float ActualRespTime;
     bool autoaim = false;
+    public bool dance = false;
 
     [Header("Sound FX")]
 
@@ -53,7 +54,7 @@ public class CharController : MonoBehaviour
     public bool aiming;
     bool Jump;
     bool HaveTarget;
-    float run;
+    public float run;
 
 
     [Header("Guns")]
@@ -93,8 +94,8 @@ public class CharController : MonoBehaviour
         {
             Respawn();
         }
-
         speed = (startspeed + speedaim + speedmody);//* speedsetting;
+       
     }
     void MovePosition()
     {
@@ -116,6 +117,7 @@ public class CharController : MonoBehaviour
         Vector3 localMoove = transform.InverseTransformDirection(movement);
         if ((localMoove.x <= -0.3 || localMoove.x >= 0.3) || (localMoove.z <= -0.3 || localMoove.z >= 0.3))
         {
+            GetComponent<Animator>().applyRootMotion = false;
             rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
             run = (Mathf.Abs(localMoove.x) + Mathf.Abs(localMoove.z));
         }
@@ -209,6 +211,7 @@ public class CharController : MonoBehaviour
         // charAnimator.SetBool("Jump", Jump);
 
         charAnimator.SetBool("OnGround", OnGround);
+        charAnimator.SetBool("Dance", dance);
 
 
         charAnimator.SetBool("Crouch", m_Crouching);
@@ -246,7 +249,8 @@ public class CharController : MonoBehaviour
         if (Health <= 0)
         {
             Dead = true;
-            Weapons.transform.GetComponent<WeaponController>().shooting = false;
+            if(Weapons !=null)
+              Weapons.transform.GetComponent<WeaponController>().shooting = false;
         }
 
         else
@@ -259,7 +263,17 @@ public class CharController : MonoBehaviour
         if (Health <= -50 && DeadExtra == false)
         {
             Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
-            Weapons.transform.GetComponent<WeaponController>().shooting = false;
+            if (rb== null)
+            {
+                Destroy(gameObject);
+            }
+
+            if (Weapons != null)
+            {
+                Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                Weapons.SetActive(false);
+            }
+            
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
             if (gameObject.CompareTag("Enemy"))
@@ -271,11 +285,12 @@ public class CharController : MonoBehaviour
             else
             {
                 transform.parent.GetComponent<CapsuleCollider>().enabled = false;
-                transform.parent.GetComponent<Rigidbody>().useGravity = false;
+                if (rb != null)
+                    transform.parent.GetComponent<Rigidbody>().useGravity = false;
 
             }
-            Weapons.SetActive(false);
-            rb.velocity = Vector3.zero;
+            if(rb !=null)
+             rb.velocity = Vector3.zero;
             DeadExtra = true;
             Dead = true;
         }
@@ -283,7 +298,7 @@ public class CharController : MonoBehaviour
     void Respawn()
     {
         ActualRespTime -= Time.deltaTime;
-        if (ActualRespTime <= 0)
+        if (ActualRespTime <= 0 && RespawnTarget !=null)
         {
             ActualRespTime = RespawnTime;
             Health = 100;
