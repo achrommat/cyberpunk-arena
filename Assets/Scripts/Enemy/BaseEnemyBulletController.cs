@@ -14,11 +14,6 @@ public class BaseEnemyBulletController : MonoBehaviour
     public GameObject bulletPool;
     private GameObject vfxPool;
 
-    private void Awake()
-    {
-        bulletPool = transform.parent.gameObject;
-    }
-
     public void OnEnable()
     {
         currentLifetime = lifetime;
