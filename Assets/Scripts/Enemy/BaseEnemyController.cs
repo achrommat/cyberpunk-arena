@@ -36,7 +36,7 @@ public class BaseEnemyController : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     public Transform target;
     public NavMeshAgent agent;
-    private bool dead = false;
+    public bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class BaseEnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         Run();
         DeathHandler();
@@ -135,7 +135,7 @@ public class BaseEnemyController : MonoBehaviour
         transform.position = agent.nextPosition;
     }
 
-    void DeathHandler()
+    public void DeathHandler()
     {
         if (currentHealth < 1)
         {
@@ -160,7 +160,7 @@ public class BaseEnemyController : MonoBehaviour
         }
     }*/
 
-    void Respawn()
+    public virtual void Respawn()
     {
         currentHealth = maxHealth;
         dead = false;
