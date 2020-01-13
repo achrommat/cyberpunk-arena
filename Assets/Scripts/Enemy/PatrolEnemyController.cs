@@ -7,6 +7,12 @@ public class PatrolEnemyController : BaseEnemyController
 
     public Transform[] points;
     private int destPoint = 0;
+    private Vector3 resp;
+
+    private void Awake()
+    {
+        resp = points.Length > 1 ? RespawnTarget.transform.position : transform.position;
+    }
 
     private void Patrol()
     {
@@ -25,9 +31,14 @@ public class PatrolEnemyController : BaseEnemyController
 
     public override void Respawn()
     {
-        currentHealth = maxHealth;
-        dead = false;
-        Vector3 resp = RespawnTarget.transform.position;
-        transform.position = resp;
+        respawnTimer += Time.deltaTime;
+        if (respawnTimer > respawnTime)
+        {
+            currentHealth = maxHealth;
+            dead = false;
+            transform.position = resp;
+            respawnTimer = 0.0f;
+            agent.isStopped = false;
+        }
     }
 }

@@ -7,7 +7,7 @@ public class BaseEnemyController : MonoBehaviour
     public int maxHealth;
     public int damage;
     public float respawnTime;
-    private float actualRespTime;
+    public float respawnTimer;
     public int currentHealth;
 
     [Header("Weapons")]
@@ -139,6 +139,7 @@ public class BaseEnemyController : MonoBehaviour
     {
         if (currentHealth < 1)
         {
+            agent.isStopped = true;
             dead = true;
             Respawn();
             //gameObject.SetActive(false);
@@ -161,22 +162,16 @@ public class BaseEnemyController : MonoBehaviour
     }*/
 
     public virtual void Respawn()
-    {
-        currentHealth = maxHealth;
-        dead = false;
-        /*charAnimator.enabled = false;
-        charAnimator.enabled = true;*/
-        Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
-        transform.position = resp;
-        /*actualRespTime -= Time.deltaTime;
-        if (actualRespTime <= 0)
-        {
-            actualRespTime = respawnTime;            
-           
-            
-            //Instantiate(respawnVFX, transform.position, transform.rotation);
-            //transform.GetChild(0).gameObject.SetActive(true);
-        }*/
+    {        
+        respawnTimer += Time.deltaTime;
+        if (respawnTimer > respawnTime)
+        {            
+            currentHealth = maxHealth;
+            dead = false;
+            Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
+            respawnTimer = 0.0f;
+            agent.isStopped = false;
+        }
     }
 
     private void OnDrawGizmosSelected()
