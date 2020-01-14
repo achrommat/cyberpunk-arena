@@ -165,8 +165,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5661758968816264397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1044}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.6988}
+  m_LocalPosition: {x: 0, y: -0, z: -0.095}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.81577915}
   m_Children:
   - {fileID: 5661758967363181356}
   - {fileID: 5664666224417400452}
@@ -289,6 +289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SurfaceImpactStone
       objectReference: {fileID: 0}
+    - target: {fileID: 1776954259925760, guid: 2030e0eb33dfc224b9bcbe4ee0fa1a1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4455956304119052, guid: 2030e0eb33dfc224b9bcbe4ee0fa1a1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -364,6 +368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SurfaceImpactDirt
       objectReference: {fileID: 0}
+    - target: {fileID: 1885733664846446, guid: dbada9b00d4f0394c87e2738108b402b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4503945406049820, guid: dbada9b00d4f0394c87e2738108b402b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -426,6 +434,10 @@ PrefabInstance:
     - target: {fileID: 1146961906002798, guid: 04f6f308bd2d35947a3a6b2a626d1980, type: 3}
       propertyPath: m_Name
       value: BloodExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146961906002798, guid: 04f6f308bd2d35947a3a6b2a626d1980, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4068347281300922, guid: 04f6f308bd2d35947a3a6b2a626d1980, type: 3}
       propertyPath: m_LocalPosition.x
@@ -501,6 +513,10 @@ PrefabInstance:
     - target: {fileID: 1464152371616656, guid: 7913054b3bc58d54b9f71fe755fc131f, type: 3}
       propertyPath: m_Name
       value: SurfaceImpactMetal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464152371616656, guid: 7913054b3bc58d54b9f71fe755fc131f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4436874639708616, guid: 7913054b3bc58d54b9f71fe755fc131f, type: 3}
       propertyPath: m_LocalPosition.x

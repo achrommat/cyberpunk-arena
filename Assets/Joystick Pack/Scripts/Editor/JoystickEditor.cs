@@ -12,6 +12,7 @@ public class JoystickEditor : Editor
     private SerializedProperty snapX;
     private SerializedProperty snapY;
     protected SerializedProperty background;
+    protected SerializedProperty backsprite;
     private SerializedProperty handle;
 
     protected Vector2 center = new Vector2(0.5f, 0.5f);
@@ -25,6 +26,8 @@ public class JoystickEditor : Editor
         snapY = serializedObject.FindProperty("snapY");
         background = serializedObject.FindProperty("background");
         handle = serializedObject.FindProperty("handle");
+        backsprite = serializedObject.FindProperty("backsprite");
+
     }
 
     public override void OnInspectorGUI()
@@ -60,5 +63,7 @@ public class JoystickEditor : Editor
     {
         EditorGUILayout.ObjectField(background, new GUIContent("Background", "The background's RectTransform component."));
         EditorGUILayout.ObjectField(handle, new GUIContent("Handle", "The handle's RectTransform component."));
+        EditorGUILayout.ObjectField(backsprite, new GUIContent("Backsprite", "The backsprite's RectTransform component."));
+
     }
 }
