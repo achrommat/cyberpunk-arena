@@ -5,16 +5,17 @@ using UnityEngine;
 public class ActiveRoom : MonoBehaviour
 {
     public bool room;
-    public GameObject target;
+    public GameObject EnabledRoom;
+    public GameObject FadingRoom;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.CompareTag("Player"))
-    //    {
-    //        if (room)
-    //            target.SetActive(false);
-    //        else
-    //            target.SetActive(true);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if(FadingRoom !=null)
+                FadingRoom.SetActive(false);
+            if(EnabledRoom != null)
+                EnabledRoom.SetActive(true);
+        }
+    }
 }
