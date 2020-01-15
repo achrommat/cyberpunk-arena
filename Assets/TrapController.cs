@@ -10,21 +10,22 @@ public class TrapController : MonoBehaviour
     public float delay;
     public GameObject Target;
     public Vector3 Axis;
-    float movetimer;
+     float movetimer =0;
     float delaytimer;
     bool foward = false;
     void Start()
     {
+        movetimer = timer;
         RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(foward)
         {
-            movetimer -= Time.fixedDeltaTime;
-            RB.velocity = Axis * speed;
+            movetimer -= Time.deltaTime;
+            transform.position = transform.position + Axis * Time.deltaTime * speed;
             if(movetimer <= 0)
             {
                 foward = false;
@@ -32,9 +33,9 @@ public class TrapController : MonoBehaviour
         }
         else
         {
-            movetimer += Time.fixedDeltaTime;
-            RB.velocity = -Axis * speed;
-            if(movetimer>=timer)
+            movetimer += Time.deltaTime;
+            transform.position = transform.position - Axis * Time.deltaTime * speed;
+            if (movetimer>=timer)
             {
                 foward = true;
             }

@@ -88,7 +88,7 @@ public class CharController : MonoBehaviour
         if (Dead == false && InControll)
         {
             MovePosition();
-            MoveRotation();
+         //   MoveRotation();
         }
         if (Dead == true)
         {
@@ -96,6 +96,13 @@ public class CharController : MonoBehaviour
         }
         speed = (startspeed + speedaim + speedmody);//* speedsetting;
        
+    }
+    public void Update()
+    {
+        if (Dead == false && InControll)
+        {
+             MoveRotation();
+        }
     }
     void MovePosition()
     {

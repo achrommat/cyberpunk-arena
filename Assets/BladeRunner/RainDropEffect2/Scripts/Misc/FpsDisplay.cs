@@ -28,9 +28,9 @@ public class FpsDisplay : MonoBehaviour
 
         GUIStyle style = new GUIStyle();
 
-        Rect rect = new Rect(0, h - h / 10, w, h / 10);
+        Rect rect = new Rect(0, h - h / 20, w, h / 20);
         style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h / 10;
+        style.fontSize = h / 20;
         style.normal.textColor = Color.white;
         string text = string.Format("FPS:{0}", fps);
         GUI.Label(rect, text, style);
