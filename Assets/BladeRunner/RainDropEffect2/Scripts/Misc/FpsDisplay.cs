@@ -9,6 +9,10 @@ public class FpsDisplay : MonoBehaviour
     int flameCnt = 0;
     int fps = 0;
 
+    private void Awake()
+    {
+       Application.targetFrameRate = 60;
+    }
     void LateUpdate()
     {
         dt = Time.time - startTime;
@@ -24,14 +28,14 @@ public class FpsDisplay : MonoBehaviour
     void OnGUI()
     {
         int w = Screen.width;
-        int h = Screen.height;
+        int h = 0;
 
         GUIStyle style = new GUIStyle();
 
         Rect rect = new Rect(0, h - h / 20, w, h / 20);
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize = h / 20;
-        style.normal.textColor = Color.white;
+        style.normal.textColor = Color.green;
         string text = string.Format("FPS:{0}", fps);
         GUI.Label(rect, text, style);
     }

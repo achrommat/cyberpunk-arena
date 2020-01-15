@@ -267,10 +267,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   damage: 10
-  speed: 60
+  speed: 45
   HitVFX: {fileID: 152416, guid: 07834224d379c644dbd1b5dc3a411a8a, type: 3}
   HitDecal: {fileID: 177838, guid: 158cd3742a8512d478cfd1d8cc7b00ab, type: 3}
-  lifetime: 0.25
+  lifetime: 0.3
   through: 0
   ricochet: 0
   hitpos: {x: 0, y: 0, z: 0}
