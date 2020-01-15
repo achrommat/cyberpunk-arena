@@ -28,13 +28,13 @@ public class FpsDisplay : MonoBehaviour
     void OnGUI()
     {
         int w = Screen.width;
-        int h = 0;
+        int h = Screen.height;
 
         GUIStyle style = new GUIStyle();
 
-        Rect rect = new Rect(0, h - h / 20, w, h / 20);
+        Rect rect = new Rect(0, h - h+5 / 15, w, h / 15);
         style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h / 20;
+        style.fontSize = h / 15;
         style.normal.textColor = Color.green;
         string text = string.Format("FPS:{0}", fps);
         GUI.Label(rect, text, style);
