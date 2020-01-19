@@ -11,7 +11,7 @@ public class PatrolEnemyController : BaseEnemyController
 
     private void Awake()
     {
-        resp = points.Length > 1 ? RespawnTarget.transform.position : transform.position;
+        resp = points.Length > 1 ? respawnTarget.transform.position : transform.position;
     }
 
     private void Patrol()
@@ -24,9 +24,11 @@ public class PatrolEnemyController : BaseEnemyController
 
     public override void Update()
     {
+        if (!dead)
+            if (agent.remainingDistance < 0.5f)
+                Patrol();
         DeathHandler();
-        if (agent.remainingDistance < 0.5f)
-            Patrol();
+        anim.SetBool("Dead", dead);
     }
 
     public override void Respawn()
@@ -34,6 +36,7 @@ public class PatrolEnemyController : BaseEnemyController
         respawnTimer += Time.deltaTime;
         if (respawnTimer > respawnTime)
         {
+            Instantiate(respawnVFX, transform.position, transform.rotation);
             currentHealth = maxHealth;
             dead = false;
             transform.position = resp;

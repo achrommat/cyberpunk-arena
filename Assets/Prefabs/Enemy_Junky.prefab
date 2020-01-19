@@ -1220,7 +1220,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8578480001059427934}
-  - component: {fileID: 8655284069120854807}
   - component: {fileID: 4794028240554877728}
   - component: {fileID: 135865269}
   m_Layer: 0
@@ -1265,25 +1264,6 @@ Transform:
   m_Father: {fileID: 8318154572021167354}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8655284069120854807
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192298510897274835}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
-  m_Controller: {fileID: 9100000, guid: a6d164a2d41d981429b6d238ec576bae, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &4794028240554877728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6339,6 +6319,7 @@ GameObject:
   - component: {fileID: 2090075488}
   - component: {fileID: 1631747150}
   - component: {fileID: 1631747145}
+  - component: {fileID: 1202601848}
   m_Layer: 0
   m_Name: Enemy_Junky
   m_TagString: Enemy
@@ -6408,6 +6389,7 @@ MonoBehaviour:
   maxHealth: 100
   damage: 10
   respawnTime: 5
+  respawnTimer: 0
   currentHealth: 0
   multishot: 0
   shotClip: {fileID: 8300000, guid: 4718378dc4e8d064b86f2a59e1426f12, type: 3}
@@ -6423,9 +6405,11 @@ MonoBehaviour:
   attackRate: 2
   nextAttackTime: 0
   RespawnTarget: {fileID: 0}
-  respawnVFX: {fileID: 0}
+  respawnVFX: {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
+  anim: {fileID: 0}
   target: {fileID: 0}
   agent: {fileID: 0}
+  dead: 0
 --- !u!82 &1631747150
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6544,6 +6528,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &1202601848
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248355432669049655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
+  m_Controller: {fileID: 9100000, guid: a6d164a2d41d981429b6d238ec576bae, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4249000560512251867
 GameObject:
   m_ObjectHideFlags: 0

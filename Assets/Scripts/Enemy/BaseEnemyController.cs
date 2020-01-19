@@ -24,13 +24,14 @@ public class BaseEnemyController : MonoBehaviour
     public float attackRate = 1f;
     public float nextAttackTime = 0f;
 
-    public GameObject RespawnTarget;
+    public GameObject respawnTarget;
 
     [Header("VFX")]
     public GameObject respawnVFX;
+    private Renderer renderer;
     //public GameObject deadVFX;
 
-    private Animator anim;
+    public Animator anim;
     private Rigidbody rb;
     private Vector2 smoothDeltaPosition = Vector2.zero;
     private Vector2 velocity = Vector2.zero;
@@ -38,22 +39,27 @@ public class BaseEnemyController : MonoBehaviour
     public NavMeshAgent agent;
     public bool dead = false;
 
+    private float run = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
-        anim = transform.GetChild(0).GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        renderer = GetComponentInChildren<Renderer>();
         //agent.updatePosition = false;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        Run();
+        if (!dead)
+            Run();
         DeathHandler();
+        anim.SetBool("Dead", dead);
     }
 
     public void FaceTarget()
@@ -82,7 +88,7 @@ public class BaseEnemyController : MonoBehaviour
             shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil), 0);
             CreateBullet();
         }
-    }
+    }   
 
     private void CreateBullet()
     {
@@ -135,14 +141,19 @@ public class BaseEnemyController : MonoBehaviour
         transform.position = agent.nextPosition;
     }
 
+    //private void UpdateAnimator()
+    //{
+    //    anim.SetFloat("Run", run);
+    //    anim.SetFloat("Speed", agent.speed);
+    //}
+
     public void DeathHandler()
     {
         if (currentHealth < 1)
         {
             agent.isStopped = true;
-            dead = true;
+            dead = true;           
             Respawn();
-            //gameObject.SetActive(false);
         }
     }
 
@@ -162,16 +173,30 @@ public class BaseEnemyController : MonoBehaviour
     }*/
 
     public virtual void Respawn()
-    {        
+    {
         respawnTimer += Time.deltaTime;
         if (respawnTimer > respawnTime)
-        {            
+        {
+            Instantiate(respawnVFX, transform.position, transform.rotation);
             currentHealth = maxHealth;
-            dead = false;
-            Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
+            dead = false;            
+            Vector3 resp = respawnTarget.transform.GetChild(Random.Range(0, respawnTarget.transform.childCount)).transform.position;
+            transform.position = resp;
             respawnTimer = 0.0f;
             agent.isStopped = false;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullets"))
+            GetDamage();
+    }
+
+    public void GetDamage()
+    {
+        // TODO: перенести сюда код из BulletTest
+        //renderer.material.color = Color.red;
     }
 
     private void OnDrawGizmosSelected()

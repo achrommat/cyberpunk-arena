@@ -1070,6 +1070,7 @@ GameObject:
   - component: {fileID: 2681073017818711001}
   - component: {fileID: 3262262350699435681}
   - component: {fileID: 3262262350699435686}
+  - component: {fileID: 7893091243815681527}
   m_Layer: 0
   m_Name: Enemy_Junky_Patrol
   m_TagString: Enemy
@@ -1108,7 +1109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage: 0
-  respawnTime: 2
+  respawnTime: 5
+  respawnTimer: 0
   currentHealth: 0
   multishot: 0
   shotClip: {fileID: 0}
@@ -1124,7 +1126,8 @@ MonoBehaviour:
   attackRate: 1
   nextAttackTime: 0
   RespawnTarget: {fileID: 0}
-  respawnVFX: {fileID: 0}
+  respawnVFX: {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
+  anim: {fileID: 0}
   target: {fileID: 0}
   agent: {fileID: 0}
   dead: 0
@@ -1279,6 +1282,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &7893091243815681527
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707095789102602712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
+  m_Controller: {fileID: 9100000, guid: a6d164a2d41d981429b6d238ec576bae, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1707595631089212724
 GameObject:
   m_ObjectHideFlags: 0
@@ -4434,7 +4456,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6505731474793233585}
-  - component: {fileID: 6149767899333239288}
   - component: {fileID: 8053048675291007439}
   - component: {fileID: 3262262349209880922}
   m_Layer: 0
@@ -4479,25 +4500,6 @@ Transform:
   m_Father: {fileID: 6788586900393074197}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6149767899333239288
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4453505324507346236}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
-  m_Controller: {fileID: 9100000, guid: a6d164a2d41d981429b6d238ec576bae, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &8053048675291007439
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4625,9 +4627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 2.5
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.09661572, b: 0, a: 0.16862746}
+  outlineWidth: 2
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 4300000, guid: b4e0f14cb72dde44e8f1ebcead0f5414, type: 3}
