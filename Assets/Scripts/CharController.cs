@@ -14,8 +14,15 @@ public class CharController : MonoBehaviour
     public float ShootZone = 0.75f;
     bool autoaim = false;
     public bool dance = false;
-
-
+ 
+    [Header("Dash")]
+    public float dashPower = 5000;
+    public float dashTime = 1.5f;
+    public float dashCD = 6f;
+    float dashCDCurrentTime;
+    public bool dash = false;
+    public GameObject dashVFX;
+   
     [Header("Sound FX")]
 
     public float FootStepsRate = 0.2f;
@@ -87,17 +94,24 @@ public class CharController : MonoBehaviour
         Death();
         DeathExtra();
 
-        if (Dead == false && InControll)
+        if (!Dead && InControll && !dash)
         {
             MovePosition();
          //   MoveRotation();
         }
-        if (Dead == true)
+        if (Dead)
         {
             Respawn();
         }
         speed = (startspeed + speedaim + speedmody);//* speedsetting;
-       
+       if(dash)
+        {
+            StartCoroutine(Dash());
+        }
+       if(dashCDCurrentTime >= 0)
+        {
+            dashCDCurrentTime -= Time.fixedDeltaTime;
+        }
     }
     public void Update()
     {
@@ -371,4 +385,25 @@ public class CharController : MonoBehaviour
             }
         }
     }
+    public void DashStart()
+    {
+        if(dashCDCurrentTime <=0)
+        {
+            dash = true;
+            Debug.Log("DASH");
+        }
+    }
+    public IEnumerator Dash()
+    {
+        rb.velocity = Vector3.zero;
+        dashVFX.SetActive(true);
+        rb.AddForce(transform.forward * dashPower);
+        yield return new WaitForSeconds(dashTime);
+        rb.velocity = Vector3.zero;
+        dashCDCurrentTime = dashCD;
+        dash = false;
+       // yield return new WaitForSeconds(0.5f);
+        dashVFX.SetActive(false);
+    }
+
 }
