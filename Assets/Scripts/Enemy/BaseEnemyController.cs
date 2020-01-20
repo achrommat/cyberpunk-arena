@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class BaseEnemyController : MonoBehaviour
@@ -28,7 +29,7 @@ public class BaseEnemyController : MonoBehaviour
 
     [Header("VFX")]
     public GameObject respawnVFX;
-    private Renderer renderer;
+    private Renderer myRenderer;
     //public GameObject deadVFX;
 
     public Animator anim;
@@ -49,8 +50,28 @@ public class BaseEnemyController : MonoBehaviour
         anim = GetComponent<Animator>();
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-        renderer = GetComponentInChildren<Renderer>();
+        myRenderer = FindRenderer();
         //agent.updatePosition = false;
+    }
+
+    private Renderer FindRenderer()
+    {
+        Renderer rend = new Renderer();
+        Renderer[] rends;
+        rends = GetComponentsInChildren<Renderer>();
+        foreach (Renderer localRenderer in rends)
+        {
+            if (localRenderer.gameObject.name.Contains("Character_"))
+            {
+                rend = localRenderer;
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+        return rend;
     }
 
     // Update is called once per frame
@@ -190,13 +211,23 @@ public class BaseEnemyController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullets"))
-            GetDamage();
+        {
+            if (!dead)
+                GetDamage();
+        }            
     }
 
     public void GetDamage()
     {
         // TODO: перенести сюда код из BulletTest
-        //renderer.material.color = Color.red;
+        StartCoroutine(Flash());
+    }
+
+    IEnumerator Flash()
+    {
+        myRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        myRenderer.material.color = Color.white;
     }
 
     private void OnDrawGizmosSelected()
