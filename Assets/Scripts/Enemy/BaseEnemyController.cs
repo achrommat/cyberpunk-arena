@@ -29,6 +29,7 @@ public class BaseEnemyController : MonoBehaviour
 
     [Header("VFX")]
     public GameObject respawnVFX;
+    public bool flashWhenHit = true;
     private Renderer myRenderer;
     //public GameObject deadVFX;
 
@@ -220,7 +221,8 @@ public class BaseEnemyController : MonoBehaviour
     public void GetDamage()
     {
         // TODO: перенести сюда код из BulletTest
-        StartCoroutine(Flash());
+        if (flashWhenHit)
+            StartCoroutine(Flash());
     }
 
     IEnumerator Flash()
