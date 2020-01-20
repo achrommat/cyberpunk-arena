@@ -91,35 +91,10 @@ public class BaseEnemyController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    public virtual void Attack()
+    public virtual IEnumerator Attack()
     {
-        if (multishot == true)
-        {
-            audioSource.PlayOneShot(shotClip);
-            int[] pool = { -5, -2, 0, 2, 5 };
-            for (int i = 0; i < 5; i++)
-            {
-                shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil) + pool[i], 0);
-                CreateBullet();
-                shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-        }
-        else
-        {
-            audioSource.PlayOneShot(shotClip);
-            shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil), 0);
-            CreateBullet();
-        }
-    }   
-
-    private void CreateBullet()
-    {
-        GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
-        newbullet.GetComponent<BaseEnemyBulletController>().damage = this.damage;
-        newbullet.transform.position = shootPos.transform.position;
-        newbullet.transform.rotation = shootPos.transform.rotation;
-        newbullet.transform.SetParent(null);
-        newbullet.SetActive(true);
+        // реализуется в наследуемых скриптах
+        return null;
     }
 
     public virtual void Run()
@@ -134,11 +109,11 @@ public class BaseEnemyController : MonoBehaviour
         {
             if (Time.time >= nextAttackTime)
             {
-                Attack();
+                StartCoroutine(Attack());
                 nextAttackTime = Time.time + attackRate;
-            }            
+            }
         }
-
+        
         //Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
 
         //float dx = Vector3.Dot(transform.right, worldDeltaPosition);
