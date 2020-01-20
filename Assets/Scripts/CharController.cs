@@ -11,8 +11,10 @@ public class CharController : MonoBehaviour
     public bool DeadExtra;
     public float RespawnTime;
     float ActualRespTime;
+    public float ShootZone = 0.75f;
     bool autoaim = false;
     public bool dance = false;
+
 
     [Header("Sound FX")]
 
@@ -172,7 +174,7 @@ public class CharController : MonoBehaviour
                 gameObject.transform.parent.LookAt(transform.parent.position + rotation * Time.deltaTime);
 
                 aiming = true;
-                if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= 0.95)
+                if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= ShootZone)
                     Weapons.transform.GetComponent<WeaponController>().shooting = true;
                 else
                     Weapons.transform.GetComponent<WeaponController>().shooting = false;
