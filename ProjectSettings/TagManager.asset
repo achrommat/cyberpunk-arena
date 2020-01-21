@@ -23,6 +23,7 @@ TagManager:
   - ExplosiveBot
   - Items
   - Club
+  - WallRun
   layers:
   - Default
   - TransparentFX

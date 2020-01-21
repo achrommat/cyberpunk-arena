@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharController : MonoBehaviour
 {
@@ -22,9 +23,13 @@ public class CharController : MonoBehaviour
     float dashCDCurrentTime;
     public bool dash = false;
     public GameObject dashVFX;
-   
-    [Header("Sound FX")]
+    public Image DashUI;
 
+    [Header("WallRun")]
+    public bool wallRun;
+    public Quaternion wallRunRotation;
+
+    [Header("Sound FX")]
     public float FootStepsRate = 0.2f;
     public float GeneralFootStepsVolume = 1.0f;
     public AudioClip[] Footsteps;
@@ -97,20 +102,26 @@ public class CharController : MonoBehaviour
         if (!Dead && InControll && !dash)
         {
             MovePosition();
-         //   MoveRotation();
+            //   MoveRotation();
         }
         if (Dead)
         {
             Respawn();
         }
         speed = (startspeed + speedaim + speedmody);//* speedsetting;
-       if(dash)
+        if (dash)
         {
             StartCoroutine(Dash());
         }
-       if(dashCDCurrentTime >= 0)
+        if (DashUI.fillAmount < 1)
         {
-            dashCDCurrentTime -= Time.fixedDeltaTime;
+            DashUI.fillAmount += 1 / dashCDCurrentTime * Time.fixedDeltaTime;
+        }
+        else
+        {
+            DashUI.transform.parent.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(1).GetComponent<Outline>().OutlineColor = new Color32(0, 227, 255, 50);
+
         }
     }
     public void Update()
@@ -134,7 +145,15 @@ public class CharController : MonoBehaviour
         {
             movement.x = variableJoystick.Horizontal;
             movement.z = variableJoystick.Vertical;
-            direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+            if (wallRun)
+            {
+                direction = Vector3.forward;
+                transform.rotation = Quaternion.Euler(wallRunRotation.x, wallRunRotation.y + 90, wallRunRotation.z);
+            }
+            else
+            {
+                direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+            }
         }
 
         Vector3 localMoove = transform.InverseTransformDirection(movement);
@@ -146,6 +165,8 @@ public class CharController : MonoBehaviour
         }
         else
         {
+            rb.useGravity = true;
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
             run = 0;
         }
 
@@ -180,7 +201,7 @@ public class CharController : MonoBehaviour
         //variableJoystick2.HandleRange = 2;
         Vector3 localMoove = transform.InverseTransformDirection(rotation);
 
-        if (HaveTarget == false && !autoaim)
+        if (HaveTarget == false && !autoaim && !wallRun)
         {
             if (((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2)))
             {
@@ -235,11 +256,14 @@ public class CharController : MonoBehaviour
 
         charAnimator.SetBool("OnGround", OnGround);
         charAnimator.SetBool("Dance", dance);
+        charAnimator.SetBool("Dash", dash);
 
 
         charAnimator.SetBool("Crouch", m_Crouching);
         charAnimator.SetBool("ongroundstay", ongroundstay);
         charAnimator.SetBool("Dead", Dead);
+        charAnimator.SetBool("WallRun", wallRun);
+
 
     }
     void CheckGroundStatus()
@@ -387,9 +411,12 @@ public class CharController : MonoBehaviour
     }
     public void DashStart()
     {
-        if(dashCDCurrentTime <=0)
+        if(DashUI.fillAmount >=1)
         {
+            DashUI.transform.parent.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(1).GetComponent<Outline>().OutlineColor = new Color32(0, 255, 6, 30);
             dash = true;
+            DashUI.fillAmount = 0;
             Debug.Log("DASH");
         }
     }
@@ -405,5 +432,24 @@ public class CharController : MonoBehaviour
        // yield return new WaitForSeconds(0.5f);
         dashVFX.SetActive(false);
     }
-
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("WallRun"))
+        {
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            wallRun = true;
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("WallRun"))
+        {
+            rb.useGravity = true;
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
+            rb.velocity = Vector3.zero;
+            wallRunRotation = other.transform.rotation;
+            wallRun = false;
+        }
+    }
 }

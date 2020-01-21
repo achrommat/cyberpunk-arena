@@ -16,7 +16,6 @@ public class ClubZone : MonoBehaviour
             if (player.dance == false)
             {
                 time -= Time.deltaTime;
-                Debug.Log(time);
             }
             if (player.run < 0.1 && time <= 0)
             {
