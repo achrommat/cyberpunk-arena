@@ -19,6 +19,10 @@ public class DeadZone : MonoBehaviour
         {
             other.transform.GetComponent<BaseEnemyController>().currentHealth -= Damage;
         }
+        if (other.CompareTag("Club") && friendly)
+        {
+            other.transform.GetComponent<RandomDance>().HP -= Damage;
+        }
 
     }
 }
