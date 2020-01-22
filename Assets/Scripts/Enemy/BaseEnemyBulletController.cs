@@ -4,7 +4,7 @@
 public class BaseEnemyBulletController : MonoBehaviour
 {
     [Header("Stats")]
-    public int damage;
+    public float damage;
     public float speed = 10;
     public float lifetime = 1;
     private float currentLifetime;

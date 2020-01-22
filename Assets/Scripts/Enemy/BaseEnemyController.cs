@@ -6,7 +6,7 @@ public class BaseEnemyController : MonoBehaviour
 { 
     [Header("Stats")]
     public int maxHealth;
-    public int damage;
+    public float damage;
     public float respawnTime;
     public float respawnTimer;
     public int currentHealth;
@@ -174,12 +174,12 @@ public class BaseEnemyController : MonoBehaviour
         respawnTimer += Time.deltaTime;
         if (respawnTimer > respawnTime)
         {
+            dead = false;
+            respawnTimer = 0.0f;
             Instantiate(respawnVFX, transform.position, transform.rotation);
             currentHealth = maxHealth;
-            dead = false;            
             Vector3 resp = respawnTarget.transform.GetChild(Random.Range(0, respawnTarget.transform.childCount)).transform.position;
             transform.position = resp;
-            respawnTimer = 0.0f;
             agent.isStopped = false;
         }
     }

@@ -67,12 +67,16 @@ public class PickUpAmmo : MonoBehaviour
                 timer = CD;
 
             }
-            if ((other.transform.GetChild(0).GetComponent<CharController>().Health < 100 && Health > 0) || (other.transform.GetChild(0).GetComponent<CharController>().Armor < 100 && Armor > 0))
+            if ((other.transform.GetChild(0).GetComponent<CharController>().Health < 4 && Health > 0) || (other.transform.GetChild(0).GetComponent<CharController>().Armor < 100 && Armor > 0))
             {
                 GameObject vfx = Instantiate(VFX, transform.position, transform.rotation);
                 Destroy(vfx, 2);
                 GetComponent<AudioSource>().Play();
                 other.transform.GetChild(0).GetComponent<CharController>().Health += Health;
+                if (other.transform.GetChild(0).GetComponent<CharController>().Health > 4)
+                {
+                    other.transform.GetChild(0).GetComponent<CharController>().Health = 4;
+                }
                 other.transform.GetChild(0).GetComponent<CharController>().Armor += Armor;
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 GetComponent<BoxCollider>().enabled = false;

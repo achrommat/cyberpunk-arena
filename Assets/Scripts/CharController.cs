@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class CharController : MonoBehaviour
 {
     [Header("Stats")]
-    public float Health;
+    public float Health = 4; 
+    public float healthCount;
+    public float defence = 4;
+    public float defenceCount;
     public float Armor;
     public bool Dead;
     public bool DeadExtra;
@@ -15,7 +18,12 @@ public class CharController : MonoBehaviour
     public float ShootZone = 0.75f;
     bool autoaim = false;
     public bool dance = false;
- 
+    public Transform HealthBar;
+    public Transform DefenceBar;
+
+
+
+
     [Header("Dash")]
     public float dashPower = 5000;
     public float dashTime = 1.5f;
@@ -91,9 +99,12 @@ public class CharController : MonoBehaviour
         OnGround = true;
         Audio = GetComponent<AudioSource>();
         ActualRespTime = RespawnTime;
+        healthCount = Health; // Текущее хп = максимальному
+        defenceCount = defence;
     }
     public void FixedUpdate()
     {
+        HealthController();
         UpdateAnimator();
         CheckGroundStatus();
         Death();
@@ -120,7 +131,7 @@ public class CharController : MonoBehaviour
         else
         {
             DashUI.transform.parent.GetChild(1).gameObject.SetActive(true);
-            transform.GetChild(1).GetComponent<Outline>().OutlineColor = new Color32(0, 227, 255, 50);
+           // transform.GetChild(1).GetComponent<Outline>().OutlineColor = new Color32(0, 227, 255, 50);
 
         }
     }
@@ -181,6 +192,87 @@ public class CharController : MonoBehaviour
 
     }
 
+    void HealthController()//считаем сколько сейчас хп
+    {
+        //for(int i = 0; i>HealthBar.childCount; i++) // 
+        //{
+        //    if (healthCount > 0 && HealthBar.GetChild(i).GetComponent<Image>().fillAmount < 1)
+        //    {
+        //        HealthBar.GetChild(i).GetComponent<Image>().fillAmount += 0.5f;
+        //        healthCount -= 0.5f;
+        //    }
+        //    if (healthCount > 0 && HealthBar.GetChild(i).GetComponent<Image>().fillAmount < 1)
+        //    {
+        //        HealthBar.GetChild(i).GetComponent<Image>().fillAmount += 0.5f;
+        //        healthCount -= 0.5f;
+        //    }
+        //}
+        if (Health < healthCount)
+        {
+            for (int i = 0; i < HealthBar.childCount; i++)
+            {
+                if (Health < healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    healthCount -= 0.5f;
+                }
+                if (Health < healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    healthCount -= 0.5f;
+                }
+            }
+        }
+        if (Health > healthCount)
+        {
+            for (int i = HealthBar.childCount - 1; i >= 0; i--)
+            {
+                if (Health > healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    healthCount += 0.5f;
+                }
+                if (Health > healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    healthCount += 0.5f;
+                }
+            }
+        }
+        if (Health < healthCount)
+        {
+            for (int i = 0; i < HealthBar.childCount; i++)
+            {
+                if (Health < healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    healthCount -= 0.5f;
+                }
+                if (Health < healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount >0)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    healthCount -= 0.5f;
+                }
+            }
+        }
+        if (Health > healthCount)
+        {
+            for (int i = HealthBar.childCount-1; i >=0; i--)
+            {
+                if (Health > healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    healthCount += 0.5f;
+                }
+                if (Health > healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    healthCount += 0.5f;
+                }
+            }
+        }
+    }
+
     public void AutoaimShootOFF()
     {
         // yield return (new WaitForSeconds(1));
@@ -201,7 +293,7 @@ public class CharController : MonoBehaviour
         //variableJoystick2.HandleRange = 2;
         Vector3 localMoove = transform.InverseTransformDirection(rotation);
 
-        if (HaveTarget == false && !autoaim && !wallRun)
+        if (HaveTarget == false && !autoaim && !wallRun && !dash)
         {
             if (((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2)))
             {
@@ -348,7 +440,7 @@ public class CharController : MonoBehaviour
         if (ActualRespTime <= 0 && RespawnTarget !=null)
         {
             ActualRespTime = RespawnTime;
-            Health = 100;
+            Health = 4;
             charAnimator.enabled = false;
             charAnimator.enabled = true;
             Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;

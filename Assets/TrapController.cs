@@ -10,7 +10,7 @@ public class TrapController : MonoBehaviour
     public float delay;
     public GameObject Target;
     public Vector3 Axis;
-     float movetimer =0;
+    float movetimer =0;
     float delaytimer;
     bool foward = false;
     void Start()
