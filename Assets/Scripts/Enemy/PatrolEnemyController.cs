@@ -22,7 +22,7 @@ public class PatrolEnemyController : BaseEnemyController
         destPoint = (destPoint + 1) % points.Length;
     }
 
-    public override void Update()
+    protected override void Update()
     {
         if (!dead)
             if (agent.remainingDistance < 0.5f)
@@ -31,7 +31,7 @@ public class PatrolEnemyController : BaseEnemyController
         anim.SetBool("Dead", dead);
     }
 
-    public override void Respawn()
+    protected override void Respawn()
     {
         respawnTimer += Time.deltaTime;
         if (respawnTimer > respawnTime)

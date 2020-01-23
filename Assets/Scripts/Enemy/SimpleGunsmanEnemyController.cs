@@ -4,12 +4,16 @@ using UnityEngine.Audio;
 
 public class SimpleGunsmanEnemyController : BaseEnemyController
 {
-    public override IEnumerator Attack()
+    protected override IEnumerator Attack()
     {
-        // реализуется в наследуемых скриптах
         agent.isStopped = true;
         yield return new WaitForSeconds(.5f);
-        if (multishot == true)
+        audioSource.PlayOneShot(shotClip);
+        shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil), 0);
+        CreateBullet();
+        agent.isStopped = false;
+
+        /*if (multishot == true)
         {
             audioSource.PlayOneShot(shotClip);
             int[] pool = { -5, -2, 0, 2, 5 };
@@ -25,17 +29,6 @@ public class SimpleGunsmanEnemyController : BaseEnemyController
             audioSource.PlayOneShot(shotClip);
             shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-recoil, recoil), Random.Range(-recoil, recoil), 0);
             CreateBullet();
-        }
-        agent.isStopped = false;
-    }
-
-    private void CreateBullet()
-    {
-        GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
-        newbullet.GetComponent<BaseEnemyBulletController>().damage = this.damage;
-        newbullet.transform.position = shootPos.transform.position;
-        newbullet.transform.rotation = shootPos.transform.rotation;
-        newbullet.transform.SetParent(null);
-        newbullet.SetActive(true);
-    }
+        }*/
+    }    
 }

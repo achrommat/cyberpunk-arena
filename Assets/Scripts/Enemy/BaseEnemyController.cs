@@ -51,6 +51,7 @@ public class BaseEnemyController : MonoBehaviour
         anim = GetComponent<Animator>();
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = attackRange;
         myRenderer = FindRenderer();
         //agent.updatePosition = false;
     }
@@ -76,7 +77,7 @@ public class BaseEnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
         if (!dead)
             Run();
@@ -84,20 +85,30 @@ public class BaseEnemyController : MonoBehaviour
         anim.SetBool("Dead", dead);
     }
 
-    public void FaceTarget()
+    private void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    public virtual IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         // реализуется в наследуемых скриптах
         return null;
     }
 
-    public virtual void Run()
+    protected void CreateBullet()
+    {
+        GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
+        newbullet.GetComponent<BaseEnemyBulletController>().damage = this.damage;
+        newbullet.transform.position = shootPos.transform.position;
+        newbullet.transform.rotation = shootPos.transform.rotation;
+        newbullet.transform.SetParent(null);
+        newbullet.SetActive(true);
+    }
+
+    protected virtual void Run()
     {
         agent.SetDestination(target.position);
 
@@ -144,7 +155,7 @@ public class BaseEnemyController : MonoBehaviour
     //    anim.SetFloat("Speed", agent.speed);
     //}
 
-    public void DeathHandler()
+    protected void DeathHandler()
     {
         if (currentHealth < 1)
         {
@@ -169,7 +180,7 @@ public class BaseEnemyController : MonoBehaviour
         }
     }*/
 
-    public virtual void Respawn()
+    protected virtual void Respawn()
     {
         respawnTimer += Time.deltaTime;
         if (respawnTimer > respawnTime)
@@ -196,6 +207,7 @@ public class BaseEnemyController : MonoBehaviour
     public void GetDamage()
     {
         // TODO: перенести сюда код из BulletTest
+        // или это вынести в получение урона врагов в BulletTest
         if (flashWhenHit)
             StartCoroutine(Flash());
     }
