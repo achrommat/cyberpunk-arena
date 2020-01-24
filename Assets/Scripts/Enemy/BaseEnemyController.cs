@@ -186,6 +186,7 @@ public class BaseEnemyController : MonoBehaviour
         if (respawnTimer > respawnTime)
         {
             dead = false;
+            GetComponent<ItemDrop>().instantiated = false;
             respawnTimer = 0.0f;
             Instantiate(respawnVFX, transform.position, transform.rotation);
             currentHealth = maxHealth;

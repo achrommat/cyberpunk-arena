@@ -37,6 +37,7 @@ public class PatrolEnemyController : BaseEnemyController
         if (respawnTimer > respawnTime)
         {
             Instantiate(respawnVFX, transform.position, transform.rotation);
+            GetComponent<ItemDrop>().instantiated = false;
             currentHealth = maxHealth;
             dead = false;
             transform.position = resp;
