@@ -17,7 +17,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         public float attackAngle;
 
         // The last time the agent attacked
-        private float lastAttackTime;
+        protected float lastAttackTime;
 
         /// <summary>
         /// Initialize the default values.
@@ -58,7 +58,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// Does the actual attack. 
         /// </summary>
         /// <param name="targetPosition">The position to attack.</param>
-        public void Attack(Vector3 targetPosition)
+        public virtual void Attack(Vector3 targetPosition)
         {
             GameObject.Instantiate(bullet, transform.position, Quaternion.LookRotation(targetPosition - transform.position));
             lastAttackTime = Time.time;

@@ -92,6 +92,10 @@ public class CharController : MonoBehaviour
     public GameObject DeadVFX;
     public bool InControll;
 
+
+    // stats
+    private StatsNew stats;
+
     private float m_GroundCheckDistance = 0.25f;
     private void Awake()
     {
@@ -99,7 +103,11 @@ public class CharController : MonoBehaviour
         OnGround = true;
         Audio = GetComponent<AudioSource>();
         ActualRespTime = RespawnTime;
-        healthCount = Health; // Текущее хп = максимальному
+        stats = GetComponent<StatsNew>();
+
+        // stats
+        healthCount = stats.health;// Текущее хп = максимальному
+
         defenceCount = defence;
     }
     public void FixedUpdate()
@@ -194,6 +202,10 @@ public class CharController : MonoBehaviour
 
     void HealthController()//считаем сколько сейчас хп
     {
+        // stats
+        Health = stats.currentHealth;
+
+
         //for(int i = 0; i>HealthBar.childCount; i++) // 
         //{
         //    if (healthCount > 0 && HealthBar.GetChild(i).GetComponent<Image>().fillAmount < 1)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BehaviorDesigner.Runtime.Tactical;
+using UnityEngine;
 
 
 public class BaseEnemyBulletController : MonoBehaviour
@@ -37,11 +38,18 @@ public class BaseEnemyBulletController : MonoBehaviour
             Disable(false);
         }
 
-        if (other.CompareTag("Player"))
+        IDamageable damageable;
+        if ((damageable = other.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
         {
-            other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
-            Disable(false);            
+            damageable.Damage(damage);
+            Disable(false);
         }
+
+        //if (other.CompareTag("Player"))
+        //{
+        //    other.transform.GetChild(0).GetComponent<CharController>().Health -= damage;
+        //    Disable(false);            
+        //}
     }
 
     private void Disable(bool isMissed)
