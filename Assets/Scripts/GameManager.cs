@@ -5,6 +5,18 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
+    public GameObject enemyPistolBulletPool;
 
     private NavMeshSurface surface;
 

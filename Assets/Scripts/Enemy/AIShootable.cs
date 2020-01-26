@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tactical;
 
 public class AIShootable : Shootable
 {
+
+    // перенести в weapons
     public GameObject bulletPool;
     public float damage = 0.5f;
     public GameObject shootPos;
