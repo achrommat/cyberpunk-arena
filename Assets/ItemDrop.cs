@@ -19,7 +19,7 @@ public class ItemDrop : MonoBehaviour
     {
         if(!instantiated)
         {
-            death = transform.GetComponent<BaseEnemyController>().dead;
+           // death = transform.GetComponent<BaseEnemyController>().dead;
             if (death )
             {
                 float drop = Random.Range(0, 100);

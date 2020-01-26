@@ -6,7 +6,7 @@ public class LootController : MonoBehaviour
 {
     public int objLevel; // от 0 до 4
     public int objID; // от 0 до Х
-    public GameObject lootObj; 
+    public GameObject lootObj;
     public GameObject rayObj;
     public ItemPool itemPool;
 
