@@ -29,7 +29,7 @@ public class TargetAim : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Enemies.Count > 0 && transform.parent.GetComponent<CharController>().aiming)
+        if (Enemies.Count > 0 && transform.GetComponent<PlayerController>().aiming)
         {
             float distance = range;
             GameObject closestGo = null;
@@ -42,7 +42,7 @@ public class TargetAim : MonoBehaviour
                 }
                 else
                 {
-                    float enemyHealth = go.GetComponent<CharController>() ? go.GetComponent<CharController>().Health : go.GetComponent<BaseEnemyController>().currentHealth;
+                    float enemyHealth = go.GetComponent<PlayerController>() ? go.GetComponent<Stats>().Health : go.GetComponent<BaseEnemyController>().currentHealth;
                     if (enemyHealth <= 0)
                     {
                         target = null;
@@ -84,8 +84,8 @@ public class TargetAim : MonoBehaviour
             }
             if (AutoAim)
             {
-                target = null;
-                transform.parent.LookAt(transform.parent.position + transform.parent.GetComponent<CharController>().movement * Time.deltaTime);
+                //target = null;
+                //transform.parent.LookAt(transform.position + transform.GetComponent<PlayerController>().movement * Time.deltaTime);
             }
         }
 

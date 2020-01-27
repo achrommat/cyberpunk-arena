@@ -7,13 +7,18 @@ public class Stats : MonoBehaviour, IDamageable
 {
     [Header("Main Stats")]
     public float Health;
-    float healthCount;
+    public float healthCount;
+
     public float runSpeed;
     public float startRunSpeed;
     public float speedWithAim;
     public float runSpeedMody;
     //public float speedaim;
     public float speedsetting = 1;
+    public void Awake()
+    {
+        healthCount = Health;
+    }
 
     void IDamageable.Damage(float amount)
     {

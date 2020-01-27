@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform HealthBar;
     public Joystick moveJoystick;
     public Joystick aimJoystick;
     Rigidbody rb;
@@ -287,5 +289,72 @@ public class PlayerController : MonoBehaviour
 
 
         charAnimator.SetBool("Dead", Dead);
+    }
+    void HealthController()//считаем сколько сейчас хп
+    {
+        if (stats.Health < stats.healthCount)
+        {
+            for (int i = 0; i < HealthBar.childCount; i++)
+            {
+                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    stats.healthCount -= 0.5f;
+                }
+                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    stats.healthCount -= 0.5f;
+                }
+            }
+        }
+        if (stats.Health > stats.healthCount)
+        {
+            for (int i = HealthBar.childCount - 1; i >= 0; i--)
+            {
+                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    stats.healthCount += 0.5f;
+                }
+                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    stats.healthCount += 0.5f;
+                }
+            }
+        }
+        if (stats.Health < stats.healthCount)
+        {
+            for (int i = 0; i < HealthBar.childCount; i++)
+            {
+                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    stats.healthCount -= 0.5f;
+                }
+                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
+                    stats.healthCount -= 0.5f;
+                }
+            }
+        }
+        if (stats.Health > stats.healthCount)
+        {
+            for (int i = HealthBar.childCount - 1; i >= 0; i--)
+            {
+                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    stats.healthCount += 0.5f;
+                }
+                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)// && (HealthBar.childCount - i) > Health
+                {
+                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
+                    stats.healthCount += 0.5f;
+                }
+            }
+        }
     }
 }
