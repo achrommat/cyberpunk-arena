@@ -5,40 +5,34 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour, IDamageable
 {
-
-
     // здесь перечисляем только статы персонажа
     [Header("Main Stats")]
-    public float Health;
-    public float healthCount;
+    public float health;
+    public float currentHealth;
 
+
+    // пока не понял зачем это
+    [Header("Player Stats")]
     public float runSpeed;
     public float startRunSpeed;
     public float speedWithAim;
     public float runSpeedMody;
     //public float speedaim;
     public float speedsetting = 1;
+
     public void Awake()
     {
-        healthCount = Health;
+        currentHealth = health;
     }
 
-    void IDamageable.Damage(float amount)
+    public void Damage(float amount)
     {
-        Health--;
-        //throw new System.NotImplementedException();
+        currentHealth -= amount;
     }
 
-    bool IDamageable.IsAlive()
+    public bool IsAlive()
     {
-        return Health > 0;
-        //throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        return currentHealth > 0;
     }
 
     // Update is called once per frame

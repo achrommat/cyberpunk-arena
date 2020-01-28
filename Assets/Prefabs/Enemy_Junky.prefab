@@ -6323,6 +6323,7 @@ GameObject:
   - component: {fileID: 694818988}
   - component: {fileID: 3829350959141849355}
   - component: {fileID: 7660136033664145265}
+  - component: {fileID: 339942935}
   m_Layer: 0
   m_Name: Enemy_Junky
   m_TagString: Enemy
@@ -6483,7 +6484,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -6615,13 +6616,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2246860af574c943b75127739fa3389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
-  healthCount: 0
+  health: 100
+  currentHealth: 0
   runSpeed: 0
   startRunSpeed: 0
   speedWithAim: 0
   runSpeedMody: 0
   speedsetting: 1
+--- !u!114 &339942935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248355432669049655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c278d3a26f901ab47b027b46c0609000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instantiated: 0
+  loot: {fileID: 5121310113182626872, guid: 8a8b1d5d4edc78143810d0c7a94a459b, type: 3}
+  distance: 1
+  dropChance: 100
 --- !u!1 &4249000560512251867
 GameObject:
   m_ObjectHideFlags: 0

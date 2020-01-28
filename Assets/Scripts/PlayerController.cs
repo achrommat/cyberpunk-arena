@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
     }
     void Death()
     {
-        if (stats.Health <= 0)
+        if (stats.currentHealth <= 0)
         {
             Dead = true;
             if (Weapons != null)
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
     }
     void DeathExtra()
     {
-        if (stats.Health <= -50 && DeadExtra == false)
+        if (stats.currentHealth <= -50 && DeadExtra == false)
         {
             Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
             if (rb == null)
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
         if (ActualRespTime <= 0 && RespawnTarget != null)
         {
             ActualRespTime = RespawnTime;
-            stats.Health = 4;
+            stats.currentHealth = 4;
             charAnimator.enabled = false;
             charAnimator.enabled = true;
             Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
@@ -290,16 +290,17 @@ public class PlayerController : MonoBehaviour
 
         charAnimator.SetBool("Dead", Dead);
     }
-    void HealthController()//считаем сколько сейчас хп
+
+    /*void HealthController()//считаем сколько сейчас хп
     {
-        if (stats.Health < stats.healthCount)
+        if (stats.currentHealth < stats.health)
         {
             for (int i = 0; i < HealthBar.childCount; i++)
             {
                 if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
                 {
                     HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
-                    stats.healthCount -= 0.5f;
+                    stats.currentHealth -= 0.5f;
                 }
                 if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)// && (HealthBar.childCount - i) > Health
                 {
@@ -356,5 +357,5 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

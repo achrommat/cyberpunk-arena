@@ -42,7 +42,7 @@ public class TargetAim : MonoBehaviour
                 }
                 else
                 {
-                    float enemyHealth = go.GetComponent<PlayerController>() ? go.GetComponent<Stats>().Health : go.GetComponent<BaseEnemyController>().currentHealth;
+                    float enemyHealth = go.GetComponent<PlayerController>() ? go.GetComponent<Stats>().currentHealth : go.GetComponent<BaseEnemyController>().currentHealth;
                     if (enemyHealth <= 0)
                     {
                         target = null;

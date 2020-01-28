@@ -37103,7 +37103,6 @@ GameObject:
   - component: {fileID: 2872072250425151278}
   - component: {fileID: 2781329814455903988}
   - component: {fileID: 2868405954290169659}
-  - component: {fileID: 2868405954290169657}
   - component: {fileID: 1357954867320356551}
   - component: {fileID: 2868405954290169656}
   - component: {fileID: 2868405954290169654}
@@ -37289,26 +37288,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &2868405954290169657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2868405954290169660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f636d2be666b0445916e1be70ad5f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  place:
-  - {fileID: 1357954866331458270}
-  - {fileID: 1357954866639875462}
-  - {fileID: 1357954867500664889}
-  - {fileID: 1357954867625856906}
-  - {fileID: 1357954866143048611}
-  - {fileID: 1357954866360659422}
-  - {fileID: 1357954867427068492}
 --- !u!114 &1357954867320356551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37321,7 +37300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2246860af574c943b75127739fa3389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 4
+  health: 4
+  currentHealth: 0
   runSpeed: 0
   startRunSpeed: 9
   speedWithAim: 0
@@ -37339,6 +37319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bcf5598910ab1428e763948dc353d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthBar: {fileID: 3360045306551613041}
   moveJoystick: {fileID: 7186156588303443636}
   aimJoystick: {fileID: 4214990672391463729}
   ShootZone: 0.65
