@@ -6321,6 +6321,8 @@ GameObject:
   - component: {fileID: 1202601848}
   - component: {fileID: 694818987}
   - component: {fileID: 694818988}
+  - component: {fileID: 3829350959141849355}
+  - component: {fileID: 7660136033664145265}
   m_Layer: 0
   m_Name: Enemy_Junky
   m_TagString: Enemy
@@ -6573,6 +6575,53 @@ MonoBehaviour:
       Version: 1.6.3
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &3829350959141849355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248355432669049655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  LaserTarget: {fileID: 0}
+  Player: {fileID: 0}
+  ShootPos: {fileID: 0}
+  ShootFX: {fileID: 0}
+  Source: {fileID: 0}
+  multishot: 0
+  Clip: {fileID: 0}
+  speed: 0
+  scatter: 0
+  BulletLifeTime: 0.5
+  shooting: 0
+  Ammo: 0
+  Ripper: 0
+  BulletPool: {fileID: 0}
+  ShootCD: 1
+--- !u!114 &7660136033664145265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248355432669049655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2246860af574c943b75127739fa3389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  healthCount: 0
+  runSpeed: 0
+  startRunSpeed: 0
+  speedWithAim: 0
+  runSpeedMody: 0
+  speedsetting: 1
 --- !u!1 &4249000560512251867
 GameObject:
   m_ObjectHideFlags: 0

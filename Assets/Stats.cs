@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour, IDamageable
 {
+
+
+    // здесь перечисляем только статы персонажа
     [Header("Main Stats")]
     public float Health;
     public float healthCount;
