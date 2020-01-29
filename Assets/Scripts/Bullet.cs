@@ -129,7 +129,7 @@ public class Bullet : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         IDamageable damageable;
-        if ((damageable = other.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
+        if ((damageable = other.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null && !other.CompareTag("Player"))
         {
             damageable.Damage(damage);
             transform.GetChild(1).gameObject.SetActive(true);

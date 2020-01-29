@@ -20,7 +20,7 @@ public class StatsGui : MonoBehaviour
             transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + Player.GetComponent<CharController>().Armor;
             if (weapons.transform.GetChild(i).gameObject.active)
             {
-                transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "" + (weapons.transform.GetChild(i).GetComponent<Weapons>().ammo);
+                transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "" + (weapons.transform.GetChild(i).GetComponent<Weapon>().ammo);
             }
         }
     }

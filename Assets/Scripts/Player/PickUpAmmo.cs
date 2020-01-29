@@ -39,27 +39,27 @@ public class PickUpAmmo : MonoBehaviour
                             weapons.transform.GetChild(i).gameObject.SetActive(false);
                         }
                         weapons.transform.GetChild(WeaponClass).gameObject.SetActive(true);
-                        weapons.transform.GetChild(WeaponClass).GetComponent<Weapons>().ammo = 0;
+                        weapons.transform.GetChild(WeaponClass).GetComponent<Weapon>().ammo = 0;
                     }
                     //Добавляем патроны
-                    weapons.transform.GetChild(WeaponClass).GetComponent<Weapons>().ammo += AmmoValue[WeaponClass];
+                    weapons.transform.GetChild(WeaponClass).GetComponent<Weapon>().ammo += AmmoValue[WeaponClass];
                 }
                 if (Weapon == false && AmmoClass > 0)
                 {
                     if (AmmoClass == 1)
                     {
-                        weapons.transform.GetChild(1).GetComponent<Weapons>().ammo += AmmoValue[1];
-                        weapons.transform.GetChild(2).GetComponent<Weapons>().ammo += AmmoValue[2];
+                        weapons.transform.GetChild(1).GetComponent<Weapon>().ammo += AmmoValue[1];
+                        weapons.transform.GetChild(2).GetComponent<Weapon>().ammo += AmmoValue[2];
                     }
                     if (AmmoClass == 2)
                     {
-                        weapons.transform.GetChild(3).GetComponent<Weapons>().ammo += AmmoValue[3];
-                        weapons.transform.GetChild(4).GetComponent<Weapons>().ammo += AmmoValue[4];
+                        weapons.transform.GetChild(3).GetComponent<Weapon>().ammo += AmmoValue[3];
+                        weapons.transform.GetChild(4).GetComponent<Weapon>().ammo += AmmoValue[4];
                     }
                     if (AmmoClass == 3)
                     {
-                        weapons.transform.GetChild(5).GetComponent<Weapons>().ammo += AmmoValue[5];
-                        weapons.transform.GetChild(6).GetComponent<Weapons>().ammo += AmmoValue[6];
+                        weapons.transform.GetChild(5).GetComponent<Weapon>().ammo += AmmoValue[5];
+                        weapons.transform.GetChild(6).GetComponent<Weapon>().ammo += AmmoValue[6];
                     }
                 }
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);

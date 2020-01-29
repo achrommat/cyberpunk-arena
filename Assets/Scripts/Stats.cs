@@ -10,7 +10,6 @@ public class Stats : MonoBehaviour, IDamageable
     public float health;
     public float currentHealth;
 
-
     // пока не понял зачем это
     [Header("Player Stats")]
     public float runSpeed;

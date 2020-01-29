@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    
     public Transform HealthBar;
     public Joystick moveJoystick;
     public Joystick aimJoystick;
@@ -63,22 +64,17 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        if(Dead || dash) return; 
+
         UpdateAnimator();
         CheckGroundStatus();
         Death();
         DeathExtra();
 
-        if (!Dead  && !dash)
-        {
-            MovePosition();
-            MoveRotation();
-        }
-        if (Dead)
-        {
-            Respawn();
-        }
-     
+        MovePosition();
+        MoveRotation();
     }
+
     void MovePosition()
     {
         direction = Vector3.forward * movement.z + Vector3.right * movement.x;
@@ -145,6 +141,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void CheckGroundStatus()
     {
         RaycastHit hitInfo;
@@ -170,6 +167,7 @@ public class PlayerController : MonoBehaviour
         {
             Dead = false;
         }
+        Respawn();
     }
     void DeathExtra()
     {

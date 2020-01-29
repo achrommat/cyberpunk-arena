@@ -14,7 +14,7 @@ public class WeaponController : MonoBehaviour
         {
             if(transform.GetChild(i).gameObject.active)
             {
-                transform.GetChild(i).GetComponent<Weapons>().shooting = shooting;
+                transform.GetChild(i).GetComponent<Weapon>().shooting = shooting;
             }
         }
         if (Input.GetKeyUp(KeyCode.Q))

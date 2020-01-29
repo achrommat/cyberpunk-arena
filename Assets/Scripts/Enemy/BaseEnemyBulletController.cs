@@ -39,7 +39,7 @@ public class BaseEnemyBulletController : MonoBehaviour
         }
 
         IDamageable damageable;
-        if ((damageable = other.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
+        if ((damageable = other.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null && other.CompareTag("Player"))
         {
             damageable.Damage(damage);
             Disable(false);
