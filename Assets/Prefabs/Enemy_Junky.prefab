@@ -618,7 +618,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
   bulletPool: {fileID: 0}
@@ -4077,7 +4078,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
   bulletPool: {fileID: 0}
@@ -4466,7 +4468,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: d51da237828decd44ad2bd0117608e1e, type: 3}
   bulletPool: {fileID: 0}
@@ -5226,7 +5229,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
   bulletPool: {fileID: 0}
@@ -6115,7 +6119,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
   bulletPool: {fileID: 0}
@@ -7470,7 +7475,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 144ef5287aae82b42b8f587af8b813ca, type: 3}
   bulletPool: {fileID: 0}
@@ -8507,7 +8513,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 2179628b22666f44080295cee2d92369, type: 3}
   bulletPool: {fileID: 0}
@@ -9242,7 +9249,8 @@ MonoBehaviour:
   speed: 0
   multiShot: 0
   ammo: 0
-  energy: 0
+  maxEnergy: 0
+  currentEnergy: 0
   attackDelay: 1
   bullet: {fileID: 129264, guid: 47bbf38895f2a4f43a337a74403f6ef7, type: 3}
   bulletPool: {fileID: 0}

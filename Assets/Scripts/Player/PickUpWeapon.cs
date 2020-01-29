@@ -13,6 +13,7 @@ public class PickUpWeapon : MonoBehaviour
             WeaponController weaponController = other.GetComponent<WeaponController>();
             weaponController.currentWeaponName = name;
             weaponController.switchWeapon = true;
+            gameObject.SetActive(false);
         }
     }
 }

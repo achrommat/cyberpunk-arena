@@ -11443,7 +11443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1357954866245541433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17345,7 +17345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rifle
   damage: 10
-  speed: 0
+  speed: 25
   multiShot: 0
   ammo: 1000
   maxEnergy: 999
@@ -17359,7 +17359,7 @@ MonoBehaviour:
   source: {fileID: 1357954866431961795}
   clip: {fileID: 8300000, guid: c9078c3724d980347b7b29c5e846c2bb, type: 3}
   scatter: 1
-  bulletLifeTime: 0.5
+  bulletLifeTime: 5
   shooting: 0
   ripper: 0
 --- !u!114 &1357954867355416210
@@ -29820,7 +29820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shotgun
   damage: 15
-  speed: 0
+  speed: 25
   multiShot: 1
   ammo: 0
   maxEnergy: 999
