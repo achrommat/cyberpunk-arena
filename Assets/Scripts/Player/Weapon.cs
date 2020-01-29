@@ -11,7 +11,8 @@ public class Weapon : MonoBehaviour
     public float speed;
     public bool multiShot;
     public int ammo;
-    public float energy;
+    public float maxEnergy;
+    public float currentEnergy;
 
     [Header("Fire Rate")]
     public float attackDelay = 1;
@@ -30,8 +31,13 @@ public class Weapon : MonoBehaviour
     public float bulletLifeTime = 0.5f;
     public bool shooting;
     
-    public bool ripper;    
- 
+    public bool ripper;
+
+    private void OnEnable()
+    {
+        currentEnergy = maxEnergy;
+    }
+
     public void GetScatter(int[] pool, int i)
     {
         shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter) + pool[i], 0);

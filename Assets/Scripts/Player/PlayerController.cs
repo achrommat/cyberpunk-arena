@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    
     public Transform HealthBar;
     public Joystick moveJoystick;
     public Joystick aimJoystick;

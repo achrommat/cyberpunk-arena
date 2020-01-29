@@ -3,66 +3,66 @@
 public class PlayerShootable : MonoBehaviour
 {
     [SerializeField]
-    private Weapon currentWeapon;
+    private WeaponController weaponController;
 
     private float nextAttackTime;
 
     public void Update()
     {
-        if (currentWeapon.shooting == true)
+        if (weaponController.currentWeapon.shooting == true)
         {
-            if (currentWeapon.laserTarget)
+            if (weaponController.currentWeapon.laserTarget)
             {
-                currentWeapon.laserTarget.SetActive(true);
+                weaponController.currentWeapon.laserTarget.SetActive(true);
             }
             Attack();
         }
         else
         {
-            if (currentWeapon.laserTarget)
+            if (weaponController.currentWeapon.laserTarget)
             {
-                currentWeapon.laserTarget.SetActive(false);
+                weaponController.currentWeapon.laserTarget.SetActive(false);
             }
         }
     }
 
     public void Attack()
     {
-        if (currentWeapon.energy > 0 && Time.time >= nextAttackTime)
+        if (weaponController.currentWeapon.currentEnergy > 0 && Time.time >= nextAttackTime)
         {
-            if (currentWeapon.multiShot)
+            if (weaponController.currentWeapon.multiShot)
             {
                 int[] pool = { -5, -2, 0, 2, 5 };
                 for (int i = 0; i < 5; i++)
                 {
-                    currentWeapon.GetScatter(pool, i);
+                    weaponController.currentWeapon.GetScatter(pool, i);
                     CreateBullet();
                 }
             }
             else
             {
-                currentWeapon.GetScatter();
+                weaponController.currentWeapon.GetScatter();
                 CreateBullet();
             }
-            nextAttackTime = Time.time + currentWeapon.attackDelay;
+            nextAttackTime = Time.time + weaponController.currentWeapon.attackDelay;
         }
     }
 
     private void CreateBullet()
     {
-        currentWeapon.source.PlayOneShot(currentWeapon.clip);
-        GameObject newbullet = currentWeapon.bulletPool.transform.GetChild(0).gameObject;
-        newbullet.GetComponent<Bullet>().damage = currentWeapon.damage;
-        newbullet.transform.position = currentWeapon.shootPos.transform.position;
-        newbullet.transform.rotation = currentWeapon.shootPos.transform.rotation;
+        weaponController.currentWeapon.source.PlayOneShot(weaponController.currentWeapon.clip);
+        GameObject newbullet = weaponController.currentWeapon.bulletPool.transform.GetChild(0).gameObject;
+        newbullet.GetComponent<Bullet>().damage = weaponController.currentWeapon.damage;
+        newbullet.transform.position = weaponController.currentWeapon.shootPos.transform.position;
+        newbullet.transform.rotation = weaponController.currentWeapon.shootPos.transform.rotation;
         newbullet.transform.SetParent(null);
         newbullet.SetActive(true);
-        currentWeapon.shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        currentWeapon.energy -= 1;
+        weaponController.currentWeapon.shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        weaponController.currentWeapon.currentEnergy -= 1;
 
-        if (currentWeapon.ripper == true)
+        if (weaponController.currentWeapon.ripper == true)
         {
-            currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
+            weaponController.currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }
