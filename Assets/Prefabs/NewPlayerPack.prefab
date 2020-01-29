@@ -13249,6 +13249,7 @@ MonoBehaviour:
   Enemies: []
   AimHelper: 1
   AutoAim: 0
+  playerController: {fileID: 2868405954290169656}
 --- !u!1 &1357954866602636954
 GameObject:
   m_ObjectHideFlags: 0
@@ -14555,6 +14556,7 @@ MonoBehaviour:
   Enemies: []
   AimHelper: 0
   AutoAim: 1
+  playerController: {fileID: 0}
 --- !u!135 &1357954866757697516
 SphereCollider:
   m_ObjectHideFlags: 0
