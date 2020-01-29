@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BehaviorDesigner.Runtime.Tactical;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +18,15 @@ public class TargetAim : MonoBehaviour
     public List<GameObject> Enemies;
     public bool AimHelper = false;
     public bool AutoAim = false;
-    
+
+    [SerializeField]
+    private PlayerController playerController;
+
     private void Awake()
     {
         shootrot = Shootpos.transform.localRotation;
         playeryrot = transform.parent.localRotation;
+        Enemies = new List<GameObject>();
     }
 
 
@@ -29,7 +34,7 @@ public class TargetAim : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Enemies.Count > 0 && transform.GetComponent<PlayerController>().aiming)
+        if (Enemies.Count > 0 && playerController.aiming)
         {
             float distance = range;
             GameObject closestGo = null;
@@ -42,23 +47,26 @@ public class TargetAim : MonoBehaviour
                 }
                 else
                 {
-                    float enemyHealth = go.GetComponent<PlayerController>() ? go.GetComponent<Stats>().currentHealth : go.GetComponent<BaseEnemyController>().currentHealth;
-                    if (enemyHealth <= 0)
+                    IDamageable damageable;
+                    if ((damageable = go.GetComponent(typeof(IDamageable)) as IDamageable) != null)
                     {
-                        target = null;
-                        Enemies.Remove(go);
-                    }
-                    else
-                    {
-                        Vector3 diff = go.transform.position - transform.position;
-                        float curDistance = diff.sqrMagnitude;
-                        if (curDistance < distance)
+                        if (!damageable.IsAlive())
                         {
-                            closestGo = go;
-                            distance = curDistance;
+                            target = null;
+                            Enemies.Remove(go);
                         }
-                        target = closestGo;
-                    }
+                        else
+                        {
+                            Vector3 diff = go.transform.position - transform.position;
+                            float curDistance = diff.sqrMagnitude;
+                            if (curDistance < distance)
+                            {
+                                closestGo = go;
+                                distance = curDistance;
+                            }
+                            target = closestGo;
+                        }
+                    }                    
                 }
                 if (AimHelper || AutoAim)
                 {

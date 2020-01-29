@@ -5,8 +5,6 @@ using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
-    // TODO: нахер убрать лишние поля из скрипта. оставить ссылку на оружие, ссылку на пул переменную урона, скорости пули, булевый мультишот.
-    // здесь прописываем только статы оружия. стрельбу делать из Shootable, как это сделано сейчас в AIShootable
     [Header("Settings")]
     public GameObject bullet;
     public GameObject bulletPool;
