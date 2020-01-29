@@ -6,7 +6,6 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public string currentWeaponName = "Rifle";
-    [SerializeField]
     private Weapon currentWeapon;
     public bool switchWeapon = true;
     public bool shooting;
