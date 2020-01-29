@@ -480,22 +480,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: 4718378dc4e8d064b86f2a59e1426f12, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 0
-  BulletLifeTime: 0.35
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 0.5
+  ripper: 0
 --- !u!1 &1187026398264655674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,8 +1127,9 @@ MonoBehaviour:
     m_Bits: 0
   attackRate: 1
   nextAttackTime: 0
-  RespawnTarget: {fileID: 0}
+  respawnTarget: {fileID: 0}
   respawnVFX: {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
+  flashWhenHit: 1
   anim: {fileID: 0}
   target: {fileID: 0}
   agent: {fileID: 0}
@@ -1585,22 +1588,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 1
-  Clip: {fileID: 8300000, guid: 9152ea54bcecb3b49bfd40d560af370d, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 0
-  BulletLifeTime: 0.25
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 0.8
+  ripper: 0
 --- !u!1 &1901485196800301006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,22 +2590,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: 4718378dc4e8d064b86f2a59e1426f12, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 9
-  BulletLifeTime: 0.25
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 0.06
+  ripper: 0
 --- !u!1 &2960912052732309565
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,22 +3445,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: d51da237828decd44ad2bd0117608e1e, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: f3a6d50cd7b67244993b5fd21e8ed940, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: d51da237828decd44ad2bd0117608e1e, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 2
-  BulletLifeTime: 1.5
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 1
-  BulletPool: {fileID: 0}
-  ShootCD: 0.8
+  ripper: 0
 --- !u!1 &3849311132703971169
 GameObject:
   m_ObjectHideFlags: 0
@@ -7015,22 +7024,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: 4718378dc4e8d064b86f2a59e1426f12, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 4
-  BulletLifeTime: 0.25
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 0.06
+  ripper: 0
 --- !u!1 &4615953221116360929
 GameObject:
   m_ObjectHideFlags: 0
@@ -7806,22 +7817,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 47bbf38895f2a4f43a337a74403f6ef7, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: 458c3d33738cc3b49aa021d24c202cce, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 47bbf38895f2a4f43a337a74403f6ef7, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 0
-  BulletLifeTime: 0.35
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 1.8
+  ripper: 0
 --- !u!1 &5429223692026390746
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,22 +9396,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 144ef5287aae82b42b8f587af8b813ca, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: 4718378dc4e8d064b86f2a59e1426f12, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 144ef5287aae82b42b8f587af8b813ca, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 0
-  BulletLifeTime: 0.35
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 0.5
+  ripper: 0
 --- !u!1 &8000164593659943016
 GameObject:
   m_ObjectHideFlags: 0
@@ -9600,22 +9615,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 2179628b22666f44080295cee2d92369, type: 3}
-  LaserTarget: {fileID: 491222751358386161}
-  Player: {fileID: 0}
-  ShootPos: {fileID: 0}
-  ShootFX: {fileID: 0}
-  Source: {fileID: 395589841565414141}
-  multishot: 0
-  Clip: {fileID: 8300000, guid: 4718378dc4e8d064b86f2a59e1426f12, type: 3}
+  name: 
+  damage: 0
   speed: 0
+  multiShot: 0
+  ammo: 0
+  energy: 0
+  attackDelay: 1
+  bullet: {fileID: 129264, guid: 2179628b22666f44080295cee2d92369, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
   scatter: 0
-  BulletLifeTime: 0.4
+  bulletLifeTime: 0.5
   shooting: 0
-  Ammo: 0
-  Ripper: 0
-  BulletPool: {fileID: 0}
-  ShootCD: 0.9
+  ripper: 0
 --- !u!1 &8370373449490011941
 GameObject:
   m_ObjectHideFlags: 0
@@ -9703,7 +9720,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5450790710577631773}
-  - component: {fileID: 6824123162455801880}
   - component: {fileID: 395589841565414141}
   m_Layer: 17
   m_Name: Weapons
@@ -9735,20 +9751,6 @@ Transform:
   m_Father: {fileID: 526560148239470523}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
---- !u!114 &6824123162455801880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8449480419713352163}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe51ab211067004a86c70127a8525c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveWeapon: 0
-  shooting: 0
 --- !u!82 &395589841565414141
 AudioSource:
   m_ObjectHideFlags: 0

@@ -124,9 +124,9 @@ public class PlayerController : MonoBehaviour
 
                 aiming = true;
                 if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= ShootZone)
-                    Weapons.transform.GetComponent<WeaponController>().shooting = true;
+                    transform.GetComponent<WeaponController>().shooting = true;
                 else
-                    Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                    transform.GetComponent<WeaponController>().shooting = false;
                 //  Target.transform.GetChild(0).gameObject.SetActive(true);
 
             }
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 aiming = false;
                 movement = new Vector3(movement.x, 0, movement.z);
                 gameObject.transform.LookAt(transform.position + movement * Time.deltaTime);
-                Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                transform.GetComponent<WeaponController>().shooting = false;
                 //    Target.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             Dead = true;
             if (Weapons != null)
-                Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                transform.GetComponent<WeaponController>().shooting = false;
         }
 
         else
@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
 
             if (Weapons != null)
             {
-                Weapons.transform.GetComponent<WeaponController>().shooting = false;
+                transform.GetComponent<WeaponController>().shooting = false;
                 Weapons.SetActive(false);
             }
 

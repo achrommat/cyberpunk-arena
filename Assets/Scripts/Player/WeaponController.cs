@@ -1,54 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public int ActiveWeapon =1;
+    public string currentWeaponName = "Rifle";
+    [SerializeField]
+    private Weapon currentWeapon;
+    public bool switchWeapon = true;
     public bool shooting;
 
+    [SerializeField]
+    private List<Weapon> weaponList;    
+    private Dictionary<string, Weapon> weapons;
+    [SerializeField]
+    private GameObject weaponFolder;    
+
+    private void Awake()
+    {
+        weapons = new Dictionary<string, Weapon>();
+        weaponList.AddRange(weaponFolder.GetComponentsInChildren<Weapon>(true));
+        foreach (Weapon gun in weaponList)
+        {
+            weapons.Add(gun.name, gun);
+        }
+        FindWeapon();
+    }
 
     void Update()
     {
-        for(int i = 0; i< transform.childCount; i++)
-        {
-            if(transform.GetChild(i).gameObject.active)
-            {
-                transform.GetChild(i).GetComponent<Weapon>().shooting = shooting;
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            PreviousVeapon();
-        }
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            NextVeapon();
-        }
+        SwitchWeapon();
+        currentWeapon.shooting = this.shooting;
     }
 
-    public void NextVeapon()
+    public void SwitchWeapon()
     {
-        if (ActiveWeapon < transform.childCount - 1)
+        if (!switchWeapon)
         {
-            ActiveWeapon++;
-            WeaponSelect();
+            return;
         }
+        switchWeapon = false;
+        foreach (Weapon weapon in weaponList)
+        {
+            weapon.gameObject.SetActive(false);
+        }
+        FindWeapon();
     }
-    public void PreviousVeapon()
+
+    private void FindWeapon()
     {
-        if(ActiveWeapon > 1)
-        {
-            ActiveWeapon--;
-            WeaponSelect();
-        }
-    }
-    public void WeaponSelect()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(false);
-        }
-        transform.GetChild(ActiveWeapon).gameObject.SetActive(true);
+        var weaponToSwitch = weapons.FirstOrDefault(t => t.Key == currentWeaponName);
+        currentWeapon = weaponToSwitch.Value;
+        currentWeapon.gameObject.SetActive(true);
+        currentWeaponName = weaponToSwitch.Key;
     }
 }

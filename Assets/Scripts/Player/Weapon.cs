@@ -5,15 +5,8 @@ using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Settings")]
-    public GameObject bullet;
-    public GameObject bulletPool;
-    public GameObject laserTarget;
-    public GameObject shootPos;
-    public GameObject shootFX;
-    public AudioSource source;
-
     [Header("Main Stats")]
+    public new string name;
     public float damage;
     public float speed;
     public bool multiShot;
@@ -22,6 +15,14 @@ public class Weapon : MonoBehaviour
 
     [Header("Fire Rate")]
     public float attackDelay = 1;
+
+    [Header("Settings")]
+    public GameObject bullet;
+    public GameObject bulletPool;
+    public GameObject laserTarget;
+    public GameObject shootPos;
+    public GameObject shootFX;
+    public AudioSource source;
 
     public AudioClip clip;
     

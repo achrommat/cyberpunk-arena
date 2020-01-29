@@ -507,7 +507,7 @@ Transform:
   - {fileID: 1357954866428818736}
   - {fileID: 1357954866786219175}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954866062166125
 MeshFilter:
@@ -567,18 +567,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7741003562500224721, guid: 96199dc2fc267e942a55856cef514cb3, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: Railgun
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 7741003562500224721, guid: 96199dc2fc267e942a55856cef514cb3, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 0
   bulletLifeTime: 0.5
@@ -3021,7 +3022,7 @@ Transform:
   - {fileID: 1357954867688767801}
   - {fileID: 1357954867514208782}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954866092723623
 MeshFilter:
@@ -3081,18 +3082,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: Small Rifle
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 9
   bulletLifeTime: 0.5
@@ -5359,7 +5361,7 @@ Transform:
   - {fileID: 1357954867256653215}
   - {fileID: 1357954866924467328}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954866103016074
 MeshFilter:
@@ -5419,18 +5421,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 144ef5287aae82b42b8f587af8b813ca, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: Plasmagun
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: 144ef5287aae82b42b8f587af8b813ca, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 0
   bulletLifeTime: 0.5
@@ -8201,7 +8204,7 @@ Transform:
   - {fileID: 1357954866812446012}
   - {fileID: 1357954867207063344}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954866160126163
 MeshFilter:
@@ -8261,18 +8264,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: 
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 4
   bulletLifeTime: 0.5
@@ -12360,7 +12364,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1357954866431961796}
-  - component: {fileID: 1357954866431961794}
   - component: {fileID: 1357954866431961795}
   m_Layer: 9
   m_Name: Weapons
@@ -12380,7 +12383,6 @@ Transform:
   m_LocalPosition: {x: 0.0103, y: 0.0061, z: -0.0014}
   m_LocalScale: {x: 0.10000002, y: 0.100000106, z: 0.10000014}
   m_Children:
-  - {fileID: 1353447133387982838}
   - {fileID: 1357954867355416214}
   - {fileID: 1357954868055322727}
   - {fileID: 1357954867470463170}
@@ -12393,20 +12395,6 @@ Transform:
   m_Father: {fileID: 2872111539064172868}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
---- !u!114 &1357954866431961794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357954866431961797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe51ab211067004a86c70127a8525c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveWeapon: 2
-  shooting: 0
 --- !u!82 &1357954866431961795
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17291,7 +17279,7 @@ Transform:
   - {fileID: 1357954866431798701}
   - {fileID: 1357954866864287350}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954867355416211
 MeshFilter:
@@ -17351,18 +17339,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 1357954866465363756}
-  shootPos: {fileID: 1357954867911606561}
-  shootFX: {fileID: 0}
-  source: {fileID: 1357954866431961795}
+  name: Rifle
   damage: 10
   speed: 0
   multiShot: 0
   ammo: 1000
   energy: 99999
   attackDelay: 0.2
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 1357954866465363756}
+  shootPos: {fileID: 1357954867911606561}
+  shootFX: {fileID: 0}
+  source: {fileID: 1357954866431961795}
   clip: {fileID: 8300000, guid: c9078c3724d980347b7b29c5e846c2bb, type: 3}
   scatter: 1
   bulletLifeTime: 0.5
@@ -19732,7 +19721,7 @@ Transform:
   - {fileID: 1357954866285113931}
   - {fileID: 1357954866300045720}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954867382916275
 MeshFilter:
@@ -19792,18 +19781,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: Pistol
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 0
   bulletLifeTime: 0.5
@@ -22616,7 +22606,7 @@ Transform:
   m_Children:
   - {fileID: 1357954867001455843}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954867470463231
 MeshFilter:
@@ -22676,18 +22666,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 2179628b22666f44080295cee2d92369, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: Rocket Launcher
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: 2179628b22666f44080295cee2d92369, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 0
   bulletLifeTime: 0.5
@@ -26068,7 +26059,7 @@ Transform:
   - {fileID: 1357954866338995224}
   - {fileID: 1357954867736492253}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1357954867629681918
 MeshFilter:
@@ -26128,18 +26119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: d51da237828decd44ad2bd0117608e1e, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  source: {fileID: 0}
+  name: Ripper
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: d51da237828decd44ad2bd0117608e1e, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootFX: {fileID: 0}
+  source: {fileID: 0}
   clip: {fileID: 0}
   scatter: 2
   bulletLifeTime: 0.5
@@ -29758,7 +29750,7 @@ Transform:
   - {fileID: 1357954866661098177}
   - {fileID: 1357954867584259963}
   m_Father: {fileID: 1357954866431961796}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 2, y: 0, z: 0}
 --- !u!33 &1357954868055322724
 MeshFilter:
@@ -29818,18 +29810,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61d2e4d2cee549b3581f0d4d71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
-  bulletPool: {fileID: 0}
-  laserTarget: {fileID: 1357954866465363756}
-  shootPos: {fileID: 1357954867911606561}
-  shootFX: {fileID: 0}
-  source: {fileID: 1357954866431961795}
+  name: Shotgun
   damage: 0
   speed: 0
   multiShot: 0
   ammo: 0
   energy: 0
   attackDelay: 1
+  bullet: {fileID: 129264, guid: 8e8d564bddba82640ae8676c28f57aa1, type: 3}
+  bulletPool: {fileID: 0}
+  laserTarget: {fileID: 1357954866465363756}
+  shootPos: {fileID: 1357954867911606561}
+  shootFX: {fileID: 0}
+  source: {fileID: 1357954866431961795}
   clip: {fileID: 8300000, guid: c9078c3724d980347b7b29c5e846c2bb, type: 3}
   scatter: 3
   bulletLifeTime: 0.5
@@ -37119,6 +37112,7 @@ GameObject:
   - component: {fileID: 2868405954290169654}
   - component: {fileID: 2868405954290169655}
   - component: {fileID: 3825470080198295849}
+  - component: {fileID: 3825470080198295852}
   m_Layer: 9
   m_Name: Character
   m_TagString: Player
@@ -37394,6 +37388,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 1357954867355416213}
+--- !u!114 &3825470080198295852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868405954290169660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe51ab211067004a86c70127a8525c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponName: Rifle
+  currentWeapon: {fileID: 0}
+  switchWeapon: 0
+  shooting: 0
+  weaponList: []
+  weaponFolder: {fileID: 1357954866431961797}
 --- !u!1 &2868416617924495930
 GameObject:
   m_ObjectHideFlags: 0
@@ -41955,77 +41967,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4583412734626510, guid: e9e9e8a8860bb5b4bb27e1c0106eae03,
     type: 3}
   m_PrefabInstance: {fileID: 1357954867009168231}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1357954867483354994
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1357954866431961796}
-    m_Modifications:
-    - target: {fileID: 1565935239740110, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_Name
-      value: SM_Wep_Sword_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1565935239740110, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1565935239740110, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0306
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.01745245
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99984777
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
---- !u!4 &1353447133387982838 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4508267963687044, guid: 4d5e45013e2bb8042b0207cf4a203289,
-    type: 3}
-  m_PrefabInstance: {fileID: 1357954867483354994}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1357954867613316874
 PrefabInstance:
