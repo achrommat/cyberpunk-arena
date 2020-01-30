@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    // Переключение оружия у игрока и линк на текущее оружие
     public string currentWeaponName = "Rifle";
     
     public Weapon currentWeapon;

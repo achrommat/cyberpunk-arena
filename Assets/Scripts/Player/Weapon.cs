@@ -5,31 +5,34 @@ using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
+    // Настройки оружия
     [Header("Main Stats")]
     public new string name = "Weapon Name";
     public float damage = 1;
-    public float force = 1;
-    public float bulletLifetime = 1;
+    public float bulletForce = 1;
     public bool multiShot = false;
-    public int ammo;
     public float maxEnergy = 100;
+    [HideInInspector]
     public float currentEnergy;
+
+    // TODO: убрать
+    public float ammo = 100;
 
     [Header("Fire Rate")]
     public float attackDelay = 1;
 
     [Header("Settings")]
-    public GameObject bullet;
     public GameObject bulletPool;
     public GameObject laserTarget;
     public Transform shootPos;
-    public GameObject shootFX;
-    public AudioSource source;
 
-    public AudioClip clip;
-    
-    public float scatter = 0;
-    public float bulletLifeTime = 0.5f;
+    [Header("FX")]
+    public GameObject shootFX;
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private float scatter = 0;
     public bool shooting;
     
     public bool ripper;
@@ -47,5 +50,10 @@ public class Weapon : MonoBehaviour
     public void GetScatter()
     {
         shootPos.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+    }
+
+    public void PlayShotSound()
+    {
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }

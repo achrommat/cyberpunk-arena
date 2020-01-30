@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public GameObject HitDecal;
     public Vector3 hitpos;
     public bool sawblade;
-    public GameObject bulletPool;
+    //public GameObject bulletPool;
     public GameObject VFXpool;
 
     [SerializeField]
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * weaponController.currentWeapon.force * Time.fixedDeltaTime);
+        GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * weaponController.currentWeapon.bulletForce * Time.fixedDeltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -64,7 +64,7 @@ public class Bullet : MonoBehaviour
 
     private void Disable()
     {
-        gameObject.transform.SetParent(bulletPool.transform);
+        gameObject.transform.SetParent(weaponController.currentWeapon.bulletPool.transform);
         gameObject.SetActive(false);
     }
 }

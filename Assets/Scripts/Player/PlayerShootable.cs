@@ -2,6 +2,7 @@
 
 public class PlayerShootable : MonoBehaviour
 {
+    // отвечает за стрельбу игрока
     [SerializeField]
     private WeaponController weaponController;
 
@@ -50,7 +51,7 @@ public class PlayerShootable : MonoBehaviour
 
     private void CreateBullet()
     {
-        weaponController.currentWeapon.source.PlayOneShot(weaponController.currentWeapon.clip);
+        weaponController.currentWeapon.PlayShotSound();
         Bullet newBullet = weaponController.currentWeapon.bulletPool.transform.GetChild(0).gameObject.GetComponent<Bullet>();        
         newBullet.weaponController = this.weaponController;
         newBullet.transform.SetParent(null);
