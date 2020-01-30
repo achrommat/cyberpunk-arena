@@ -6,12 +6,13 @@ using UnityEngine.Audio;
 public class Weapon : MonoBehaviour
 {
     [Header("Main Stats")]
-    public new string name;
-    public float damage;
-    public float speed;
-    public bool multiShot;
+    public new string name = "Weapon Name";
+    public float damage = 1;
+    public float force = 1;
+    public float bulletLifetime = 1;
+    public bool multiShot = false;
     public int ammo;
-    public float maxEnergy;
+    public float maxEnergy = 100;
     public float currentEnergy;
 
     [Header("Fire Rate")]
@@ -21,7 +22,7 @@ public class Weapon : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletPool;
     public GameObject laserTarget;
-    public GameObject shootPos;
+    public Transform shootPos;
     public GameObject shootFX;
     public AudioSource source;
 
@@ -40,11 +41,11 @@ public class Weapon : MonoBehaviour
 
     public void GetScatter(int[] pool, int i)
     {
-        shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter) + pool[i], 0);
+        shootPos.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter) + pool[i], 0);
     }
 
     public void GetScatter()
     {
-        shootPos.transform.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+        shootPos.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
     }
 }

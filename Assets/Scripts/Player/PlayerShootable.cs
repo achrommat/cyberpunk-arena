@@ -51,13 +51,10 @@ public class PlayerShootable : MonoBehaviour
     private void CreateBullet()
     {
         weaponController.currentWeapon.source.PlayOneShot(weaponController.currentWeapon.clip);
-        GameObject newbullet = weaponController.currentWeapon.bulletPool.transform.GetChild(0).gameObject;
-        newbullet.GetComponent<Bullet>().damage = weaponController.currentWeapon.damage;
-        newbullet.GetComponent<Bullet>().speed = weaponController.currentWeapon.speed;
-        newbullet.transform.position = weaponController.currentWeapon.shootPos.transform.position;
-        newbullet.transform.rotation = weaponController.currentWeapon.shootPos.transform.rotation;
-        newbullet.transform.SetParent(null);
-        newbullet.SetActive(true);
+        Bullet newBullet = weaponController.currentWeapon.bulletPool.transform.GetChild(0).gameObject.GetComponent<Bullet>();        
+        newBullet.weaponController = this.weaponController;
+        newBullet.transform.SetParent(null);
+        newBullet.gameObject.SetActive(true);
         weaponController.currentWeapon.shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
         weaponController.currentWeapon.currentEnergy -= 1;
 

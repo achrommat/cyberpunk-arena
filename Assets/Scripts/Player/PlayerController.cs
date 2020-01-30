@@ -61,17 +61,20 @@ public class PlayerController : MonoBehaviour
         Audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
-    public void FixedUpdate()
-    {
-        if(Dead || dash) return; 
 
+    private void FixedUpdate()
+    {
+        if(Dead || dash) return;    
+        MovePosition();
+        MoveRotation();
+    }
+
+    private void Update()
+    {
         UpdateAnimator();
         CheckGroundStatus();
         Death();
         DeathExtra();
-
-        MovePosition();
-        MoveRotation();
     }
 
     void MovePosition()
