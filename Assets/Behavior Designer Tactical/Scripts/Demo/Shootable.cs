@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tactical
 {
@@ -62,6 +63,10 @@ namespace BehaviorDesigner.Runtime.Tactical
         {
             GameObject.Instantiate(bullet, transform.position, Quaternion.LookRotation(targetPosition - transform.position));
             lastAttackTime = Time.time;
+        }
+
+        public virtual void Attack()
+        {            
         }
     }
 }

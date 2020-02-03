@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using BehaviorDesigner.Runtime.Tactical;
+using UnityEngine;
 
-public class PlayerShootable : MonoBehaviour
+public class PlayerShootable : Shootable
 {
     // отвечает за стрельбу игрока
     [SerializeField]
@@ -8,26 +9,7 @@ public class PlayerShootable : MonoBehaviour
 
     private float nextAttackTime;
 
-    public void Update()
-    {
-        if (weaponController.currentWeapon.shooting == true)
-        {
-            if (weaponController.currentWeapon.laserTarget)
-            {
-                weaponController.currentWeapon.laserTarget.SetActive(true);
-            }
-            Attack();
-        }
-        else
-        {
-            if (weaponController.currentWeapon.laserTarget)
-            {
-                weaponController.currentWeapon.laserTarget.SetActive(false);
-            }
-        }
-    }
-
-    public void Attack()
+    public override void Attack()
     {
         if (weaponController.currentWeapon.currentEnergy > 0 && Time.time >= nextAttackTime)
         {

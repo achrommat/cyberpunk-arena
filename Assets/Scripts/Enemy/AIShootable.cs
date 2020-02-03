@@ -10,7 +10,7 @@ public class AIShootable : Shootable
     public float damage = 0.5f;
     public GameObject shootPos;
 
-    public override void Attack(Vector3 targetPosition)
+    public override void Attack()
     {
         CreateBullet();
         lastAttackTime = Time.time;

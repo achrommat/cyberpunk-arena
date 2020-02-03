@@ -7,7 +7,7 @@ public class StatsGui : MonoBehaviour
 {
     private GameObject weapons;
     public GameObject Player;
-    private void Awake()
+    /*private void Awake()
     {
         weapons = Player.GetComponent<PlayerController>().Weapons.gameObject;
     }
@@ -23,5 +23,5 @@ public class StatsGui : MonoBehaviour
                 transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "" + (weapons.transform.GetChild(i).GetComponent<Weapon>().ammo);
             }
         }
-    }
+    }*/
 }
