@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BaseCharacterController : MonoBehaviour
 {
     [Header("Links")]
-    [SerializeField] protected Stats stats;
+    public Stats stats;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Shootable shootable;
@@ -75,7 +75,7 @@ public class BaseCharacterController : MonoBehaviour
         onGround = false;
     }
 
-    protected void Respawn()
+    protected virtual void Respawn()
     {
         actualRespawnTime -= Time.deltaTime;
         if (actualRespawnTime <= 0 && respawnTarget != null)

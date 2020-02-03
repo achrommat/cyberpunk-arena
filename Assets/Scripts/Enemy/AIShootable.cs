@@ -5,15 +5,19 @@ using BehaviorDesigner.Runtime.Tactical;
 
 public class AIShootable : Shootable
 {
+    [SerializeField] protected BaseCharacterController character;
     // перенести в weapons
     public GameObject bulletPool;
     public float damage = 0.5f;
     public GameObject shootPos;
 
-    public override void Attack()
+    public override void Attack(Vector3 targetPosition)
     {
-        CreateBullet();
-        lastAttackTime = Time.time;
+        if (character.stats.IsAlive())
+        {
+            CreateBullet();
+            lastAttackTime = Time.time;
+        }        
     }
 
     protected void CreateBullet()

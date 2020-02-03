@@ -7,7 +7,7 @@ public class DeadZone : MonoBehaviour
     public int Damage = 1000;
     public bool friendly = false;
  
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         //Physics.gravity = new Vector3(0, -15, 0);
 
@@ -24,5 +24,5 @@ public class DeadZone : MonoBehaviour
             other.transform.GetComponent<RandomDance>().HP -= Damage;
         }
 
-    }
+    }*/
 }
