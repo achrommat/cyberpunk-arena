@@ -29166,7 +29166,7 @@ MonoBehaviour:
   animator: {fileID: 2781329814455903988}
   movementDeadZone: 0.3
   HealthBar: {fileID: 3360045306551613041}
-  moveJoystick: {fileID: 7186156588303443636}
+  movementJoystick: {fileID: 7186156588303443636}
   aimJoystick: {fileID: 4214990672391463729}
   ShootZone: 0.65
   Weapons: {fileID: 1357954866431961797}

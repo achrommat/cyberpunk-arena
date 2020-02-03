@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float movementDeadZone;
 
     public Transform HealthBar;
-    public Joystick moveJoystick;
+    public Joystick movementJoystick;
     public Joystick aimJoystick;
     
     Vector3 m_EulerAngleVelocity;
@@ -76,17 +76,18 @@ public class PlayerController : MonoBehaviour
             Respawn();
             return;
         }
-        MovePosition();
+        Move();
         MoveRotation();
     }
 
     private void Update()
     {
-        UpdateAnimator();
         CheckGroundStatus();
+        GetMovementJoystickInput();
+        UpdateAnimator();        
     }
 
-    void MovePosition()
+    private void GetMovementJoystickInput()
     {
         direction = Vector3.forward * movement.z + Vector3.right * movement.x;
         direction = direction.normalized;
@@ -97,10 +98,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            movement.x = moveJoystick.Horizontal;
-            movement.z = moveJoystick.Vertical;
+            movement.x = movementJoystick.Horizontal;
+            movement.z = movementJoystick.Vertical;
         }
+    }
 
+    private void Move()
+    {
         Vector3 localMove = transform.InverseTransformDirection(movement);
         if ((localMove.x <= -movementDeadZone || localMove.x >= movementDeadZone) || (localMove.z <= -movementDeadZone || localMove.z >= movementDeadZone))
         {
@@ -111,7 +115,6 @@ public class PlayerController : MonoBehaviour
         {
             run = 0;
         }
-
     }
 
     void MoveRotation()
