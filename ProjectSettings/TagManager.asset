@@ -24,6 +24,7 @@ TagManager:
   - Items
   - Club
   - WallRun
+  - Ground
   layers:
   - Default
   - TransparentFX

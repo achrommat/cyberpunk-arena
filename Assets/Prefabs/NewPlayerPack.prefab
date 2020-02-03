@@ -29162,6 +29162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 1357954867320356551}
+  rb: {fileID: 2868405954290169655}
+  animator: {fileID: 2781329814455903988}
+  movementDeadZone: 0.3
   HealthBar: {fileID: 3360045306551613041}
   moveJoystick: {fileID: 7186156588303443636}
   aimJoystick: {fileID: 4214990672391463729}

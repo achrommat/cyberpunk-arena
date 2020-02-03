@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private Stats stats;
 
+    [SerializeField] private Stats stats;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
+    private bool onGround;
 
-
+    public float movementDeadZone;
 
     public Transform HealthBar;
     public Joystick moveJoystick;
     public Joystick aimJoystick;
-    Rigidbody rb;
+    
     Vector3 m_EulerAngleVelocity;
-    Animator charAnimator;
+    
     Vector3 movement;
     Vector3 rotation;
     Vector3 direction;
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public GameObject DeadVFX;
     
 
-    bool OnGround;
+    
     public bool aiming;
     bool Jump;
     bool HaveTarget;
@@ -63,15 +65,12 @@ public class PlayerController : MonoBehaviour
     {
         actualRespawnTime = respawnTime;
         respawnTarget = transform.position;
-        charAnimator = GetComponent<Animator>();
-        OnGround = true;
+        onGround = true;
         Audio = GetComponent<AudioSource>();
-        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
-    {
-        //if(Dead || dash) return;    
+    {  
         if (!stats.IsAlive())
         {
             Respawn();
@@ -83,14 +82,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //Death();
-
-
-
         UpdateAnimator();
         CheckGroundStatus();
-        
-        //DeathExtra();
     }
 
     void MovePosition()
@@ -108,20 +101,19 @@ public class PlayerController : MonoBehaviour
             movement.z = moveJoystick.Vertical;
         }
 
-        Vector3 localMoove = transform.InverseTransformDirection(movement);
-        if ((localMoove.x <= -0.3 || localMoove.x >= 0.3) || (localMoove.z <= -0.3 || localMoove.z >= 0.3))
+        Vector3 localMove = transform.InverseTransformDirection(movement);
+        if ((localMove.x <= -movementDeadZone || localMove.x >= movementDeadZone) || (localMove.z <= -movementDeadZone || localMove.z >= movementDeadZone))
         {
             rb.MovePosition(transform.position + direction * stats.runSpeed * Time.fixedDeltaTime);
-            run = (Mathf.Abs(localMoove.x) + Mathf.Abs(localMoove.z));
+            run = 1;
         }
         else
         {
-            rb.useGravity = true;
-            transform.localRotation = Quaternion.Euler(Vector3.zero);
             run = 0;
         }
 
     }
+
     void MoveRotation()
     {
         rotation.x = aimJoystick.Horizontal;
@@ -160,34 +152,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // TODO: перенести на коллижн с тегом Ground
     void CheckGroundStatus()
     {
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
         {
-            OnGround = true;
+            onGround = true;
+            return;
         }
-        else
-        {
-            OnGround = false;
-        }
+        onGround = false;
     }
 
-    void Death()
-    {
-        if (stats.currentHealth <= 0)
-        {
-            Dead = true;
-            if (Weapons != null)
-                transform.GetComponent<WeaponController>().shooting = false;
-        }
-
-        else
-        {
-            Dead = false;
-        }
-        Respawn();
-    }
 
     void Respawn()
     {
@@ -196,8 +172,8 @@ public class PlayerController : MonoBehaviour
         {
             actualRespawnTime = respawnTime;
             stats.currentHealth = 4;
-            charAnimator.enabled = false;
-            charAnimator.enabled = true;
+            animator.enabled = false;
+            animator.enabled = true;
             //Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
             transform.gameObject.transform.position = respawnTarget;
             Instantiate(RespawnVFX, transform.position, transform.rotation);
@@ -210,6 +186,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
     public void FootStep()
     {
         if (!aiming)
@@ -242,6 +219,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void UpdateAnimator()
     {
         Vector3 localMoove = transform.InverseTransformDirection(movement);
@@ -249,94 +227,24 @@ public class PlayerController : MonoBehaviour
         float X = localMoove.x;
 
         // update the animator parameters
-        charAnimator.SetFloat("Y", Z, 0.1f, Time.deltaTime);
-        charAnimator.SetFloat("X", X, 0.1f, Time.deltaTime);
+        animator.SetFloat("Y", Z, 0.1f, Time.deltaTime);
+        animator.SetFloat("X", X, 0.1f, Time.deltaTime);
 
-        charAnimator.SetFloat("Run", run);
-        charAnimator.SetFloat("Speed", stats.runSpeed);
+        animator.SetFloat("Run", run);
+        animator.SetFloat("Speed", stats.runSpeed);
 
         if (!Sprinting)
-            charAnimator.SetFloat("Speed", 1, AnimatorSprintDampValue, Time.deltaTime);
+            animator.SetFloat("Speed", 1, AnimatorSprintDampValue, Time.deltaTime);
         else
-            charAnimator.SetFloat("Speed", 2.0f, AnimatorRunDampValue, Time.deltaTime);
+            animator.SetFloat("Speed", 2.0f, AnimatorRunDampValue, Time.deltaTime);
 
 
-        charAnimator.SetBool("Aiming", aiming);
-        // charAnimator.SetBool("Jump", Jump);
+        animator.SetBool("Aiming", aiming);
 
-        charAnimator.SetBool("OnGround", OnGround);
-        //charAnimator.SetBool("Dance", dance);
-        charAnimator.SetBool("Dash", dash);
+        animator.SetBool("OnGround", onGround);
+        animator.SetBool("Dash", dash);
 
 
-        charAnimator.SetBool("Dead", !stats.IsAlive());
+        animator.SetBool("Dead", !stats.IsAlive());
     }
-
-    /*void HealthController()//считаем сколько сейчас хп
-    {
-        if (stats.currentHealth < stats.health)
-        {
-            for (int i = 0; i < HealthBar.childCount; i++)
-            {
-                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
-                    stats.currentHealth -= 0.5f;
-                }
-                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)// && (HealthBar.childCount - i) > Health
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
-                    stats.healthCount -= 0.5f;
-                }
-            }
-        }
-        if (stats.Health > stats.healthCount)
-        {
-            for (int i = HealthBar.childCount - 1; i >= 0; i--)
-            {
-                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
-                    stats.healthCount += 0.5f;
-                }
-                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)// && (HealthBar.childCount - i) > Health
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
-                    stats.healthCount += 0.5f;
-                }
-            }
-        }
-        if (stats.Health < stats.healthCount)
-        {
-            for (int i = 0; i < HealthBar.childCount; i++)
-            {
-                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
-                    stats.healthCount -= 0.5f;
-                }
-                if (stats.Health < stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount > 0)// && (HealthBar.childCount - i) > Health
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount -= 0.5f;
-                    stats.healthCount -= 0.5f;
-                }
-            }
-        }
-        if (stats.Health > stats.healthCount)
-        {
-            for (int i = HealthBar.childCount - 1; i >= 0; i--)
-            {
-                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
-                    stats.healthCount += 0.5f;
-                }
-                if (stats.Health > stats.healthCount && HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount < 1)// && (HealthBar.childCount - i) > Health
-                {
-                    HealthBar.GetChild(i).GetChild(0).GetComponent<Image>().fillAmount += 0.5f;
-                    stats.healthCount += 0.5f;
-                }
-            }
-        }
-    }*/
 }
