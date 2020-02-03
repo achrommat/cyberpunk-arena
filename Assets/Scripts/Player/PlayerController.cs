@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Stats stats;
+
+
+
+
     public Transform HealthBar;
     public Joystick moveJoystick;
     public Joystick aimJoystick;
@@ -19,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Weapons;
     public GameObject DeadVFX;
-    protected Stats stats;
+    
 
     bool OnGround;
     public bool aiming;
@@ -48,14 +54,15 @@ public class PlayerController : MonoBehaviour
     private AudioSource Audio;
 
     [Header("RESPAWN")]
-    public float RespawnTime;
-    protected float ActualRespTime;
-    public GameObject RespawnTarget;
+    public float respawnTime;
+    protected float actualRespawnTime;
+    private Vector3 respawnTarget;
     public GameObject RespawnVFX;
 
     private void Awake()
     {
-        stats = GetComponent<Stats>();
+        actualRespawnTime = respawnTime;
+        respawnTarget = transform.position;
         charAnimator = GetComponent<Animator>();
         OnGround = true;
         Audio = GetComponent<AudioSource>();
@@ -64,17 +71,26 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Dead || dash) return;    
+        //if(Dead || dash) return;    
+        if (!stats.IsAlive())
+        {
+            Respawn();
+            return;
+        }
         MovePosition();
         MoveRotation();
     }
 
     private void Update()
     {
+        //Death();
+
+
+
         UpdateAnimator();
         CheckGroundStatus();
-        Death();
-        DeathExtra();
+        
+        //DeathExtra();
     }
 
     void MovePosition()
@@ -156,6 +172,7 @@ public class PlayerController : MonoBehaviour
             OnGround = false;
         }
     }
+
     void Death()
     {
         if (stats.currentHealth <= 0)
@@ -171,54 +188,18 @@ public class PlayerController : MonoBehaviour
         }
         Respawn();
     }
-    void DeathExtra()
-    {
-        if (stats.currentHealth <= -50 && DeadExtra == false)
-        {
-            Instantiate(DeadVFX, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
-            if (rb == null)
-            {
-                Destroy(gameObject);
-            }
 
-            if (Weapons != null)
-            {
-                transform.GetComponent<WeaponController>().shooting = false;
-                Weapons.SetActive(false);
-            }
-
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(false);
-            if (gameObject.CompareTag("Enemy"))
-            {
-                transform.GetComponent<CapsuleCollider>().enabled = false;
-                transform.GetComponent<Rigidbody>().useGravity = false;
-
-            }
-            else
-            {
-                transform.GetComponent<CapsuleCollider>().enabled = false;
-                if (rb != null)
-                    transform.GetComponent<Rigidbody>().useGravity = false;
-
-            }
-            if (rb != null)
-                rb.velocity = Vector3.zero;
-            DeadExtra = true;
-            Dead = true;
-        }
-    }
     void Respawn()
     {
-        ActualRespTime -= Time.deltaTime;
-        if (ActualRespTime <= 0 && RespawnTarget != null)
+        actualRespawnTime -= Time.deltaTime;
+        if (actualRespawnTime <= 0 && respawnTarget != null)
         {
-            ActualRespTime = RespawnTime;
+            actualRespawnTime = respawnTime;
             stats.currentHealth = 4;
             charAnimator.enabled = false;
             charAnimator.enabled = true;
-            Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
-            transform.gameObject.transform.position = resp;
+            //Vector3 resp = RespawnTarget.transform.GetChild(Random.Range(0, RespawnTarget.transform.childCount)).transform.position;
+            transform.gameObject.transform.position = respawnTarget;
             Instantiate(RespawnVFX, transform.position, transform.rotation);
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(true);
@@ -288,7 +269,7 @@ public class PlayerController : MonoBehaviour
         charAnimator.SetBool("Dash", dash);
 
 
-        charAnimator.SetBool("Dead", Dead);
+        charAnimator.SetBool("Dead", !stats.IsAlive());
     }
 
     /*void HealthController()//считаем сколько сейчас хп

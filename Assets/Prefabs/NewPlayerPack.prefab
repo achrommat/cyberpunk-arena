@@ -29143,7 +29143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
-  currentHealth: 0
+  currentHealth: 4
   runSpeed: 0
   startRunSpeed: 9
   speedWithAim: 0
@@ -29161,6 +29161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bcf5598910ab1428e763948dc353d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 1357954867320356551}
   HealthBar: {fileID: 3360045306551613041}
   moveJoystick: {fileID: 7186156588303443636}
   aimJoystick: {fileID: 4214990672391463729}
@@ -29178,8 +29179,7 @@ MonoBehaviour:
   FootStepsRate: 0.2
   GeneralFootStepsVolume: 1
   Footsteps: []
-  RespawnTime: 0
-  RespawnTarget: {fileID: 0}
+  respawnTime: 5
   RespawnVFX: {fileID: 1323860499875668, guid: 082c287fd5cea9e498027c8ecbfb648e, type: 3}
 --- !u!136 &2868405954290169654
 CapsuleCollider:
