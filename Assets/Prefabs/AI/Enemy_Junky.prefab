@@ -6483,7 +6483,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 5
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -6540,7 +6540,6 @@ MonoBehaviour:
   HealthBar: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   agent: {fileID: 1631747145}
-  behavior: {fileID: 0}
 --- !u!114 &7660136033664145265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6556,7 +6555,7 @@ MonoBehaviour:
   health: 100
   currentHealth: 0
   runSpeed: 0
-  startRunSpeed: 9
+  startRunSpeed: 7
   speedWithAim: 0
   runSpeedMody: 0
   speedsetting: 1

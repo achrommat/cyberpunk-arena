@@ -13,13 +13,13 @@ public class EnemyController : BaseCharacterController
     public NavMeshAgent agent;
 
     public TacticalAgent tacticalAgent;
-
-    [SerializeField] private BehaviorTree behavior;
     
     // Start is called before the first frame update
     void Start()
     {
         myRenderer = FindRenderer();
+        agent.updatePosition = false;
+        stats.startRunSpeed = (agent.speed * 2);
     }
 
     private Renderer FindRenderer()
@@ -49,7 +49,7 @@ public class EnemyController : BaseCharacterController
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                if (!agent.hasPath || agent.velocity.sqrMagnitude < 1.5f)
                 {
                     run = 0;
                     aiming = true;
@@ -63,7 +63,7 @@ public class EnemyController : BaseCharacterController
 
     private void OnAnimatorMove()
     {
-        //transform.position = agent.nextPosition;
+        transform.position = agent.nextPosition;
     }
 
     private void OnCollisionEnter(Collision collision)
