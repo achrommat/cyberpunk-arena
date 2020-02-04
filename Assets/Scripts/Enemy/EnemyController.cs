@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using BehaviorDesigner.Runtime;
+using BehaviorDesigner.Runtime.Tactical;
 
 public class EnemyController : BaseCharacterController
 {     
     [Header("VFX")]
-    public bool flashWhenHit = true;
+    private bool flashWhenHit = true;
     private Renderer myRenderer;    
-    public Transform target;
+    public Vector3 target;
     public NavMeshAgent agent;
-    public bool dead = false;
+
+    public TacticalAgent tacticalAgent;
+
+    [SerializeField] private BehaviorTree behavior;
     
     // Start is called before the first frame update
     void Start()
@@ -35,11 +40,30 @@ public class EnemyController : BaseCharacterController
             }
         }
         return rend;
-    }    
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    run = 0;
+                    aiming = true;
+                    return;
+                }
+            }
+        }
+        aiming = false;
+        run = 0.7f;
+    }
 
     private void OnAnimatorMove()
     {
-        transform.position = agent.nextPosition;
+        //transform.position = agent.nextPosition;
     }
 
     private void OnCollisionEnter(Collision collision)

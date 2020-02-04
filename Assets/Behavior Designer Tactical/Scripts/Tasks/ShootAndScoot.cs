@@ -97,6 +97,8 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
         public override TaskStatus OnUpdate()
         {
+            
+
             var baseStatus = base.OnUpdate();
             if (baseStatus != TaskStatus.Running || !started) {
                 return baseStatus;
@@ -128,7 +130,12 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
                 tacticalAgent.SetDestination(TransformPoint(attackCenter, offset, attackRotation));
 
-                if (tacticalAgent.HasArrived()) {
+                //Vector3 target = tacticalAgent.TargetTransform.position;
+                Vector3 direction = (TransformPoint(attackCenter, offset, attackRotation) - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+                if (tacticalAgent.HasArrived()) {                    
                     // The agents are not in position until they are looking at the target.
                     FindAttackTarget();
                     if (tacticalAgent.RotateTowardsPosition(tacticalAgent.TargetTransform.position)) {
@@ -148,6 +155,10 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                     determinePosition = true;
                 }
             } else if (canAttack) {
+                Vector3 target = tacticalAgent.TargetTransform.position;
+                Vector3 direction = (target - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
                 // The agents are in position and looking at their target. Attack.
                 FindAttackTarget();
                 tacticalAgent.TryAttack();
