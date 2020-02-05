@@ -4,9 +4,8 @@ using UnityEngine;
 public class PlayerShootable : Shootable
 {
     // отвечает за стрельбу игрока
-    [SerializeField]
-    private WeaponController weaponController;
-
+    [SerializeField] private WeaponController weaponController;
+    [SerializeField] private Transform player;
     private float nextAttackTime;
 
     public override void Attack()
@@ -34,11 +33,16 @@ public class PlayerShootable : Shootable
     private void CreateBullet()
     {
         weaponController.currentWeapon.PlayShotSound();
-        Bullet newBullet = weaponController.currentWeapon.bulletPool.transform.GetChild(0).gameObject.GetComponent<Bullet>();        
+
+        GameObject newBullet = MF_AutoPool.Spawn(weaponController.currentWeapon.bulletPrefab, weaponController.currentWeapon.shootPos.position, weaponController.currentWeapon.shootPos.rotation);
+        newBullet.GetComponent<BulletController>().weaponController = this.weaponController;
+        
+
+        /*BulletController newBullet = weaponController.currentWeapon.bulletPool.transform.GetChild(0).gameObject.GetComponent<BulletController>();        
         newBullet.weaponController = this.weaponController;
         newBullet.transform.SetParent(null);
-        newBullet.gameObject.SetActive(true);
-        weaponController.currentWeapon.shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        newBullet.gameObject.SetActive(true);*/
+        //weaponController.currentWeapon.shootPos.transform.localRotation = Quaternion.Euler(0, 0, 0);
         weaponController.currentWeapon.currentEnergy -= 1;
 
         if (weaponController.currentWeapon.ripper == true)

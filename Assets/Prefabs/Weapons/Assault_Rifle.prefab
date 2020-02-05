@@ -2784,7 +2784,8 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 0.5
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 1916600279156190, guid: e7a6c26d5d1bb844bbda14273c9c87fb,
+    type: 3}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}

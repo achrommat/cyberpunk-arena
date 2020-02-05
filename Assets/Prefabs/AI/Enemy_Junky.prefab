@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848621101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0.2, y: 1.3, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8318154572021167354}
@@ -621,7 +621,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
@@ -4078,7 +4078,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
@@ -4465,7 +4465,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
@@ -5223,9 +5223,9 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
+  shootPos: {fileID: 848621102}
   shootFX: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 0
@@ -6110,7 +6110,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
@@ -6315,7 +6315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8318154572021167354}
   - component: {fileID: 1728466917705885955}
-  - component: {fileID: 608258520854849846}
   - component: {fileID: 1631747150}
   - component: {fileID: 1631747145}
   - component: {fileID: 1202601848}
@@ -6323,6 +6322,7 @@ GameObject:
   - component: {fileID: 7660136033664145265}
   - component: {fileID: 694818987}
   - component: {fileID: 1024532605}
+  - component: {fileID: 462515934}
   m_Layer: 0
   m_Name: Enemy_Junky
   m_TagString: Enemy
@@ -6359,24 +6359,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &608258520854849846
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248355432669049655}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.45
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!82 &1631747150
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6577,7 +6563,7 @@ MonoBehaviour:
   attackAngle: 2
   character: {fileID: 684642383039903003}
   bulletPool: {fileID: 0}
-  damage: 0.5
+  damage: 0
   shootPos: {fileID: 848621101}
 --- !u!114 &1024532605
 MonoBehaviour:
@@ -6621,6 +6607,19 @@ MonoBehaviour:
       Version: 1.6.3
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!65 &462515934
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248355432669049655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 2, z: 0.9}
+  m_Center: {x: -0, y: 1, z: 0}
 --- !u!1 &4249000560512251867
 GameObject:
   m_ObjectHideFlags: 0
@@ -7474,7 +7473,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
@@ -8509,7 +8508,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
@@ -9242,7 +9241,7 @@ MonoBehaviour:
   currentEnergy: 0
   ammo: 0
   attackDelay: 1
-  bulletPool: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}

@@ -11,7 +11,7 @@ public class BaseCharacterController : MonoBehaviour
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Shootable shootable;
-    [SerializeField] protected WeaponController weaponController;
+    public WeaponController weaponController;
 
     [Header("Respawn")]
     [SerializeField] protected float respawnTime;

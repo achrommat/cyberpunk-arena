@@ -45,6 +45,7 @@ public class EnemyController : BaseCharacterController
     protected override void Update()
     {
         base.Update();
+
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)

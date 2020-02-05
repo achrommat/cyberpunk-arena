@@ -13,7 +13,7 @@ public class AIShootable : Shootable
 
     public override void Attack(Vector3 targetPosition)
     {
-        if (character.stats.IsAlive())
+        if (character.stats.IsAlive() && character.aiming)
         {
             CreateBullet();
             lastAttackTime = Time.time;

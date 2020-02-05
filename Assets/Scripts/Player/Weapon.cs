@@ -12,8 +12,8 @@ public class Weapon : MonoBehaviour
     public float bulletForce = 1;
     public bool multiShot = false;
     public float maxEnergy = 100;
-    [HideInInspector]
-    public float currentEnergy;
+
+    [HideInInspector] public float currentEnergy;
 
     // TODO: убрать
     public float ammo = 100;
@@ -22,17 +22,15 @@ public class Weapon : MonoBehaviour
     public float attackDelay = 1;
 
     [Header("Settings")]
-    public GameObject bulletPool;
+    public GameObject bulletPrefab;
     public GameObject laserTarget;
     public Transform shootPos;
 
     [Header("FX")]
     public GameObject shootFX;
-    [SerializeField]
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
-    [SerializeField]
-    private float scatter = 0;
+    [SerializeField] private float scatter = 0;
     public bool shooting;
     
     public bool ripper;
