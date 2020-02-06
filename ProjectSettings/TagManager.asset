@@ -25,6 +25,7 @@ TagManager:
   - Club
   - WallRun
   - Ground
+  - Bullet
   layers:
   - Default
   - TransparentFX

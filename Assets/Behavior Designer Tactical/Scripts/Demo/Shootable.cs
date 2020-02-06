@@ -9,7 +9,7 @@ namespace BehaviorDesigner.Runtime.Tactical
     public class Shootable : MonoBehaviour, IAttackAgent
     {
         // The bullet prefab to fire
-        public GameObject bullet;
+        [HideInInspector] public GameObject bullet;
         // The furthest distance that the agent is able to attack from
         public float attackDistance;
         // The amount of time it takes for the agent to be able to attack again

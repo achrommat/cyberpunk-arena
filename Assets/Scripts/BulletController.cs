@@ -9,46 +9,50 @@ public class BulletController : MonoBehaviour
     // движение пули при включении из пула и коллижн с другими объектами
     public GameObject HitVFX;
     public GameObject HitDecal;
-    public Vector3 hitpos;
-    public bool sawblade;
+    [HideInInspector] public bool sawblade;
+    [HideInInspector] public bool isEnemy = false;
     //public GameObject bulletPool;
     public GameObject VFXpool;
-    public TrailRenderer trail;
+    [HideInInspector] public float damage = 0.5f;
 
     [SerializeField] private Rigidbody rb;
     [SerializeField] private AP_Reference poolRef;
 
-    [HideInInspector]
-    public WeaponController weaponController;
-
-    /*public void OnEnable()
-    {
-        transform.position = weaponController.currentWeapon.shootPos.position;
-        transform.rotation = weaponController.currentWeapon.shootPos.rotation;    
-    }*/
+    [HideInInspector] public WeaponController weaponController;
 
     void FixedUpdate()
     {
         rb.MovePosition(transform.position + transform.forward * weaponController.currentWeapon.bulletForce * Time.fixedDeltaTime);
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            return;
+        }
+
         IDamageable damageable;
         if ((damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
         {
-            damageable.Damage(weaponController.currentWeapon.damage);
-            //transform.GetComponent<MeshRenderer>().enabled = false;
-            //transform.GetChild(1).gameObject.SetActive(true);
+            // если враг, то урон забираем с AIShootable. Если игрок, то с оружия
+            if (isEnemy && !collision.gameObject.CompareTag("Enemy"))
+            {                
+                damageable.Damage(damage);
+            }
+            else
+            {
+                damageable.Damage(weaponController.currentWeapon.damage);
+            }            
         }
-        else if (collision.gameObject.CompareTag("Walls"))
+
+        /*if (collision.gameObject.CompareTag("Walls"))
         {
             //transform.GetChild(2).gameObject.SetActive(true);
             //transform.GetComponent<MeshRenderer>().enabled = false;
-        }
-        MF_AutoPool.Despawn(gameObject, 1f);
+        }*/
 
-        //Disable();
+        MF_AutoPool.Despawn(poolRef);
     }
 
     private void BulletHit(Collider other, bool shouldRotate)
@@ -57,10 +61,4 @@ public class BulletController : MonoBehaviour
         if (shouldRotate)
             rotation = Quaternion.LookRotation(transform.position, other.transform.position);
     }
-
-    /*private void Disable()
-    {
-        gameObject.transform.SetParent(weaponController.currentWeapon.bulletPool.transform);
-        gameObject.SetActive(false);
-    }*/
 }

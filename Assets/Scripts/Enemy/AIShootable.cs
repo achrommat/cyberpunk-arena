@@ -5,11 +5,12 @@ using BehaviorDesigner.Runtime.Tactical;
 
 public class AIShootable : Shootable
 {
+    [SerializeField] private WeaponController weaponController;
     [SerializeField] protected BaseCharacterController character;
     // перенести в weapons
-    public GameObject bulletPool;
+    public GameObject bulletPrefab;
     public float damage = 0.5f;
-    public GameObject shootPos;
+    public Transform shootPos;
 
     public override void Attack(Vector3 targetPosition)
     {
@@ -22,11 +23,19 @@ public class AIShootable : Shootable
 
     protected void CreateBullet()
     {
-        GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
+        weaponController.currentWeapon.PlayShotSound();
+
+        GameObject newBullet = MF_AutoPool.Spawn(bulletPrefab, shootPos.position, shootPos.rotation);
+        newBullet.GetComponent<BulletController>().weaponController = this.weaponController;
+        newBullet.GetComponent<BulletController>().isEnemy = true;
+        newBullet.GetComponent<BulletController>().damage = this.damage;
+
+
+        /*GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
         newbullet.GetComponent<BaseEnemyBulletController>().damage = this.damage;
         newbullet.transform.position = shootPos.transform.position;
         newbullet.transform.rotation = shootPos.transform.rotation;
         newbullet.transform.SetParent(null);
-        newbullet.SetActive(true);
+        newbullet.SetActive(true);*/
     }
 }

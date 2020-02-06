@@ -86,7 +86,7 @@ public class PlayerController : BaseCharacterController
 
     private void Shoot()
     {
-        if (aiming)
+        if (aiming && stats.IsAlive())
         {
             if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= shootZone)
             {
