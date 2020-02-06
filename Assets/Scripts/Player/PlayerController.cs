@@ -101,7 +101,10 @@ public class PlayerController : BaseCharacterController
                     IDamageable damageable;
                     if ((damageable = hit.collider.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
                     {
-                        transform.LookAt(hit.collider.gameObject.transform);
+                        if (damageable.IsAlive())
+                        {
+                            transform.LookAt(hit.collider.gameObject.transform);
+                        }                        
                     }                    
                 }
             }
