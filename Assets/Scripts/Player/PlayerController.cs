@@ -9,9 +9,14 @@ public class PlayerController : BaseCharacterController
     public float shootZone;
     [SerializeField] private Joystick movementJoystick;
     [SerializeField] private Joystick aimJoystick;
+    [SerializeField] private Transform autoAimStartPoint;
     private Vector3 movement;
     private Vector3 rotation;
     private Vector3 direction;
+
+
+    [SerializeField] bool aimAssist;
+    [SerializeField] float aimAssistSize = 1f;
 
     protected override void FixedUpdate()
     {
@@ -57,7 +62,7 @@ public class PlayerController : BaseCharacterController
             rb.MovePosition(transform.position + direction * stats.runSpeed * Time.fixedDeltaTime);
         }        
     }
-
+       
     void GetAimingJoystickInput()
     {
         rotation.x = aimJoystick.Horizontal;
@@ -71,15 +76,14 @@ public class PlayerController : BaseCharacterController
             {
                 aiming = true;
                 stats.speedWithAim = -3;
-                gameObject.transform.LookAt(transform.position + rotation * Time.deltaTime);
-
+                transform.LookAt(transform.position + rotation * Time.deltaTime);
             }
             else
             {
                 aiming = false;
                 stats.speedWithAim = 0;
                 movement = new Vector3(movement.x, 0, movement.z);
-                gameObject.transform.LookAt(transform.position + movement * Time.deltaTime);
+                transform.LookAt(transform.position + movement * Time.deltaTime);
             }
         }
     }
@@ -88,6 +92,29 @@ public class PlayerController : BaseCharacterController
     {
         if (aiming && stats.IsAlive())
         {
+            RaycastHit hit;
+            if (aimAssist)
+            {
+                Debug.DrawRay(autoAimStartPoint.position, transform.forward * 100f, Color.red);
+                if (Physics.SphereCast(autoAimStartPoint.position , aimAssistSize, transform.forward, out hit) && hit.collider.gameObject.CompareTag("Enemy"))
+                {
+                    IDamageable damageable;
+                    if ((damageable = hit.collider.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
+                    {
+                        transform.LookAt(hit.collider.gameObject.transform);
+                    }                    
+                }
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
+
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                {
+                    Debug.Log("No Aim Assist: Hit");
+                }
+            }
+
             if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= shootZone)
             {
                 shootable.Attack();
