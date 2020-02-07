@@ -69,7 +69,7 @@ public class EnemyController : BaseCharacterController
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullets"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             if (stats.IsAlive())
             {
