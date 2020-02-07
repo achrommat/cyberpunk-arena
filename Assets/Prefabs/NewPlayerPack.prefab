@@ -29178,7 +29178,7 @@ MonoBehaviour:
   aimJoystick: {fileID: 4214990672391463729}
   autoAimStartPoint: {fileID: 1357954867911606560}
   aimAssist: 1
-  aimAssistSize: 0.7
+  aimAssistSize: 1.2
 --- !u!114 &1357954867320356551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32334,6 +32334,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357954866431961796}
     m_Modifications:
+    - target: {fileID: 3564735971972644240, guid: 9389e2133668e98418c21e6e03ba1d5e,
+        type: 3}
+      propertyPath: maxEnergy
+      value: 5555
+      objectReference: {fileID: 0}
     - target: {fileID: 3564735971972644240, guid: 9389e2133668e98418c21e6e03ba1d5e,
         type: 3}
       propertyPath: shootPos
