@@ -1,5 +1,6 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerShootable : Shootable
 {
@@ -26,6 +27,8 @@ public class PlayerShootable : Shootable
                 CreateBullet();
             }
             nextAttackTime = Time.time + weaponController.currentWeapon.attackDelay;
+
+            CameraShaker.Instance.ShakeOnce(1f, 2f, .1f, .2f);
         }
     }
 
@@ -34,6 +37,7 @@ public class PlayerShootable : Shootable
         weaponController.currentWeapon.PlayShotSound();
         GameObject newBullet = MF_AutoPool.Spawn(weaponController.currentWeapon.bulletPrefab, weaponController.currentWeapon.shootPos.position, weaponController.currentWeapon.shootPos.rotation);
         newBullet.GetComponent<BulletController>().weaponController = this.weaponController;
+        //newBullet.GetComponent<BoxCollider>().enabled = true;
         weaponController.currentWeapon.currentEnergy -= 1;
 
         if (weaponController.currentWeapon.ripper == true)

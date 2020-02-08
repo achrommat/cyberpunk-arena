@@ -27,10 +27,15 @@ public class BulletController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+
+        Debug.Log(123);
+
         if (collision.gameObject.CompareTag("Bullet"))
         {
             return;
         }
+
+        //rb.isKinematic = false;
 
         IDamageable damageable;
         if ((damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
@@ -52,7 +57,8 @@ public class BulletController : MonoBehaviour
             //transform.GetComponent<MeshRenderer>().enabled = false;
         }*/
 
-        MF_AutoPool.Despawn(poolRef);
+        //GetComponent<BoxCollider>().enabled = false;
+        MF_AutoPool.Despawn(poolRef, 5f);
     }
 
     private void BulletHit(Collider other, bool shouldRotate)
