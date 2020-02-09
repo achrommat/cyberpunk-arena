@@ -2790,7 +2790,7 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   shootFX: {fileID: 0}
   audioSource: {fileID: 2889198570459006660}
-  scatter: 0
+  scatter: 2
   shooting: 0
   ripper: 0
 --- !u!1001 &2971553676027966110

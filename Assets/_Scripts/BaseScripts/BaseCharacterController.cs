@@ -120,7 +120,7 @@ public class BaseCharacterController : MonoBehaviour
         animator.SetBool("Dead", !stats.IsAlive());
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    /*protected virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -134,5 +134,5 @@ public class BaseCharacterController : MonoBehaviour
         {
             return;
         }
-    }
+    }*/
 }

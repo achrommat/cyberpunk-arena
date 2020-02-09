@@ -66,18 +66,6 @@ public class EnemyController : BaseCharacterController
         transform.position = agent.nextPosition;
     }
 
-    protected override void GetDamage()
-    {
-        StartCoroutine(Flash());
-    }
-
-    IEnumerator Flash()
-    {
-        myRenderer.material.color = Color.red;
-        yield return new WaitForSeconds(.1f);
-        myRenderer.material.color = Color.white;
-    }
-
     protected override void Respawn()
     {
         actualRespawnTime -= Time.deltaTime;

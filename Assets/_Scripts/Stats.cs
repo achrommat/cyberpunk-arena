@@ -1,17 +1,19 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats : MonoBehaviour, IDamageable
 {
+    [SerializeField] private MMFeedbacks damageFeedback;
+
     // здесь перечисляем только статы персонажа
     [Header("Main Stats")]
     public float health;
     public float currentHealth;
 
-    // пока не понял зачем это
-    [Header("Player Stats")]
+    [Header("Player Speed Stats")]
     public float runSpeed;
     public float startRunSpeed;
     public float speedWithAim;
@@ -26,7 +28,13 @@ public class Stats : MonoBehaviour, IDamageable
 
     public void Damage(float amount)
     {
+        if (!IsAlive())
+        {
+            return;
+        }
+        
         currentHealth -= amount;
+        damageFeedback.PlayFeedbacks();
     }
 
     public bool IsAlive()
