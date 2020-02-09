@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tactical;
 
 public class EnemyController : BaseCharacterController
@@ -67,23 +66,9 @@ public class EnemyController : BaseCharacterController
         transform.position = agent.nextPosition;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void GetDamage()
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            if (stats.IsAlive())
-            {
-                GetDamage();
-            }                
-        }            
-    }
-
-    public void GetDamage()
-    {
-        if (flashWhenHit)
-        {
-            StartCoroutine(Flash());
-        }            
+        StartCoroutine(Flash());
     }
 
     IEnumerator Flash()

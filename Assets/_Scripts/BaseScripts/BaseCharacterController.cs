@@ -1,8 +1,5 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BaseCharacterController : MonoBehaviour
 {
@@ -121,5 +118,21 @@ public class BaseCharacterController : MonoBehaviour
         animator.SetBool("OnGround", onGround);
         animator.SetBool("Dash", dash);
         animator.SetBool("Dead", !stats.IsAlive());
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            GetDamage();
+        }
+    }
+
+    protected virtual void GetDamage()
+    {
+        if (!stats.IsAlive())
+        {
+            return;
+        }
     }
 }
