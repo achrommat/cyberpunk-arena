@@ -33,6 +33,6 @@ EditorBuildSettings:
     path: Assets/SciFi_Space_Soldier_Complete/Scenes/2f_DemoScene_SurvivalMode.unity
     guid: 6f4c52b04ef259048b47ef812f0dc565
   - enabled: 1
-    path: Assets/Scenes/Start.unity
+    path: Assets/_Scenes/Start.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

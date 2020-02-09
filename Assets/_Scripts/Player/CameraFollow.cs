@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject player;
-    public float distance;
-    public float distance2;
-    
-    private void Update()
+    [SerializeField] private PlayerController player;
+    [SerializeField] private float distance;
+    [SerializeField] private float distance2;
+    [SerializeField] private float smoothSpeed;
+
+    private void FixedUpdate()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y +distance, player.transform.position.z + distance2);
+        Transform aimingOffsetPoint = player.aimingCameraOffsetPoint;
+        Vector3 desiredPosition = new Vector3(aimingOffsetPoint.position.x, aimingOffsetPoint.position.y + distance, aimingOffsetPoint.position.z + distance2);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
     }
 }

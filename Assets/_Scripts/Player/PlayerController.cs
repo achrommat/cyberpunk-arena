@@ -9,14 +9,15 @@ public class PlayerController : BaseCharacterController
     public float shootZone;
     [SerializeField] private Joystick movementJoystick;
     [SerializeField] private Joystick aimJoystick;
-    [SerializeField] private Transform autoAimStartPoint;
+    public Transform autoAimStartPoint;
     private Vector3 movement;
     private Vector3 rotation;
     private Vector3 direction;
 
+    [SerializeField] private bool aimAssist;
+    [SerializeField] private float aimAssistSize = 1f;
 
-    [SerializeField] bool aimAssist;
-    [SerializeField] float aimAssistSize = 1f;
+    public Transform aimingCameraOffsetPoint;
 
     protected override void FixedUpdate()
     {
@@ -76,7 +77,7 @@ public class PlayerController : BaseCharacterController
             {
                 aiming = true;
                 stats.speedWithAim = -3;
-                transform.LookAt(transform.position + rotation * Time.deltaTime);
+                transform.LookAt(transform.position + rotation * Time.deltaTime);                
             }
             else
             {
@@ -92,6 +93,8 @@ public class PlayerController : BaseCharacterController
     {
         if (aiming && stats.IsAlive())
         {
+
+            // aim assist
             RaycastHit hit;
             if (aimAssist)
             {
