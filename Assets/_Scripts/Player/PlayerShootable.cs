@@ -1,6 +1,7 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
 using UnityEngine;
 using EZCameraShake;
+using MoreMountains.NiceVibrations;
 
 public class PlayerShootable : Shootable
 {
@@ -29,6 +30,7 @@ public class PlayerShootable : Shootable
             nextAttackTime = Time.time + weaponController.currentWeapon.attackDelay;
 
             CameraShaker.Instance.ShakeOnce(2f, 3f, .1f, .2f);
+            MMVibrationManager.Vibrate();
         }
     }
 
