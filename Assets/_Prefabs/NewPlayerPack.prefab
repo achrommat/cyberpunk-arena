@@ -620,6 +620,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scatter: 0
   shooting: 0
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPos: {fileID: 0}
   ripper: 0
 --- !u!114 &1357954866062166124
 MonoBehaviour:
@@ -3132,6 +3134,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scatter: 0
   shooting: 0
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPos: {fileID: 0}
   ripper: 0
 --- !u!114 &1357954866103016073
 MonoBehaviour:
@@ -11776,6 +11780,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scatter: 1
   shooting: 0
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPos: {fileID: 0}
   ripper: 0
 --- !u!114 &1357954867355416210
 MonoBehaviour:
@@ -14732,6 +14738,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scatter: 0
   shooting: 0
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPos: {fileID: 0}
   ripper: 0
 --- !u!114 &1357954867470463230
 MonoBehaviour:
@@ -18093,6 +18101,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scatter: 2
   shooting: 0
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPos: {fileID: 0}
   ripper: 0
 --- !u!114 &1357954867629681917
 MonoBehaviour:
@@ -21704,6 +21714,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scatter: 3
   shooting: 0
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPos: {fileID: 0}
   ripper: 0
 --- !u!114 &1357954868055322723
 MonoBehaviour:
@@ -32413,7 +32425,7 @@ MonoBehaviour:
   Channel: 0
   FlashColor: {r: 1, g: 0, b: 0, a: 1}
   FlashDuration: 0.2
-  FlashAlpha: 0.35
+  FlashAlpha: 0.2
   FlashID: 0
 --- !u!114 &550616729
 MonoBehaviour:

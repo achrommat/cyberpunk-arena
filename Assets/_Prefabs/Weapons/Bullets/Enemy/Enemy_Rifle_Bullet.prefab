@@ -14540,8 +14540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b09120ef055d5469ad9eb44161db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitVFX: {fileID: 0}
-  HitDecal: {fileID: 0}
   sawblade: 0
   isEnemy: 0
   VFXpool: {fileID: 0}
@@ -14549,6 +14547,8 @@ MonoBehaviour:
   rb: {fileID: 5397624510486692619}
   poolRef: {fileID: -2318758723162156369}
   weaponController: {fileID: 0}
+  bulletImpact: {fileID: 3370421434349903662, guid: 0316ec0c7dcd9ad4da2297b7ad1e2cb5,
+    type: 3}
 --- !u!114 &-2318758723162156369
 MonoBehaviour:
   m_ObjectHideFlags: 0

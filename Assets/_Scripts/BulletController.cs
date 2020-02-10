@@ -7,8 +7,6 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     // движение пули при включении из пула и коллижн с другими объектами
-    public GameObject HitVFX;
-    public GameObject HitDecal;
     [HideInInspector] public bool sawblade;
     [HideInInspector] public bool isEnemy = false;
     //public GameObject bulletPool;
@@ -19,6 +17,8 @@ public class BulletController : MonoBehaviour
     [SerializeField] private AP_Reference poolRef;
 
     [HideInInspector] public WeaponController weaponController;
+
+    [SerializeField] private GameObject bulletImpact;
 
     void FixedUpdate()
     {
@@ -32,7 +32,10 @@ public class BulletController : MonoBehaviour
             return;
         }
 
-        //rb.isKinematic = false;
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 pos = contact.point;
+        GameObject newbulletImpact = MF_AutoPool.Spawn(bulletImpact, pos, rot);
 
         IDamageable damageable;
         if ((damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
@@ -47,14 +50,6 @@ public class BulletController : MonoBehaviour
                 damageable.Damage(weaponController.currentWeapon.damage);
             }            
         }
-
-        /*if (collision.gameObject.CompareTag("Walls"))
-        {
-            //transform.GetChild(2).gameObject.SetActive(true);
-            //transform.GetComponent<MeshRenderer>().enabled = false;
-        }*/
-
-        //GetComponent<BoxCollider>().enabled = false;
         MF_AutoPool.Despawn(poolRef, 5f);
     }
 

@@ -14650,19 +14650,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b09120ef055d5469ad9eb44161db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitVFX: {fileID: 0}
-  HitDecal: {fileID: 0}
   sawblade: 0
   isEnemy: 0
   VFXpool: {fileID: 0}
   damage: 0.5
   rb: {fileID: 5397624510486692619}
   poolRef: {fileID: -5810651851498718033}
-  muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
-    type: 3}
-  muzzleFlashPoolRef: {fileID: 1907178208931838132, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
-    type: 3}
   weaponController: {fileID: 0}
+  bulletImpact: {fileID: 3370421434349903662, guid: 0316ec0c7dcd9ad4da2297b7ad1e2cb5,
+    type: 3}
 --- !u!114 &-5810651851498718033
 MonoBehaviour:
   m_ObjectHideFlags: 0
