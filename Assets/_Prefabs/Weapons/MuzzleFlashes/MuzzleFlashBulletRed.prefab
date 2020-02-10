@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 4734945840019424}
   - component: {fileID: 198651599753370462}
   - component: {fileID: 199222796450932198}
-  - component: {fileID: 7924930944952193740}
   m_Layer: 0
   m_Name: MuzzleFlashBulletRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4734945840019424
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383616907660598}
-  m_LocalRotation: {x: -0.50000006, y: -0.49999994, z: 0.5, w: 0.50000006}
+  m_LocalRotation: {x: -0.5000001, y: -0.5000001, z: 0.4999999, w: 0.4999999}
   m_LocalPosition: {x: 0, y: 0.469, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4842,19 +4841,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7924930944952193740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383616907660598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3fe5601c8b5024e96aaef68d413670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponController: {fileID: 0}
 --- !u!1 &1443620092792386
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,17 +25,13 @@ public class AIShootable : Shootable
     {
         weaponController.currentWeapon.PlayShotSound();
 
+        GameObject newMuzzleFlash = MF_AutoPool.Spawn(weaponController.currentWeapon.muzzleFlash, 0, weaponController.currentWeapon.muzzleFlashPos.position,
+            weaponController.currentWeapon.muzzleFlashPos.rotation);
+        newMuzzleFlash.GetComponent<MuzzleFlash>().weaponController = weaponController;
+
         GameObject newBullet = MF_AutoPool.Spawn(bulletPrefab, shootPos.position, shootPos.rotation);
         newBullet.GetComponent<BulletController>().weaponController = this.weaponController;
         newBullet.GetComponent<BulletController>().isEnemy = true;
         newBullet.GetComponent<BulletController>().damage = this.damage;
-
-
-        /*GameObject newbullet = bulletPool.transform.GetChild(0).gameObject;
-        newbullet.GetComponent<BaseEnemyBulletController>().damage = this.damage;
-        newbullet.transform.position = shootPos.transform.position;
-        newbullet.transform.rotation = shootPos.transform.rotation;
-        newbullet.transform.SetParent(null);
-        newbullet.SetActive(true);*/
     }
 }

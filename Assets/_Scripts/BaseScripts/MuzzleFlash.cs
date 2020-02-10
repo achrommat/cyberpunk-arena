@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MuzzleFlash : MonoBehaviour
 {
-    public WeaponController weaponController;
+    [HideInInspector] public WeaponController weaponController;
 
     // Update is called once per frame
     void Update()
@@ -16,6 +16,6 @@ public class MuzzleFlash : MonoBehaviour
     private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(0.5f);
-        MF_AutoPool.Despawn(gameObject, 2f);
+        MF_AutoPool.Despawn(gameObject, 1f);
     }
 }

@@ -38,7 +38,8 @@ public class PlayerShootable : Shootable
     {
         weaponController.currentWeapon.PlayShotSound();
 
-        GameObject newMuzzleFlash = MF_AutoPool.Spawn(weaponController.currentWeapon.muzzleFlash, weaponController.currentWeapon.muzzleFlashPos.position, weaponController.currentWeapon.muzzleFlashPos.rotation);
+        GameObject newMuzzleFlash = MF_AutoPool.Spawn(weaponController.currentWeapon.muzzleFlash, 1, weaponController.currentWeapon.muzzleFlashPos.position,
+            weaponController.currentWeapon.muzzleFlashPos.rotation);
         newMuzzleFlash.GetComponent<MuzzleFlash>().weaponController = weaponController;
 
         GameObject newBullet = MF_AutoPool.Spawn(weaponController.currentWeapon.bulletPrefab, weaponController.currentWeapon.shootPos.position, weaponController.currentWeapon.shootPos.rotation);

@@ -48,7 +48,8 @@ MonoBehaviour:
     emptyBehavior: 0
     maxSize: 200
     maxEmptyBehavior: 0
-    prefab: {fileID: 1383616907660598, guid: b9cf9dd3cc939b84b88496fdf7c81923, type: 3}
+    prefab: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
+      type: 3}
     printLogOnQuit: 0
   masterPool: []
 --- !u!1 &317742076754413670
