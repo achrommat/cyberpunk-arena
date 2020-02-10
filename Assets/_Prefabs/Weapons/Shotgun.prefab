@@ -30,6 +30,7 @@ Transform:
   m_Children:
   - {fileID: 3842813269383135345}
   - {fileID: 6159576943136443658}
+  - {fileID: 368503230482087559}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shotgun
-  damage: 15
+  damage: 1
   bulletForce: 30
   multiShot: 1
   maxEnergy: 100
@@ -61,7 +62,40 @@ MonoBehaviour:
   audioSource: {fileID: 3774116109170371663}
   scatter: 10
   shooting: 0
+  muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
+    type: 3}
+  muzzleFlashPos: {fileID: 368503230482087559}
   ripper: 0
+--- !u!1 &2001316533031092157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368503230482087559}
+  m_Layer: 0
+  m_Name: MuzzleFlashPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368503230482087559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001316533031092157}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.143, z: 0.732}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 889341892318259533}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6159576942419114274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,6 +2569,10 @@ PrefabInstance:
     - target: {fileID: 1297775994297274, guid: 1232ff6b549634a4cbd17716d481351d, type: 3}
       propertyPath: m_Name
       value: PolygonShotgunMissileSND
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297775994297274, guid: 1232ff6b549634a4cbd17716d481351d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4884365002741860, guid: 1232ff6b549634a4cbd17716d481351d, type: 3}
       propertyPath: m_LocalPosition.x

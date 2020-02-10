@@ -4674,7 +4674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 8128241637925912464}
-  health: 100
+  health: 4
   currentHealth: 0
   runSpeed: 0
   startRunSpeed: 7

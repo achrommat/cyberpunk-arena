@@ -32588,7 +32588,7 @@ PrefabInstance:
         type: 3}
       propertyPath: shootPos
       value: 
-      objectReference: {fileID: 1357954867911606560}
+      objectReference: {fileID: 1357954866465363755}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2315c812c83478d409f77e689e0ac0d4, type: 3}
 --- !u!4 &3712923346918137369 stripped

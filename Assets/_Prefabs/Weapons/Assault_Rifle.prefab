@@ -2778,7 +2778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Assault_Rifle
-  damage: 10
+  damage: 1
   bulletForce: 30
   multiShot: 0
   maxEnergy: 100
