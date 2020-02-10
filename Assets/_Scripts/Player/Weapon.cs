@@ -32,7 +32,10 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private float scatter = 0;
     public bool shooting;
-    
+
+    public GameObject muzzleFlash;
+    public Transform muzzleFlashPos;
+
     public bool ripper;
 
     private void OnEnable()

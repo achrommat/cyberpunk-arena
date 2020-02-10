@@ -14658,6 +14658,10 @@ MonoBehaviour:
   damage: 0.5
   rb: {fileID: 5397624510486692619}
   poolRef: {fileID: -5810651851498718033}
+  muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
+    type: 3}
+  muzzleFlashPoolRef: {fileID: 1907178208931838132, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
+    type: 3}
   weaponController: {fileID: 0}
 --- !u!114 &-5810651851498718033
 MonoBehaviour:

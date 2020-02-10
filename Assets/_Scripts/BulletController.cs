@@ -27,9 +27,6 @@ public class BulletController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-
-        Debug.Log(123);
-
         if (collision.gameObject.CompareTag("Bullet"))
         {
             return;

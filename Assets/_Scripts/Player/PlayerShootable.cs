@@ -37,9 +37,12 @@ public class PlayerShootable : Shootable
     private void CreateBullet()
     {
         weaponController.currentWeapon.PlayShotSound();
+
+        GameObject newMuzzleFlash = MF_AutoPool.Spawn(weaponController.currentWeapon.muzzleFlash, weaponController.currentWeapon.muzzleFlashPos.position, weaponController.currentWeapon.muzzleFlashPos.rotation);
+        newMuzzleFlash.GetComponent<MuzzleFlash>().weaponController = weaponController;
+
         GameObject newBullet = MF_AutoPool.Spawn(weaponController.currentWeapon.bulletPrefab, weaponController.currentWeapon.shootPos.position, weaponController.currentWeapon.shootPos.rotation);
         newBullet.GetComponent<BulletController>().weaponController = this.weaponController;
-        //newBullet.GetComponent<BoxCollider>().enabled = true;
         weaponController.currentWeapon.currentEnergy -= 1;
 
         if (weaponController.currentWeapon.ripper == true)
