@@ -1,5 +1,6 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
 using MoreMountains.Feedbacks;
+using MoreMountains.NiceVibrations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Stats : MonoBehaviour, IDamageable
 
     // здесь перечисляем только статы персонажа
     [Header("Main Stats")]
+    [SerializeField] private bool isPlayer;
     public float health;
     public float currentHealth;
 
@@ -33,6 +35,11 @@ public class Stats : MonoBehaviour, IDamageable
             return;
         }
         
+        if (isPlayer)
+        {
+            MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
+        }
+
         currentHealth -= amount;
         damageFeedback.PlayFeedbacks();
     }
