@@ -22,15 +22,21 @@ public class PlayerController : BaseCharacterController
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        Move();
-        Shoot();
+        if (stats.IsAlive())
+        {
+            Move();
+            Shoot();
+        }       
     }
 
     protected override void Update()
     {
         base.Update();
-        GetMovementJoystickInput();
-        GetAimingJoystickInput();               
+        if (stats.IsAlive())
+        {
+            GetMovementJoystickInput();
+            GetAimingJoystickInput();
+        }                      
     }
 
     private void GetMovementJoystickInput()

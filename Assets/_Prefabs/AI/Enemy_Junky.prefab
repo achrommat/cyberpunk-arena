@@ -4699,6 +4699,7 @@ MonoBehaviour:
   attackAngle: 2
   weaponController: {fileID: 4598265743998855951}
   character: {fileID: 684642383039903003}
+  scatter: 2
   bulletPrefab: {fileID: 1916600279156190, guid: 7ea0230bf99fee7418bdd373a306d6ae,
     type: 3}
   damage: 0.5

@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using BehaviorDesigner.Runtime.Tactical;
+using BehaviorDesigner.Runtime;
 
 public class EnemyController : BaseCharacterController
-{     
+{
     [Header("VFX")]
     private bool flashWhenHit = true;
     private Renderer myRenderer;    
@@ -12,6 +12,8 @@ public class EnemyController : BaseCharacterController
     public NavMeshAgent agent;
 
     public TacticalAgent tacticalAgent;
+
+    
     
     // Start is called before the first frame update
     void Start()

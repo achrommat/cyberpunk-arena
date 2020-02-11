@@ -7,7 +7,8 @@ public class AIShootable : Shootable
 {
     [SerializeField] private WeaponController weaponController;
     [SerializeField] protected BaseCharacterController character;
-    // перенести в weapons
+
+    [SerializeField] private float scatter = 0;
     public GameObject bulletPrefab;
     public float damage = 0.5f;
     public Transform shootPos;
@@ -16,10 +17,24 @@ public class AIShootable : Shootable
     {
         if (character.stats.IsAlive() && character.aiming)
         {
-            CreateBullet();
+            if (weaponController.currentWeapon.multiShot)
+            {
+                int[] pool = { -5, -2, 0, 2, 5 };
+                for (int i = 0; i < 5; i++)
+                {
+                    shootPos.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter) + pool[i], 0);
+                    CreateBullet();
+                }
+            }
+            else
+            {
+                shootPos.localRotation = Quaternion.Euler(Random.Range(-scatter, scatter), Random.Range(-scatter, scatter), 0);
+                CreateBullet();
+            }
             lastAttackTime = Time.time;
         }        
     }
+    
 
     protected void CreateBullet()
     {
