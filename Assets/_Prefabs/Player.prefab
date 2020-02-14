@@ -449,7 +449,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 0
   shooting: 0
@@ -2974,7 +2974,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 2044748534223426560}
   shootPos: {fileID: 2044748533783806476}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 1
   shooting: 0
@@ -5503,7 +5503,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 2
   shooting: 0
@@ -7938,7 +7938,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 2044748534223426560}
   shootPos: {fileID: 2044748533783806477}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 3
   shooting: 0
@@ -10594,7 +10594,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 0
   shooting: 0
@@ -12933,7 +12933,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 0}
   audioSource: {fileID: 0}
   scatter: 0
   shooting: 0
@@ -26146,6 +26146,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Assault_Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238859681797266456, guid: 9389e2133668e98418c21e6e03ba1d5e,
+        type: 3}
+      propertyPath: PerformRaycast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238859681797266456, guid: 9389e2133668e98418c21e6e03ba1d5e,
+        type: 3}
+      propertyPath: DrawLaser
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9389e2133668e98418c21e6e03ba1d5e, type: 3}

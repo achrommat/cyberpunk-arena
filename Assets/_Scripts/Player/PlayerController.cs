@@ -36,7 +36,8 @@ public class PlayerController : BaseCharacterController
         {
             GetMovementJoystickInput();
             GetAimingJoystickInput();
-        }                      
+        }
+        weaponController.currentWeapon.laserSight.LaserActive(aiming);
     }
 
     private void GetMovementJoystickInput()

@@ -119,20 +119,4 @@ public class BaseCharacterController : MonoBehaviour
         animator.SetBool("Dash", dash);
         animator.SetBool("Dead", !stats.IsAlive());
     }
-
-    /*protected virtual void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            GetDamage();
-        }
-    }
-
-    protected virtual void GetDamage()
-    {
-        if (!stats.IsAlive())
-        {
-            return;
-        }
-    }*/
 }

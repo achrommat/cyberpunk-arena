@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using MoreMountains.TopDownEngine;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class Weapon : MonoBehaviour
     public float damage = 1;
     public float bulletForce = 1;
     public bool multiShot = false;
-    public float maxEnergy = 100;
+    [SerializeField] private float maxEnergy = 100;
 
     [HideInInspector] public float currentEnergy;
 
@@ -27,7 +25,7 @@ public class Weapon : MonoBehaviour
     public Transform shootPos;
 
     [Header("FX")]
-    public GameObject shootFX;
+    public WeaponLaserSight laserSight;
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private float scatter = 0;

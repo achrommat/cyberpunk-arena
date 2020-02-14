@@ -2741,6 +2741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3565241206349307872}
   - component: {fileID: 3564735971972644240}
+  - component: {fileID: 6238859681797266456}
   m_Layer: 0
   m_Name: Assault_Rifle
   m_TagString: Untagged
@@ -2759,7 +2760,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2971553676027967112}
+  - {fileID: 2971553676027967140}
   - {fileID: 889344027680797533}
   - {fileID: 8198850078807707367}
   m_Father: {fileID: 0}
@@ -2779,24 +2780,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Assault_Rifle
   damage: 1
-  bulletForce: 30
+  bulletForce: 35
   multiShot: 0
-  maxEnergy: 100
+  maxEnergy: 999
   currentEnergy: 0
   ammo: 0
-  attackDelay: 0.5
+  attackDelay: 0.25
   bulletPrefab: {fileID: 1916600279156190, guid: e7a6c26d5d1bb844bbda14273c9c87fb,
     type: 3}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
-  audioSource: {fileID: 2971553676027967165}
-  scatter: 2
+  laserSight: {fileID: 6238859681797266456}
+  audioSource: {fileID: 2971553676027967175}
+  scatter: 5
   shooting: 0
   muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
     type: 3}
   muzzleFlashPos: {fileID: 8198850078807707367}
   ripper: 0
+--- !u!114 &6238859681797266456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565241206349307873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03aaf62627f364a7d92d307729fe738d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PerformRaycast: 1
+  DrawLaser: 1
+  RaycastOriginOffset: {x: 0, y: 0.14, z: 0.8}
+  LaserOriginOffset: {x: 0, y: 0.14, z: 0.8}
+  LaserMaxDistance: 15
+  LaserCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  LaserWidth: {x: 0.05, y: 0.05}
+  LaserMaterial: {fileID: 2100000, guid: 41fcf89824cad6c40a3efec451bb197f, type: 2}
 --- !u!1 &7256177043125286356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,7 +2844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7256177043125286356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.143, z: 0.787}
+  m_LocalPosition: {x: 0, y: 0.14, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3565241206349307872}
@@ -2889,13 +2912,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ce6accd60d3304d9e4d7213ff2fc14, type: 3}
---- !u!82 &2971553676027967165 stripped
+--- !u!82 &2971553676027967175 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82589376883831898, guid: 07ce6accd60d3304d9e4d7213ff2fc14,
     type: 3}
   m_PrefabInstance: {fileID: 2971553676027966110}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2971553676027967112 stripped
+--- !u!4 &2971553676027967140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4884365002741860, guid: 07ce6accd60d3304d9e4d7213ff2fc14,
     type: 3}

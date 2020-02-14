@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889341892318259533}
   - component: {fileID: 4548909881035337727}
+  - component: {fileID: 7226132088034120978}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -47,25 +48,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shotgun
-  damage: 1
-  bulletForce: 30
+  damage: 2
+  bulletForce: 25
   multiShot: 1
-  maxEnergy: 100
+  maxEnergy: 999
   currentEnergy: 0
   ammo: 100
-  attackDelay: 2
+  attackDelay: 0.8
   bulletPrefab: {fileID: 1916600279156190, guid: e7a6c26d5d1bb844bbda14273c9c87fb,
     type: 3}
   laserTarget: {fileID: 0}
   shootPos: {fileID: 0}
-  shootFX: {fileID: 0}
+  laserSight: {fileID: 7226132088034120978}
   audioSource: {fileID: 3774116109170371663}
-  scatter: 10
+  scatter: 20
   shooting: 0
   muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
     type: 3}
   muzzleFlashPos: {fileID: 368503230482087559}
   ripper: 0
+--- !u!114 &7226132088034120978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889341892318259530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03aaf62627f364a7d92d307729fe738d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PerformRaycast: 1
+  DrawLaser: 1
+  RaycastOriginOffset: {x: 0, y: 0.14, z: 0.8}
+  LaserOriginOffset: {x: 0, y: 0.14, z: 0.8}
+  LaserMaxDistance: 15
+  LaserCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  LaserWidth: {x: 0.05, y: 0.05}
+  LaserMaterial: {fileID: 2100000, guid: 41fcf89824cad6c40a3efec451bb197f, type: 2}
 --- !u!1 &2001316533031092157
 GameObject:
   m_ObjectHideFlags: 0
