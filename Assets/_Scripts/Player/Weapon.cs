@@ -1,5 +1,4 @@
-﻿using MoreMountains.TopDownEngine;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class Weapon : MonoBehaviour
     public Transform shootPos;
 
     [Header("FX")]
-    public WeaponLaserSight laserSight;
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private float scatter = 0;

@@ -1,5 +1,6 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
 using UnityEngine;
+using MoreMountains.TopDownEngine;
 
 public class PlayerController : BaseCharacterController
 {
@@ -16,6 +17,7 @@ public class PlayerController : BaseCharacterController
 
     [SerializeField] private bool aimAssist;
     [SerializeField] private float aimAssistSize = 1f;
+    [SerializeField] private WeaponLaserSight _laserSight;
 
     public Transform aimingCameraOffsetPoint;
 
@@ -37,7 +39,7 @@ public class PlayerController : BaseCharacterController
             GetMovementJoystickInput();
             GetAimingJoystickInput();
         }
-        weaponController.currentWeapon.laserSight.LaserActive(aiming);
+        _laserSight.LaserActive(aiming);
     }
 
     private void GetMovementJoystickInput()

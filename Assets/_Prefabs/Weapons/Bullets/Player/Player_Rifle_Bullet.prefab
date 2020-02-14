@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4225853594950680}
   - component: {fileID: 96619521908154710}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4872249686172428}
   - component: {fileID: 198759129460683422}
   - component: {fileID: 199303388481901438}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SparkTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4967,7 +4967,7 @@ GameObject:
   - component: {fileID: 4112018909631940}
   - component: {fileID: 198233742325534966}
   - component: {fileID: 199478537701222808}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9779,7 +9779,7 @@ GameObject:
   - component: {fileID: 2881436195484086764}
   - component: {fileID: 680005331492423660}
   - component: {fileID: -5810651851498718033}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player_Rifle_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
