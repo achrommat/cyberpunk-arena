@@ -7819,8 +7819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0.023529412, a: 0.11764706}
-  outlineWidth: 1.36
+  outlineColor: {r: 0, g: 0.627451, b: 1, a: 0.11764706}
+  outlineWidth: 1.5
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 4300000, guid: b4e0f14cb72dde44e8f1ebcead0f5414, type: 3}
@@ -10079,12 +10079,12 @@ MonoBehaviour:
   DrawLaser: 1
   RaycastOriginOffset: {x: 0, y: 0, z: 0}
   LaserOriginOffset: {x: 0, y: 0, z: 0}
-  LaserMaxDistance: 10
+  LaserMaxDistance: 15
   LaserCollisionMask:
     serializedVersion: 2
     m_Bits: 253751
-  LaserWidth: {x: 0.04, y: 0.04}
-  LaserMaterial: {fileID: 2100000, guid: 41fcf89824cad6c40a3efec451bb197f, type: 2}
+  LaserWidth: {x: 0.1, y: 0.1}
+  LaserMaterial: {fileID: 2100000, guid: f08519bc7d6891146b0f82a75aac8e0a, type: 2}
 --- !u!1 &8604881942251184079
 GameObject:
   m_ObjectHideFlags: 0

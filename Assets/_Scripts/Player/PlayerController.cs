@@ -39,7 +39,7 @@ public class PlayerController : BaseCharacterController
             GetMovementJoystickInput();
             GetAimingJoystickInput();
         }
-        _laserSight.LaserActive(aiming);
+        _laserSight.LaserActive(aiming && stats.IsAlive());
     }
 
     private void GetMovementJoystickInput()
