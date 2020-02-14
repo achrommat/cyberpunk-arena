@@ -50,7 +50,7 @@ public class BulletController : MonoBehaviour
                 damageable.Damage(weaponController.currentWeapon.damage);
             }            
         }
-        MF_AutoPool.Despawn(poolRef, 5f);
+        MF_AutoPool.Despawn(poolRef, 2f);
     }
 
     private void BulletHit(Collider other, bool shouldRotate)

@@ -47,7 +47,7 @@ MonoBehaviour:
   player: {fileID: 0}
   distance: 10
   distance2: -6.51
-  smoothSpeed: 0.05
+  smoothSpeed: 0.03
 --- !u!1 &8025769445463509850
 GameObject:
   m_ObjectHideFlags: 0
