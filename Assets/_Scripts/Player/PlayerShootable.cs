@@ -19,13 +19,13 @@ public class PlayerShootable : Shootable
                 for (int i = 0; i < 5; i++)
                 {
                     weaponController.currentWeapon.GetScatter(pool, i);
-                    CreateBullet();
+                    Shoot();
                 }
             }
             else
             {
                 weaponController.currentWeapon.GetScatter();
-                CreateBullet();
+                Shoot();
             }
             nextAttackTime = Time.time + weaponController.currentWeapon.attackDelay;
 
@@ -34,21 +34,17 @@ public class PlayerShootable : Shootable
         }
     }
 
-    private void CreateBullet()
+    private void Shoot()
     {
+        weaponController.currentWeapon.currentEnergy -= 1;
         weaponController.currentWeapon.PlayShotSound();
 
         GameObject newMuzzleFlash = MF_AutoPool.Spawn(weaponController.currentWeapon.muzzleFlash, 1, weaponController.currentWeapon.muzzleFlashPos.position,
             weaponController.currentWeapon.muzzleFlashPos.rotation);
         newMuzzleFlash.GetComponent<MuzzleFlash>().weaponController = weaponController;
 
-        GameObject newBullet = MF_AutoPool.Spawn(weaponController.currentWeapon.bulletPrefab, weaponController.currentWeapon.shootPos.position, weaponController.currentWeapon.shootPos.rotation);
-        newBullet.GetComponent<BulletController>().weaponController = this.weaponController;
-        weaponController.currentWeapon.currentEnergy -= 1;
-
-        if (weaponController.currentWeapon.ripper == true)
-        {
-            weaponController.currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
-        }
+        GameObject newBullet = MF_AutoPool.Spawn(weaponController.currentWeapon.bulletPrefab, weaponController.currentWeapon.shootPosition.position,
+            weaponController.currentWeapon.shootPosition.rotation);
+        newBullet.GetComponent<BulletController>().weaponController = this.weaponController;        
     }
 }

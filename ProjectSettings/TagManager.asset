@@ -26,6 +26,7 @@ TagManager:
   - WallRun
   - Ground
   - Bullet
+  - FX
   layers:
   - Default
   - TransparentFX
@@ -45,7 +46,7 @@ TagManager:
   - CameraWall
   - Blood
   - Weapon
-  - 
+  - Enemy
   - 
   - 
   - 

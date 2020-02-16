@@ -52,11 +52,4 @@ public class BulletController : MonoBehaviour
         }
         MF_AutoPool.Despawn(poolRef, 2f);
     }
-
-    private void BulletHit(Collider other, bool shouldRotate)
-    {
-        Quaternion rotation = Quaternion.identity;
-        if (shouldRotate)
-            rotation = Quaternion.LookRotation(transform.position, other.transform.position);
-    }
 }

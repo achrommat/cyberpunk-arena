@@ -21,6 +21,7 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
+        // Добавляем все оружия на игроке в лист
         weapons = new Dictionary<string, Weapon>();
         weaponList.AddRange(weaponFolder.GetComponentsInChildren<Weapon>(true));
         foreach (Weapon gun in weaponList)
@@ -33,7 +34,6 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         SwitchWeapon();
-        currentWeapon.shooting = this.shooting;
     }
 
     public void SwitchWeapon()
@@ -48,13 +48,14 @@ public class WeaponController : MonoBehaviour
             weapon.gameObject.SetActive(false);
         }
         FindWeapon();
+        currentWeapon.gameObject.SetActive(true);
     }
 
     private void FindWeapon()
     {
+        // Находим нужное оружие по названию
         var weaponToSwitch = weapons.FirstOrDefault(t => t.Key == currentWeaponName);
         currentWeapon = weaponToSwitch.Value;
-        currentWeapon.gameObject.SetActive(true);
-        currentWeaponName = weaponToSwitch.Key;
+        currentWeaponName = weaponToSwitch.Key;              
     }
 }

@@ -9,36 +9,35 @@ public class PlayerController : BaseCharacterController
     public float aimDeadZone;
     public float shootZone;
     [SerializeField] private Joystick movementJoystick;
-    [SerializeField] private Joystick aimJoystick;
-    public Transform autoAimStartPoint;
+    [SerializeField] private Joystick aimJoystick;    
     private Vector3 movement;
     private Vector3 rotation;
     private Vector3 direction;
 
-    [SerializeField] private bool aimAssist;
+    [Header("Aim Assist")]
+    public Transform autoAimStartPoint;
+    [SerializeField] private Transform aimPoint;
     [SerializeField] private float aimAssistSize = 1f;
     [SerializeField] private WeaponLaserSight _laserSight;
 
     public Transform aimingCameraOffsetPoint;
 
-    protected override void FixedUpdate()
+    protected void FixedUpdate()
     {
-        base.FixedUpdate();
-        if (stats.IsAlive())
+        if (!stats.IsAlive())
         {
-            Move();
-            Shoot();
-        }       
+            return;
+        }
+        Move();
+        Rotate();
+        Shoot();
     }
 
     protected override void Update()
     {
         base.Update();
-        if (stats.IsAlive())
-        {
-            GetMovementJoystickInput();
-            GetAimingJoystickInput();
-        }
+        GetMovementJoystickInput();
+        GetAimingJoystickInput();
         _laserSight.LaserActive(aiming && stats.IsAlive());
     }
 
@@ -78,63 +77,72 @@ public class PlayerController : BaseCharacterController
         rotation.x = aimJoystick.Horizontal;
         rotation.z = aimJoystick.Vertical;
         rotation = new Vector3(rotation.x, 0, rotation.z);
-
         Vector3 localMove = transform.InverseTransformDirection(rotation);
-        if (HaveTarget == false && !dash)
+
+        // Учитывание мертвой зоны начала прицеливания
+        if (((localMove.x <= -aimDeadZone || localMove.x >= aimDeadZone) || (localMove.z <= -aimDeadZone || localMove.z >= aimDeadZone)))
         {
-            if (((localMove.x <= -aimDeadZone || localMove.x >= aimDeadZone) || (localMove.z <= -aimDeadZone || localMove.z >= aimDeadZone)))
-            {
-                aiming = true;
-                stats.speedWithAim = -3;
-                transform.LookAt(transform.position + rotation * Time.deltaTime);                
-            }
-            else
-            {
-                aiming = false;
-                stats.speedWithAim = 0;
-                movement = new Vector3(movement.x, 0, movement.z);
-                transform.LookAt(transform.position + movement * Time.deltaTime);
-            }
+            aiming = true;
+            stats.speedWithAim = -3;
+            return;
         }
+        aiming = false;
+        stats.speedWithAim = 0;
+    }
+
+    private void Rotate()
+    {
+        // При прицеливании учитывается направление поворота правого стика
+        // При обычном беге - левого
+        if (aiming)
+        {
+            transform.LookAt(transform.position + rotation * Time.deltaTime);
+            return;
+        }
+        transform.LookAt(transform.position + movement * Time.deltaTime);
     }
 
     private void Shoot()
     {
         if (aiming && stats.IsAlive())
         {
+            AimAssist();
 
-            // aim assist
-            RaycastHit hit;
-            if (aimAssist)
-            {
-                Debug.DrawRay(autoAimStartPoint.position, transform.forward * 100f, Color.red);
-                if (Physics.SphereCast(autoAimStartPoint.position , aimAssistSize, transform.forward, out hit) && hit.collider.gameObject.CompareTag("Enemy"))
-                {
-                    IDamageable damageable;
-                    if ((damageable = hit.collider.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
-                    {
-                        if (damageable.IsAlive())
-                        {
-                            transform.LookAt(hit.collider.gameObject.transform);
-                        }                        
-                    }                    
-                }
-            }
-            else
-            {
-                Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
-
-                if (Physics.Raycast(transform.position, transform.forward, out hit))
-                {
-                    Debug.Log("No Aim Assist: Hit");
-                }
-            }
-
+            // Учитывание мертвой зоны стрельбы
             if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= shootZone)
             {
                 shootable.Attack();
-            }
+            }           
         }
+    }    
+
+    private void AimAssist()
+    {
+        // Если в сферу попадает враг, то меняем направление прцела на него
+        // Иначе обнуляем направление прицела
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask("Enemy");
+        Debug.DrawRay(autoAimStartPoint.position, autoAimStartPoint.transform.forward * 100f, Color.green);
+        if (Physics.SphereCast(autoAimStartPoint.position, aimAssistSize, transform.forward, out hit, 100f, mask))
+        {
+            IDamageable damageable;
+            if ((damageable = hit.collider.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
+            {
+                if (damageable.IsAlive())
+                {
+                    aimPoint.LookAt(hit.collider.bounds.center);
+                }
+                else
+                {
+                    aimPoint.localRotation = Quaternion.identity;
+                    return;
+                }                
+            }
+        }   
+        else
+        {
+            aimPoint.localRotation = Quaternion.identity;
+        }        
     }
 
     protected override void UpdateAnimator()

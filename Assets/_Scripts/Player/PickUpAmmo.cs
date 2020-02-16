@@ -17,7 +17,7 @@ public class PickUpAmmo : MonoBehaviour
     float timer;
 
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -93,5 +93,5 @@ public class PickUpAmmo : MonoBehaviour
             GetComponent<BoxCollider>().enabled = true;
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
-    }
+    }*/
 }

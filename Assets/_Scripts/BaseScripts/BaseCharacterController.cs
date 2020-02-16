@@ -41,14 +41,6 @@ public class BaseCharacterController : MonoBehaviour
         Audio = GetComponent<AudioSource>();
     }
 
-    protected virtual void FixedUpdate()
-    {
-        if (!stats.IsAlive())
-        {
-            return;
-        }
-    }
-
     protected virtual void Update()
     {
         CheckGroundStatus();
