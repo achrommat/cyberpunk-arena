@@ -13,11 +13,11 @@ public class WeaponController : MonoBehaviour
     [HideInInspector]
     public bool shooting;
 
-    [SerializeField]
-    private List<Weapon> weaponList;    
+    [SerializeField] private List<Weapon> weaponList;    
     private Dictionary<string, Weapon> weapons;
-    [SerializeField]
-    private GameObject weaponFolder;    
+    [SerializeField] private GameObject weaponFolder;
+
+    [SerializeField] private PlayerController player;
 
     private void Awake()
     {
@@ -34,6 +34,11 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         SwitchWeapon();
+
+        if (!player.aiming && currentWeapon.devotion)
+        {
+            currentWeapon.ResetDevotion();
+        }        
     }
 
     public void SwitchWeapon()

@@ -22,14 +22,20 @@ public class PlayerShootable : Shootable
                     Shoot();
                 }
             }
+            else if (weaponController.currentWeapon.devotion)
+            {
+                weaponController.currentWeapon.GetScatter();
+                weaponController.currentWeapon.HandleDevotion();
+                Shoot();
+            }
             else
             {
                 weaponController.currentWeapon.GetScatter();
                 Shoot();
             }
-            nextAttackTime = Time.time + weaponController.currentWeapon.attackDelay;
+            nextAttackTime = Time.time + weaponController.currentWeapon.currentAttackDelay;
 
-            CameraShaker.Instance.ShakeOnce(2f, 3f, .1f, .2f);
+            CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, .2f);
             MMVibrationManager.Vibrate();
         }
     }

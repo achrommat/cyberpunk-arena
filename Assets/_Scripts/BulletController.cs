@@ -9,8 +9,6 @@ public class BulletController : MonoBehaviour
     // движение пули при включении из пула и коллижн с другими объектами
     [HideInInspector] public bool sawblade;
     [HideInInspector] public bool isEnemy = false;
-    //public GameObject bulletPool;
-    public GameObject VFXpool;
     [HideInInspector] public float damage = 0.5f;
 
     [SerializeField] private Rigidbody rb;
