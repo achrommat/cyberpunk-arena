@@ -105,7 +105,7 @@ public class BaseCharacterController : MonoBehaviour
     {
         // update the animator parameters        
         animator.SetFloat("Run", run);
-        animator.SetFloat("Speed", stats.runSpeed);
+        animator.SetFloat("Speed", stats.currentRunSpeed);
         animator.SetBool("Aiming", aiming);
         animator.SetBool("OnGround", onGround);
         animator.SetBool("Dash", dash);

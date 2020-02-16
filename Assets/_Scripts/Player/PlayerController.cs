@@ -44,9 +44,9 @@ public class PlayerController : BaseCharacterController
     private void GetMovementJoystickInput()
     {
         direction = Vector3.forward * movement.z + Vector3.right * movement.x;
-        direction = direction.normalized;
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
+            direction = direction.normalized;
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
         }
@@ -55,21 +55,12 @@ public class PlayerController : BaseCharacterController
             movement.x = movementJoystick.Horizontal;
             movement.z = movementJoystick.Vertical;
         }
-        Vector3 localMove = transform.InverseTransformDirection(movement);
-        if ((localMove.x <= -movementDeadZone || localMove.x >= movementDeadZone) || (localMove.z <= -movementDeadZone || localMove.z >= movementDeadZone))
-        {            
-            run = 1;
-            return;
-        }
-        run = 0;
+        run = movement.magnitude;
     }
 
     private void Move()
     {
-        if (run > 0)
-        {
-            rb.MovePosition(transform.position + direction * stats.runSpeed * Time.fixedDeltaTime);
-        }        
+        rb.MovePosition(transform.position + direction * stats.currentRunSpeed * Time.fixedDeltaTime);
     }
        
     void GetAimingJoystickInput()
@@ -83,11 +74,9 @@ public class PlayerController : BaseCharacterController
         if (((localMove.x <= -aimDeadZone || localMove.x >= aimDeadZone) || (localMove.z <= -aimDeadZone || localMove.z >= aimDeadZone)))
         {
             aiming = true;
-            stats.speedWithAim = -3;
             return;
         }
         aiming = false;
-        stats.speedWithAim = 0;
     }
 
     private void Rotate()

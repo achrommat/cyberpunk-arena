@@ -1,8 +1,6 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
 using MoreMountains.Feedbacks;
 using MoreMountains.NiceVibrations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats : MonoBehaviour, IDamageable
@@ -12,16 +10,14 @@ public class Stats : MonoBehaviour, IDamageable
     // здесь перечисляем только статы персонажа
     [Header("Main Stats")]
     [SerializeField] private bool isPlayer;
+    [SerializeField] private PlayerController player;
     public float health;
     public float currentHealth;
 
     [Header("Player Speed Stats")]
+    public float currentRunSpeed;
     public float runSpeed;
-    public float startRunSpeed;
-    public float speedWithAim;
-    public float runSpeedMody;
-    //public float speedaim;
-    public float speedsetting = 1;
+    [SerializeField] private float aimingPenalty;
 
     public void Awake()
     {
@@ -52,6 +48,6 @@ public class Stats : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        runSpeed = (startRunSpeed + speedWithAim + runSpeedMody);
+        currentRunSpeed = (player && player.aiming) ? (runSpeed - aimingPenalty) : runSpeed;
     }
 }

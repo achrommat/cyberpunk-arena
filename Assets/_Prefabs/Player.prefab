@@ -5641,13 +5641,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 1183781143812741512}
   isPlayer: 1
+  player: {fileID: 2987763626810127380}
   health: 4
   currentHealth: 4
-  runSpeed: 0
-  startRunSpeed: 9
-  speedWithAim: 0
-  runSpeedMody: 0
-  speedsetting: 0
+  currentRunSpeed: 0
+  runSpeed: 8
+  aimingPenalty: 3
 --- !u!114 &4300594535388922373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9237,8 +9236,8 @@ GameObject:
   - component: {fileID: 7485494213217031709}
   - component: {fileID: 1183781143812741512}
   - component: {fileID: 5232044997112698692}
-  - component: {fileID: 4115435899601782999}
   - component: {fileID: 1060610034122931636}
+  - component: {fileID: 769796419}
   m_Layer: 0
   m_Name: DamageFeedback
   m_TagString: Untagged
@@ -9274,8 +9273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 5232044997112698692}
-  - {fileID: 4115435899601782999}
-  - {fileID: 1060610034122931636}
+  - {fileID: 769796419}
   InitializationMode: 2
   DebugActive: 0
 --- !u!114 &5232044997112698692
@@ -9304,29 +9302,6 @@ MonoBehaviour:
   FlickerDuration: 0.2
   FlickerOctave: 0.04
   FlickerColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &4115435899601782999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8604881942251184079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86fec89a17b5b2347a82ae1c77aced3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: Freeze Frame
-  Chance: 100
-  Timing:
-    InitialDelay: 0
-    CooldownDuration: 0
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-  DebugActive: 0
-  FreezeFrameDuration: 0.001
 --- !u!114 &1060610034122931636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9350,9 +9325,36 @@ MonoBehaviour:
     DelayBetweenRepeats: 1
   DebugActive: 0
   Channel: 0
-  FlashColor: {r: 1, g: 0, b: 0, a: 1}
+  FlashColor: {r: 1, g: 1, b: 1, a: 1}
   FlashDuration: 0.2
   FlashAlpha: 0.2
+  FlashID: 0
+--- !u!114 &769796419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604881942251184079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf8e1825623fb34b9fc92dbef54ec56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Flash
+  Chance: 100
+  Timing:
+    InitialDelay: 0
+    CooldownDuration: 0
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+  DebugActive: 0
+  Channel: 0
+  FlashColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+  FlashDuration: 0.2
+  FlashAlpha: 1
   FlashID: 0
 --- !u!1001 &3560496368911037560
 PrefabInstance:

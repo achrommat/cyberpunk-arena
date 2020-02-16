@@ -137,7 +137,7 @@ public class OldCharacterController : MonoBehaviour
         {
             if (((localMoove.x <= -0.2 || localMoove.x >= 0.2) || (localMoove.z <= -0.2 || localMoove.z >= 0.2)))
             {
-                stats.speedWithAim = -3;
+                //stats.speedWithAim = -3;
                 gameObject.transform.LookAt(transform.position + rotation * Time.deltaTime);
 
                 aiming = true;
@@ -150,7 +150,7 @@ public class OldCharacterController : MonoBehaviour
             }
             else
             {
-                stats.speedWithAim = 0;
+//stats.speedWithAim = 0;
                 aiming = false;
                 movement = new Vector3(movement.x, 0, movement.z);
                 gameObject.transform.LookAt(transform.position + movement * Time.deltaTime);

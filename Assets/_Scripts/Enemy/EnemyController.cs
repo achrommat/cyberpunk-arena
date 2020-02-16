@@ -20,7 +20,7 @@ public class EnemyController : BaseCharacterController
     {
         myRenderer = FindRenderer();
         agent.updatePosition = false;
-        stats.startRunSpeed = (agent.speed * 2);
+        stats.runSpeed = (agent.speed * 2);
     }
 
     private Renderer FindRenderer()
