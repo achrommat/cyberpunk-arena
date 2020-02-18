@@ -35,9 +35,12 @@ public class WeaponController : MonoBehaviour
     {
         SwitchWeapon();
 
-        if (!player.aiming && currentWeapon.devotion)
+        if (player)
         {
-            currentWeapon.ResetDevotion();
+            if (!player.aiming && currentWeapon.devotion)
+            {
+                currentWeapon.ResetDevotion();
+            }
         }        
     }
 
