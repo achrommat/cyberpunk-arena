@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 270007516}
   m_Layer: 9
   m_Name: AimingConeMesh
-  m_TagString: Untagged
+  m_TagString: AimingCone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,15 +87,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1775770616}
-  - component: {fileID: 1775770618}
-  - component: {fileID: 1775770617}
+  - component: {fileID: 313092902}
+  - component: {fileID: 313092903}
   m_Layer: 9
   m_Name: AimingCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1775770616
 Transform:
   m_ObjectHideFlags: 0
@@ -104,14 +104,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775770615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.113, z: 0.433}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0.433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 270007515}
   m_Father: {fileID: 2982417913301175298}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1775770618
+--- !u!114 &313092902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,28 +120,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775770615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb9c8af0fcd0514e89d35554b6cae77, type: 3}
+  m_Script: {fileID: 11500000, guid: e56cc42667757634eabcaba7132db1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ObstacleMask:
     serializedVersion: 2
-    m_Bits: 262144
+    m_Bits: 0
   VisionRadius: 10
-  VisionAngle: 35
+  VisionAngle: 45
   Direction: {x: 0, y: 0, z: 0}
   EulerAngles: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}
-  ShouldScanForTargets: 1
+  ShouldScanForTargets: 0
   TargetMask:
     serializedVersion: 2
     m_Bits: 262144
-  ScanFrequencyInSeconds: 1
+  ScanFrequencyInSeconds: 0
   VisibleTargets: []
   MeshDensity: 0.2
   EdgePrecision: 3
   EdgeThreshold: 0.5
   VisionMeshFilter: {fileID: 270007516}
---- !u!114 &1775770617
+  NearestTarget: {fileID: 0}
+--- !u!114 &313092903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3752,6 +3753,7 @@ MonoBehaviour:
     - {x: -0.46090713, y: 0.3972768, z: 0.7935589}
     - {x: -0.49689332, y: 0.21704979, z: 0.84023}
     - {x: 0.4968797, y: 0.21705201, z: 0.84023744}
+  needsUpdate: 1
 --- !u!1 &2987299963828962484
 GameObject:
   m_ObjectHideFlags: 0
@@ -5557,6 +5559,7 @@ GameObject:
   - component: {fileID: 2044748532898430443}
   - component: {fileID: 4300594535388922373}
   - component: {fileID: 4300594535388922368}
+  - component: {fileID: 1298147721}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -5777,11 +5780,8 @@ MonoBehaviour:
   shootZone: 0.65
   movementJoystick: {fileID: 0}
   aimJoystick: {fileID: 0}
-  autoAimStartPoint: {fileID: 2044748533783806476}
-  aimPoint: {fileID: 2044748534223426567}
-  aimAssistSize: 1.5
-  _laserSight: {fileID: 5602433727207886012}
   aimingCameraOffsetPoint: {fileID: 1060610034228718263}
+  CanShoot: 0
 --- !u!114 &2044748532898430443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5838,6 +5838,21 @@ MonoBehaviour:
   weaponList: []
   weaponFolder: {fileID: 2044748534191598057}
   player: {fileID: 2987763626810127380}
+--- !u!114 &1298147721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987763626810127376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d005118e06a617b49a0c1b6ab1845558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 2987763626810127380}
+  _coneOfVision: {fileID: 313092902}
+  aimPoint: {fileID: 2044748534223426567}
 --- !u!1 &2987836840543989358
 GameObject:
   m_ObjectHideFlags: 0
@@ -9328,6 +9343,7 @@ MonoBehaviour:
     - {x: -0.46090713, y: 0.3972768, z: 0.7935589}
     - {x: -0.49689332, y: 0.21704979, z: 0.84023}
     - {x: 0.4968797, y: 0.21705201, z: 0.84023744}
+  needsUpdate: 1
 --- !u!1 &4171889218061230062
 GameObject:
   m_ObjectHideFlags: 0
@@ -9344,7 +9360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3787138007299428216
 Transform:
   m_ObjectHideFlags: 0

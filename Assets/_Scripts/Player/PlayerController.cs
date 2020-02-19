@@ -1,6 +1,7 @@
 ﻿using BehaviorDesigner.Runtime.Tactical;
 using UnityEngine;
 using MoreMountains.TopDownEngine;
+using MoreMountains.Tools;
 
 public class PlayerController : BaseCharacterController
 {
@@ -14,13 +15,8 @@ public class PlayerController : BaseCharacterController
     private Vector3 rotation;
     private Vector3 direction;
 
-    [Header("Aim Assist")]
-    public Transform autoAimStartPoint;
-    [SerializeField] private Transform aimPoint;
-    [SerializeField] private float aimAssistSize = 1f;
-    [SerializeField] private WeaponLaserSight _laserSight;
-
     public Transform aimingCameraOffsetPoint;
+    [HideInInspector] public bool CanShoot;
 
     protected void FixedUpdate()
     {
@@ -30,7 +26,6 @@ public class PlayerController : BaseCharacterController
         }
         Move();
         Rotate();
-        Shoot();
     }
 
     protected override void Update()
@@ -38,7 +33,7 @@ public class PlayerController : BaseCharacterController
         base.Update();
         GetMovementJoystickInput();
         GetAimingJoystickInput();
-        _laserSight.LaserActive(aiming && stats.IsAlive());
+        CanShoot = aiming && stats.IsAlive();
     }
 
     private void GetMovementJoystickInput()
@@ -85,54 +80,11 @@ public class PlayerController : BaseCharacterController
         // При обычном беге - левого
         if (aiming)
         {
-            transform.LookAt(transform.position + rotation * Time.deltaTime);
+            transform.LookAt(transform.position + rotation * Time.fixedDeltaTime);
             return;
         }
-        transform.LookAt(transform.position + movement * Time.deltaTime);
-    }
-
-    private void Shoot()
-    {
-        if (aiming && stats.IsAlive())
-        {
-            AimAssist();
-
-            // Учитывание мертвой зоны стрельбы
-            if (Mathf.Abs(rotation.x) + Mathf.Abs(rotation.z) >= shootZone)
-            {
-                shootable.Attack();
-            }           
-        }
+        transform.LookAt(transform.position + movement * Time.fixedDeltaTime);
     }    
-
-    private void AimAssist()
-    {
-        // Если в сферу попадает враг, то меняем направление прцела на него
-        // Иначе обнуляем направление прицела
-        RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Enemy");
-        Debug.DrawRay(autoAimStartPoint.position, autoAimStartPoint.transform.forward * 100f, Color.green);
-        if (Physics.SphereCast(autoAimStartPoint.position, aimAssistSize, transform.forward, out hit, 100f, mask))
-        {
-            IDamageable damageable;
-            if ((damageable = hit.collider.gameObject.GetComponent(typeof(IDamageable)) as IDamageable) != null)
-            {
-                if (damageable.IsAlive())
-                {
-                    aimPoint.LookAt(hit.collider.bounds.center);
-                }
-                else
-                {
-                    aimPoint.localRotation = Quaternion.identity;
-                    return;
-                }                
-            }
-        }   
-        else
-        {
-            aimPoint.localRotation = Quaternion.identity;
-        }        
-    }
 
     protected override void UpdateAnimator()
     {

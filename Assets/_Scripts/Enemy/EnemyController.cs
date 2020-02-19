@@ -6,21 +6,37 @@ using BehaviorDesigner.Runtime;
 public class EnemyController : BaseCharacterController
 {
     [Header("VFX")]
-    private bool flashWhenHit = true;
-    private Renderer myRenderer;    
+    private Renderer myRenderer;
+    [SerializeField] private Outline outline;
+    private float outlineAlpha;
+    [HideInInspector] public bool ShouldHighlight = false;
+
     public Vector3 target;
     public NavMeshAgent agent;
 
-    public TacticalAgent tacticalAgent;
+    public Collider myCollider;
 
     
-    
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
+        outlineAlpha = outline.outlineColor.a;
         myRenderer = FindRenderer();
         agent.updatePosition = false;
         stats.runSpeed = (agent.speed * 2);
+    }
+
+    public void ShowHighlightOnPlayerAiming()
+    {
+        outline.outlineColor.a = 1f;
+        outline.needsUpdate = true;
+    }
+
+    public void HideHighlightOnPlayerAiming()
+    {
+        outline.outlineColor.a = outlineAlpha;
+        outline.needsUpdate = true;
     }
 
     private Renderer FindRenderer()
@@ -30,7 +46,7 @@ public class EnemyController : BaseCharacterController
         rends = GetComponentsInChildren<Renderer>();
         foreach (Renderer localRenderer in rends)
         {
-            if (localRenderer.gameObject.name.Contains("Character_"))
+            if (localRenderer.gameObject.name.Contains("Character_") || localRenderer.gameObject.name.Contains("SM_Chr"))
             {
                 rend = localRenderer;
                 break;
@@ -46,7 +62,6 @@ public class EnemyController : BaseCharacterController
     protected override void Update()
     {
         base.Update();
-
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)

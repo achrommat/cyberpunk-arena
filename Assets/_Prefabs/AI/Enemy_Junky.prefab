@@ -2870,6 +2870,7 @@ MonoBehaviour:
     - {x: -0.46090713, y: 0.3972768, z: 0.7935589}
     - {x: -0.49689332, y: 0.21704979, z: 0.84023}
     - {x: 0.4968797, y: 0.21705201, z: 0.84023744}
+  needsUpdate: 1
 --- !u!1 &1241871970103612603
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,8 +4581,11 @@ MonoBehaviour:
   GeneralFootStepsVolume: 1
   Footsteps: []
   HealthBar: {fileID: 0}
+  outline: {fileID: 135865269}
   target: {x: 0, y: 0, z: 0}
   agent: {fileID: 1631747145}
+  myCollider: {fileID: 462515934}
+  ShouldHighlight: 0
 --- !u!114 &7660136033664145265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4651,7 +4655,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4248355432669049655}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
   m_Name: 

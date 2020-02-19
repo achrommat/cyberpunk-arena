@@ -7,7 +7,7 @@ public class BaseCharacterController : MonoBehaviour
     public Stats stats;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected Shootable shootable;
+    public Shootable shootable;
     public WeaponController weaponController;
 
     [Header("Respawn")]
