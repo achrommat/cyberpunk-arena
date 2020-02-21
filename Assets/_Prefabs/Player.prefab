@@ -5838,6 +5838,7 @@ MonoBehaviour:
   weaponList: []
   weaponFolder: {fileID: 2044748534191598057}
   player: {fileID: 2987763626810127380}
+  _coneOfVision: {fileID: 313092902}
 --- !u!114 &1298147721
 MonoBehaviour:
   m_ObjectHideFlags: 0

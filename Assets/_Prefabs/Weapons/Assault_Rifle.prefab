@@ -2731,6 +2731,7 @@ MonoBehaviour:
     - {x: -0.46090713, y: 0.3972768, z: 0.7935589}
     - {x: -0.49689332, y: 0.21704979, z: 0.84023}
     - {x: 0.4968797, y: 0.21705201, z: 0.84023744}
+  needsUpdate: 1
 --- !u!1 &3565241206349307873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,7 +2760,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2971553676027967140}
+  - {fileID: 2966832148815162106}
   - {fileID: 889344027680797533}
   - {fileID: 8198850078807707367}
   m_Father: {fileID: 0}
@@ -2781,22 +2782,23 @@ MonoBehaviour:
   damage: 1
   bulletForce: 35
   multiShot: 0
+  scatter: 5
+  currentScatter: 0
   maxEnergy: 999
   currentEnergy: 0
-  ammo: 0
   attackDelay: 0.25
+  currentAttackDelay: 0
   bulletPrefab: {fileID: 1916600279156190, guid: e7a6c26d5d1bb844bbda14273c9c87fb,
     type: 3}
-  laserTarget: {fileID: 0}
-  shootPos: {fileID: 0}
-  laserSight: {fileID: 0}
-  audioSource: {fileID: 2971553676027967175}
-  scatter: 5
-  shooting: 0
+  aimPoint: {fileID: 0}
+  shootPosition: {fileID: 0}
+  ConeRadius: 10
+  ConeAngle: 45
+  audioSource: {fileID: 2889198570459006660}
   muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
     type: 3}
   muzzleFlashPos: {fileID: 8198850078807707367}
-  ripper: 0
+  devotion: 0
 --- !u!1 &7256177043125286356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,13 +2891,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ce6accd60d3304d9e4d7213ff2fc14, type: 3}
---- !u!82 &2971553676027967175 stripped
+--- !u!82 &2889198570459006660 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82589376883831898, guid: 07ce6accd60d3304d9e4d7213ff2fc14,
     type: 3}
   m_PrefabInstance: {fileID: 2971553676027966110}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2971553676027967140 stripped
+--- !u!4 &2966832148815162106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4884365002741860, guid: 07ce6accd60d3304d9e4d7213ff2fc14,
     type: 3}

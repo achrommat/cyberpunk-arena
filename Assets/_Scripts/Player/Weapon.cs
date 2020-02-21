@@ -23,6 +23,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform aimPoint;
     [HideInInspector] public Transform shootPosition;
 
+    [Header("Aiming Cone")]
+    public float ConeRadius = 5f;
+    [Range(0f, 360f)] public float ConeAngle = 45f;
+
     [Header("FX")]
     [SerializeField] private AudioSource audioSource;
     public GameObject muzzleFlash;

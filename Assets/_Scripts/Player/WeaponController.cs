@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MoreMountains.Tools;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private GameObject weaponFolder;
 
     [SerializeField] private PlayerController player;
+    [SerializeField] private MMConeOfVision _coneOfVision;
 
     private void Awake()
     {
@@ -28,7 +30,7 @@ public class WeaponController : MonoBehaviour
         {
             weapons.Add(gun.name, gun);
         }
-        FindWeapon();
+        //FindWeapon();
     }
 
     void Update()
@@ -57,6 +59,7 @@ public class WeaponController : MonoBehaviour
         }
         FindWeapon();
         currentWeapon.gameObject.SetActive(true);
+        SetAimingConeSize();
     }
 
     private void FindWeapon()
@@ -64,6 +67,17 @@ public class WeaponController : MonoBehaviour
         // Находим нужное оружие по названию
         var weaponToSwitch = weapons.FirstOrDefault(t => t.Key == currentWeaponName);
         currentWeapon = weaponToSwitch.Value;
-        currentWeaponName = weaponToSwitch.Key;              
+        currentWeaponName = weaponToSwitch.Key;
+       
+    }
+
+    private void SetAimingConeSize()
+    {
+        if (!_coneOfVision)
+        {
+            return;
+        }
+        _coneOfVision.VisionRadius = currentWeapon.ConeRadius;
+        _coneOfVision.VisionAngle = currentWeapon.ConeAngle;
     }
 }
