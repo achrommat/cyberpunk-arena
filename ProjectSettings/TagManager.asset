@@ -27,6 +27,7 @@ TagManager:
   - Ground
   - Bullet
   - FX
+  - AimingCone
   layers:
   - Default
   - TransparentFX
