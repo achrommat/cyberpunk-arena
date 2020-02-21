@@ -12,23 +12,23 @@ public class PlayerAiming : MonoBehaviour
     private void LateUpdate()
     {
         _coneOfVision.ShouldScanForTargets = _playerController.CanShoot;
-        ShootAtNearestTarget();
+        Shoot();
     }
 
-    private void ShootAtNearestTarget()
+    private void Shoot()
     {
-        if (!_coneOfVision.NearestTarget)
-        {
-            return;
-        }
-
         if (_playerController.CanShoot)
         {
             if (_coneOfVision.NearestTarget)
             {
                 aimPoint.LookAt(_coneOfVision.NearestTarget.myCollider.bounds.center);
-                _playerController.shootable.Attack();
             }
+            else
+            {
+                aimPoint.localRotation = Quaternion.identity;
+            }
+
+            _playerController.shootable.Attack();
         }
     }
 }

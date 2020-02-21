@@ -26,14 +26,14 @@ public class PlayerController : BaseCharacterController
         }
         Move();
         Rotate();
+        CanShoot = aiming && stats.IsAlive();
     }
 
     protected override void Update()
     {
         base.Update();
         GetMovementJoystickInput();
-        GetAimingJoystickInput();
-        CanShoot = aiming && stats.IsAlive();
+        GetAimingJoystickInput();        
     }
 
     private void GetMovementJoystickInput()

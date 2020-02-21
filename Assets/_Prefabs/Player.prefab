@@ -5831,7 +5831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe51ab211067004a86c70127a8525c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponName: Devotion
+  currentWeaponName: Assault_Rifle
   currentWeapon: {fileID: 0}
   switchWeapon: 1
   shooting: 0
