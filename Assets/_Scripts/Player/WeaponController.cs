@@ -30,7 +30,7 @@ public class WeaponController : MonoBehaviour
         {
             weapons.Add(gun.name, gun);
         }
-        //FindWeapon();
+        FindWeapon();
     }
 
     void Update()
@@ -67,8 +67,7 @@ public class WeaponController : MonoBehaviour
         // Находим нужное оружие по названию
         var weaponToSwitch = weapons.FirstOrDefault(t => t.Key == currentWeaponName);
         currentWeapon = weaponToSwitch.Value;
-        currentWeaponName = weaponToSwitch.Key;
-       
+        currentWeaponName = weaponToSwitch.Key;       
     }
 
     private void SetAimingConeSize()

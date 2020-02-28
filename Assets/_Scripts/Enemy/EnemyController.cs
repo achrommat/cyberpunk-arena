@@ -2,6 +2,7 @@
 using UnityEngine.AI;
 using BehaviorDesigner.Runtime.Tactical;
 using BehaviorDesigner.Runtime;
+using System;
 
 public class EnemyController : BaseCharacterController
 {
@@ -16,11 +17,13 @@ public class EnemyController : BaseCharacterController
 
     public Collider myCollider;
 
-    
+    [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private AP_Reference poolRef;
 
     // Start is called before the first frame update
     protected override void Awake()
     {
+        enemyManager = FindObjectOfType<EnemyManager>();
         outlineAlpha = outline.outlineColor.a;
         myRenderer = FindRenderer();
         agent.updatePosition = false;
@@ -61,7 +64,13 @@ public class EnemyController : BaseCharacterController
 
     protected override void Update()
     {
-        base.Update();
+        CheckGroundStatus();
+        UpdateAnimator();
+        if (!stats.IsAlive())
+        {
+            Die();
+            return;
+        }
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -78,12 +87,18 @@ public class EnemyController : BaseCharacterController
         run = 0.7f;
     }
 
+    private void Die()
+    {
+        enemyManager.AliveEnemies--;
+        MF_AutoPool.Despawn(poolRef, 2f);
+    }
+
     private void OnAnimatorMove()
     {
         transform.position = agent.nextPosition;
     }
 
-    protected override void Respawn()
+    /*protected override void Respawn()
     {
         actualRespawnTime -= Time.deltaTime;
         if (actualRespawnTime <= 0 && respawnTarget != null)
@@ -93,6 +108,6 @@ public class EnemyController : BaseCharacterController
             transform.position = respawnTarget;
             Instantiate(RespawnVFX, transform.position, transform.rotation);
         }
-    }
+    }*/
 
 }
