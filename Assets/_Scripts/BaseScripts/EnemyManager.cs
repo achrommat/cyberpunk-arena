@@ -7,15 +7,27 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemy;
     [SerializeField] private float _spawnTime = 3f;
-    [SerializeField] private int _minEnemyCount = 5;
-    [SerializeField] private int _maxEnemyCount = 10;
-    [SerializeField] private Transform[] _spawnPoints;
-    private List<GameObject> enemies = new List<GameObject>();
-    private int waveIndex = 0;
+    [SerializeField] private int _minEnemyCount = 1;
+    [SerializeField] private int _maxEnemyCount = 5;
+    [SerializeField] private Transform _spawnPoints;
+    private List<Transform> _spawnPointsList = new List<Transform>();
 
-    private int wave = 0;
-    private int numOfTotalWaves = 3;
-    public int AliveEnemies = 0;
+    private int _waveCount = 0;
+    [SerializeField] private int _numOfTotalWaves = 3;
+
+    private void OnEnable()
+    {
+        GetListOfSpawnPoints();
+    }
+
+    private void GetListOfSpawnPoints()
+    {
+        Transform[] spawnPoints = _spawnPoints.GetComponentsInChildren<Transform>();
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            _spawnPointsList.Add(spawnPoint);
+        }
+    }
 
     private void Update()
     {
@@ -24,33 +36,32 @@ public class EnemyManager : MonoBehaviour
 
     private void Spawn()
     {
-        if (AliveEnemies <= 0)
-        {
-            if (wave <= numOfTotalWaves)
+        if (CanSpawn())
+        {            
+            if (_waveCount <= _numOfTotalWaves)
             {
-                wave++;
-                SpawnWave();
+                int enemyCount = Random.Range(_minEnemyCount, _maxEnemyCount);
+                SpawnWave(enemyCount);
+                _waveCount++;
             }
         }
     }
 
     private bool CanSpawn()
     {
-        enemies = enemies.Where(e => e != null).ToList();
-        return enemies.Count == 0;
+        return GameManager.instance.AliveEnemyCount <= 0;
     }
 
     private void SpawnEnemy()
     {
-        Vector3 spawnPosition = _spawnPoints[Random.Range(0, _spawnPoints.Length)].position;
+        Vector3 spawnPosition = _spawnPointsList[Random.Range(0, _spawnPointsList.Count)].position;
         GameObject newEnemy = MF_AutoPool.Spawn(_enemy, spawnPosition, Quaternion.identity);
-        enemies.Add(newEnemy);
-        AliveEnemies++;
+        newEnemy.GetComponent<EnemyController>().OnSpawned();
     }
 
-    private void SpawnWave()
+    private void SpawnWave(int enemyCount)
     {
-        for (int i = 0; i < Random.Range(_minEnemyCount, _maxEnemyCount); i++)
+        for (int i = 0; i < enemyCount; i++)
         {
             SpawnEnemy();
         }

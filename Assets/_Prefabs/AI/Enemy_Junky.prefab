@@ -4546,7 +4546,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -4587,8 +4587,8 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   agent: {fileID: 1631747145}
   myCollider: {fileID: 462515934}
-  enemyManager: {fileID: 0}
   poolRef: {fileID: -3995318776960321253}
+  behaviorTree: {fileID: 1024532605}
 --- !u!114 &7660136033664145265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4666,7 +4666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWhenEnabled: 1
   asynchronousLoad: 0
-  pauseWhenDisabled: 0
+  pauseWhenDisabled: 1
   restartWhenComplete: 0
   logTaskChanges: 0
   group: 0

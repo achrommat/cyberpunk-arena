@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using BehaviorDesigner.Runtime.Tactical;
+using System.Collections.Generic;
+using System.Collections;
 using BehaviorDesigner.Runtime;
-using System;
 
 public class EnemyController : BaseCharacterController
 {
@@ -17,17 +17,24 @@ public class EnemyController : BaseCharacterController
 
     public Collider myCollider;
 
-    [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private AP_Reference poolRef;
+    [SerializeField] private BehaviorTree behaviorTree;
 
     // Start is called before the first frame update
     protected override void Awake()
     {
-        enemyManager = FindObjectOfType<EnemyManager>();
         outlineAlpha = outline.outlineColor.a;
         myRenderer = FindRenderer();
         agent.updatePosition = false;
         stats.runSpeed = (agent.speed * 2);
+    }
+
+    public void OnSpawned()
+    {
+        behaviorTree.EnableBehavior();
+        stats.currentHealth = stats.health;
+        Instantiate(RespawnVFX, transform.position, transform.rotation);
+        GameManager.instance.AliveEnemyCount++;
     }
 
     public void ShowHighlightOnPlayerAiming()
@@ -89,7 +96,14 @@ public class EnemyController : BaseCharacterController
 
     private void Die()
     {
-        enemyManager.AliveEnemies--;
+        behaviorTree.DisableBehavior(true);
+        StartCoroutine(Despawn());
+    }
+
+    private IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        GameManager.instance.AliveEnemyCount--;
         MF_AutoPool.Despawn(poolRef, 2f);
     }
 

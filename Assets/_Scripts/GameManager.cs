@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public GameObject enemyPistolBulletPool;
+    public int AliveEnemyCount = 0;
 
     private NavMeshSurface surface;
 
