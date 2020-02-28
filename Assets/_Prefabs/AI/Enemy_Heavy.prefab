@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 6302199390811980400}
   - component: {fileID: 1288106510329668937}
   - component: {fileID: 3440899192914808067}
+  - component: {fileID: -5279557419139101548}
   m_Layer: 18
   m_Name: Enemy_Heavy
   m_TagString: Enemy
@@ -520,10 +521,12 @@ MonoBehaviour:
   Footsteps: []
   HealthBar: {fileID: 0}
   outline: {fileID: 2350499303312255333}
+  ShouldHighlight: 0
   target: {x: 0, y: 0, z: 0}
   agent: {fileID: 8407677962826588950}
   myCollider: {fileID: 5521374839471619920}
-  ShouldHighlight: 0
+  poolRef: {fileID: -5279557419139101548}
+  behaviorTree: {fileID: 3440899192914808067}
 --- !u!114 &2914005533560361717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +589,7 @@ MonoBehaviour:
   weaponList: []
   weaponFolder: {fileID: 4536897572309292549}
   player: {fileID: 0}
+  _coneOfVision: {fileID: 0}
 --- !u!114 &3440899192914808067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,14 +597,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024389090894463243}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startWhenEnabled: 1
   asynchronousLoad: 0
-  pauseWhenDisabled: 0
+  pauseWhenDisabled: 1
   restartWhenComplete: 0
   logTaskChanges: 0
   group: 0
@@ -628,6 +632,21 @@ MonoBehaviour:
       Version: 1.6.3
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &-5279557419139101548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024389090894463243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039dfc7e753bd42a8a59285d15464252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+  poolScript: {fileID: 0}
+  timeSpawned: 0
 --- !u!1 &1360565719929668399
 GameObject:
   m_ObjectHideFlags: 0
@@ -7934,6 +7953,8 @@ MonoBehaviour:
     type: 3}
   aimPoint: {fileID: 0}
   shootPosition: {fileID: 0}
+  ConeRadius: 5
+  ConeAngle: 45
   audioSource: {fileID: 5197760643094988878}
   muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
     type: 3}

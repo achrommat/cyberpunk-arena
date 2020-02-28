@@ -31,10 +31,10 @@ public class EnemyController : BaseCharacterController
 
     public void OnSpawned()
     {
+        GameManager.instance.AliveEnemyCount++;
         behaviorTree.EnableBehavior();
         stats.currentHealth = stats.health;
         Instantiate(RespawnVFX, transform.position, transform.rotation);
-        GameManager.instance.AliveEnemyCount++;
     }
 
     public void ShowHighlightOnPlayerAiming()
@@ -96,14 +96,15 @@ public class EnemyController : BaseCharacterController
 
     private void Die()
     {
-        behaviorTree.DisableBehavior(true);
+        behaviorTree.DisableBehavior();
         StartCoroutine(Despawn());
     }
 
     private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(respawnTime);
-        GameManager.instance.AliveEnemyCount--;
+        gameObject.SetActive(false);
+        GameManager.instance.AliveEnemyCount--;        
         MF_AutoPool.Despawn(poolRef, 2f);
     }
 

@@ -55,8 +55,11 @@ public class EnemyManager : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = _spawnPointsList[Random.Range(0, _spawnPointsList.Count)].position;
-        GameObject newEnemy = MF_AutoPool.Spawn(_enemy, spawnPosition, Quaternion.identity);
-        newEnemy.GetComponent<EnemyController>().OnSpawned();
+        List<EnemyController> enemies = new List<EnemyController>(_enemy.GetComponentsInChildren<EnemyController>(true));
+        int enemyType = Random.Range(0, enemies.Count);
+        GameObject newEnemyObj = MF_AutoPool.Spawn(_enemy, enemyType, spawnPosition, Quaternion.identity);
+        EnemyController newEnemy = newEnemyObj.GetComponentInChildren<EnemyController>();
+        newEnemy.OnSpawned();
     }
 
     private void SpawnWave(int enemyCount)

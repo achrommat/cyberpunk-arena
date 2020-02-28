@@ -74943,6 +74943,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5655442917102572175, guid: 017ba3b485dccb74ea4a311d313918e8,
+        type: 3}
+      propertyPath: poolBlock.prefab
+      value: 
+      objectReference: {fileID: 1052408100772012043, guid: 88b50e4036df6664e82915decf782a5b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 017ba3b485dccb74ea4a311d313918e8, type: 3}
 --- !u!33 &1442396645597502115
@@ -75240,26 +75246,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
         type: 3}
-      propertyPath: _spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1221061671}
-    - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
-        type: 3}
-      propertyPath: _spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 945337575}
-    - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
-        type: 3}
-      propertyPath: _spawnPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 630178429}
-    - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
-        type: 3}
-      propertyPath: _spawnPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 1513293891}
-    - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
-        type: 3}
       propertyPath: _spawnPoints
       value: 
       objectReference: {fileID: 1221061671}
@@ -75267,6 +75253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128991, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e98d15494058045a9ed72973b8dcb2, type: 3}
