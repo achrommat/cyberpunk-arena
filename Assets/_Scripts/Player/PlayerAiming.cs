@@ -11,6 +11,10 @@ public class PlayerAiming : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!_playerController.stats.IsAlive())
+        {
+            return;
+        }
         _coneOfVision.ShouldScanForTargets = _playerController.CanShoot;
         Shoot();
     }
