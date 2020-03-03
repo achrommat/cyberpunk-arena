@@ -18,6 +18,8 @@ public class PlayerController : BaseCharacterController
     public Transform aimingCameraOffsetPoint;
     [HideInInspector] public bool CanShoot;
 
+    [HideInInspector] public bool ShouldGetPerks = false;
+
     protected void FixedUpdate()
     {
         if (!stats.IsAlive())
@@ -95,5 +97,18 @@ public class PlayerController : BaseCharacterController
         animator.SetFloat("X", x, 0.1f, Time.deltaTime);
 
         base.UpdateAnimator();
+    }
+
+    protected override void Respawn()
+    {
+        actualRespawnTime -= Time.deltaTime;
+        if (actualRespawnTime <= 0 && respawnTarget != null)
+        {
+            actualRespawnTime = respawnTime;
+            stats.currentHealth = stats.health;
+            transform.position = respawnTarget;
+            Instantiate(RespawnVFX, transform.position, transform.rotation);
+            ShouldGetPerks = true;
+        }
     }
 }

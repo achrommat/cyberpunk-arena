@@ -15,11 +15,12 @@ public class PlayerPerks : MonoBehaviour
     private void Awake()
     {
         GetAllPerks();
+        player.ShouldGetPerks = true;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || player.ShouldGetPerks)
         {
             GetRandomPerks();
         }
@@ -44,6 +45,10 @@ public class PlayerPerks : MonoBehaviour
             _allPerks[take] = _allPerks[i];
             _allPerks[i] = Perks[i];
         }
+
+        player.ShouldGetPerks = false;
+        GetPerkEffect();
+
     }
 
     public void GetPerkEffect()
