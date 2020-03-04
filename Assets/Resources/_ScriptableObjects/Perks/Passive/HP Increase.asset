@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: Increases your HP
   Icon: {fileID: 0}
   DropProbability: 100
+  HPBoost: 1
