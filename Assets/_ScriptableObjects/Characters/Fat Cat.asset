@@ -14,15 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Fat Cat
   Description: War veteran
+  BaseHealth: 5
+  BaseSpeed: 7
+  BaseAccuracy: 1
+  BaseBulletSpeed: 1
+  BasePerkCount: 4
   Icon: {fileID: 0}
-  DropProbability: 100
-  Skin: {fileID: 0}
+  SkinNumber: 0
   Perks:
-  - {fileID: 11400000, guid: c715e7bf34ac60d41a0eb3dabe1ef704, type: 2}
-  - {fileID: 11400000, guid: f391393289fccc144b79e92b463c7a8d, type: 2}
-  - {fileID: 11400000, guid: 1a62fc64198de914e9618dc5e7bbed6a, type: 2}
-  PerkCount: 3
-  _allPerks:
   - {fileID: 11400000, guid: c715e7bf34ac60d41a0eb3dabe1ef704, type: 2}
   - {fileID: 11400000, guid: f391393289fccc144b79e92b463c7a8d, type: 2}
   - {fileID: 11400000, guid: 1a62fc64198de914e9618dc5e7bbed6a, type: 2}

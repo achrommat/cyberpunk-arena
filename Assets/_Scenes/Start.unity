@@ -41336,7 +41336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dance: 0
+  dancestart: 0
+  i: 0
   HP: 100
+  dead: 0
   DeadVFX: {fileID: 0}
   notdancer: 0
 --- !u!1001 &1155783456
@@ -56288,9 +56291,12 @@ MonoBehaviour:
   AmmoClass: 0
   Health: 0
   Armor: 0
+  AmmoValue: 00000000320000003200000019000000190000003200000032000000
   VFX: {fileID: 176552, guid: 8d0a5c81e6734a94195e702e3b181cf0, type: 3}
   SFX: {fileID: 40493840626490245, guid: 81339c0950814c94fabf45c395f0fcd9, type: 3}
+  weapons: {fileID: 0}
   CD: 5
+  timer: 0
 --- !u!65 &1627745177
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71961,7 +71967,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dance: 0
+  dancestart: 0
+  i: 0
   HP: 100
+  dead: 0
   DeadVFX: {fileID: 0}
   notdancer: 0
 --- !u!1001 &2030989484

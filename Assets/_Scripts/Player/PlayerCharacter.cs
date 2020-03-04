@@ -9,7 +9,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Transform _skinFolder;
     [SerializeField] private PlayerController _player;
 
-    [SerializeField] private Transform[] skins;
+    [SerializeField] private List<Renderer> _skinList;
+    [SerializeField] private Outline _outline;
 
     public void GenerateCharacter()
     {
@@ -20,16 +21,29 @@ public class PlayerCharacter : MonoBehaviour
 
     private void GenerateAppearance()
     {
-        Debug.Log(1);
-        Transform[] skins = _skinFolder.GetComponentsInChildren<Transform>(true);
+        Renderer[] skins = _skinFolder.GetComponentsInChildren<Renderer>(true);
        
         for (int i = 0; i < skins.Length; i++)
         {
-            if ((skins[i].name.Contains("Character_") || skins[i].name.Contains("SM_Chr")) && (Character.SkinNumber == i))
+            if ((skins[i].name.Contains("Character_") || skins[i].name.Contains("SM_Chr")))
             {
-                skins[i].gameObject.SetActive(true);
+                skins[i].gameObject.SetActive(false);
+                _skinList.Add(skins[i]);
             }
         }
+
+        for (int i = 0; i < _skinList.Count; i++)
+        {
+            if (Character.SkinNumber == i)
+            {
+                _skinList[i].gameObject.SetActive(true);
+                float outlineAlpha = _outline.outlineColor.a;
+                _outline.outlineColor.a = 0f;
+                _outline.outlineColor.a = outlineAlpha;
+                _outline.needsUpdate = true;
+            }
+        }
+
     }
 
     private void GenerateBaseStats()

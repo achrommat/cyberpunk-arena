@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Trickster
   Description: Agile thief
   BaseHealth: 4
-  BaseSpeed: 5
+  BaseSpeed: 8
   BaseAccuracy: 1
   BaseBulletSpeed: 1
   BasePerkCount: 4

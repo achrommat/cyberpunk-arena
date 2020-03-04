@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Shrink
   Description: Former corporate agent
   BaseHealth: 4
-  BaseSpeed: 5
+  BaseSpeed: 8
   BaseAccuracy: 1
   BaseBulletSpeed: 1
   BasePerkCount: 4
