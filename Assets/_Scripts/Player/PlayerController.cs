@@ -2,6 +2,7 @@
 using UnityEngine;
 using MoreMountains.TopDownEngine;
 using MoreMountains.Tools;
+using UnityEngine.Events;
 
 public class PlayerController : BaseCharacterController
 {
@@ -19,6 +20,10 @@ public class PlayerController : BaseCharacterController
     [HideInInspector] public bool CanShoot;
 
     [HideInInspector] public bool ShouldGetPerks = false;
+
+    public UnityEvent DeathEvent;
+
+    public PlayerCharacter Character;
 
     protected void FixedUpdate()
     {
@@ -57,7 +62,7 @@ public class PlayerController : BaseCharacterController
 
     private void Move()
     {
-        rb.MovePosition(transform.position + direction * stats.currentRunSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(transform.position + direction * stats.CurrentRunSpeed * Time.fixedDeltaTime);
     }
        
     void GetAimingJoystickInput()
@@ -101,11 +106,13 @@ public class PlayerController : BaseCharacterController
 
     protected override void Respawn()
     {
+        DeathEvent.Invoke();
+
         actualRespawnTime -= Time.deltaTime;
         if (actualRespawnTime <= 0 && respawnTarget != null)
         {
             actualRespawnTime = respawnTime;
-            stats.currentHealth = stats.health;
+            stats.CurrentHealth = stats.Health;
             transform.position = respawnTarget;
             Instantiate(RespawnVFX, transform.position, transform.rotation);
             ShouldGetPerks = true;

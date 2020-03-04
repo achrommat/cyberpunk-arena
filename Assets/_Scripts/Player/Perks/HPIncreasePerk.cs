@@ -9,7 +9,7 @@ public class HPIncreasePerk : Perk
 
     public override void Initialize(PlayerController player)
     {
-        player.stats.currentHealth = player.stats.health;
-        player.stats.currentHealth += HPBoost;
+        player.stats.CurrentHealth = player.stats.Health;
+        player.stats.CurrentHealth += HPBoost;
     }
 }

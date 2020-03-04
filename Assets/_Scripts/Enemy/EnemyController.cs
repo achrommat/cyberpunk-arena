@@ -26,14 +26,14 @@ public class EnemyController : BaseCharacterController
         outlineAlpha = outline.outlineColor.a;
         myRenderer = FindRenderer();
         agent.updatePosition = false;
-        stats.runSpeed = (agent.speed * 2);
+        stats.RunSpeed = (agent.speed * 2);
     }
 
     public void OnSpawned()
     {
         GameManager.instance.AliveEnemyCount++;
         behaviorTree.EnableBehavior();
-        stats.currentHealth = stats.health;
+        stats.CurrentHealth = stats.Health;
         Instantiate(RespawnVFX, transform.position, transform.rotation);
     }
 

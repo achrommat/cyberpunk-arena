@@ -14,8 +14,8 @@ public class PlayerPerks : MonoBehaviour
 
     private void Awake()
     {
-        GetAllPerks();
-        player.ShouldGetPerks = true;
+        //GetAllPerks();
+        //player.ShouldGetPerks = true;
     }
 
     private void Update()

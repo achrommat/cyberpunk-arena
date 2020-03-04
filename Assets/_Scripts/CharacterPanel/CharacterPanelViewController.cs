@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterPanelViewController : MonoBehaviour
 {
-
+    [SerializeField] private PlayerCharacter _playerCharacter;
     [SerializeField] private Transform _characterPanel;
     [SerializeField] private CharacterPanelItemView[] _characterItems;
     [SerializeField] private int _characterCount;
@@ -21,7 +21,7 @@ public class CharacterPanelViewController : MonoBehaviour
 
     public void GetAllCharacters()
     {
-        string[] assetNames = AssetDatabase.FindAssets("t:Character", new[] { "Assets/Resources/_ScriptableObjects/Characters" });
+        string[] assetNames = AssetDatabase.FindAssets("t:Character", new[] { "Assets/_ScriptableObjects/Characters" });
         _allCharacters.Clear();
         foreach (string SOName in assetNames)
         {
@@ -29,7 +29,6 @@ public class CharacterPanelViewController : MonoBehaviour
             var character = AssetDatabase.LoadAssetAtPath<Character>(SOpath);
             _allCharacters.Add(character);
         }
-        //_allCharacters = Resources.FindObjectsOfTypeAll<Character>();
     }
 
     private void GetRandomCharacters()

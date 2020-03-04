@@ -540,13 +540,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 2031250131757881154}
-  isPlayer: 0
-  player: {fileID: 0}
-  health: 8
-  currentHealth: 0
-  currentRunSpeed: 0
-  runSpeed: 0
-  aimingPenalty: 0
+  _isPlayer: 0
+  _player: {fileID: 0}
+  Health: 8
+  CurrentHealth: 0
+  Accuracy: 1
+  BulletSpeed: 1
+  CurrentRunSpeed: 5
+  RunSpeed: 5
+  _aimingPenalty: 0
 --- !u!114 &6302199390811980400
 MonoBehaviour:
   m_ObjectHideFlags: 0

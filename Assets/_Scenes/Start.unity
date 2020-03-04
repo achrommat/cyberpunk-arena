@@ -61326,10 +61326,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1811941294}
     m_Modifications:
-    - target: {fileID: 1934916698, guid: 73a061a00fa2b32409c9fdba01d67a94, type: 3}
-      propertyPath: PerkCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2982417913301175298, guid: 73a061a00fa2b32409c9fdba01d67a94,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -70,7 +70,7 @@ public class BaseCharacterController : MonoBehaviour
         if (actualRespawnTime <= 0 && respawnTarget != null)
         {
             actualRespawnTime = respawnTime;
-            stats.currentHealth = stats.health;
+            stats.CurrentHealth = stats.Health;
             transform.position = respawnTarget;
             Instantiate(RespawnVFX, transform.position, transform.rotation);
         }
@@ -105,7 +105,7 @@ public class BaseCharacterController : MonoBehaviour
     {
         // update the animator parameters        
         animator.SetFloat("Run", run);
-        animator.SetFloat("Speed", stats.currentRunSpeed);
+        animator.SetFloat("Speed", stats.CurrentRunSpeed);
         animator.SetBool("Aiming", aiming);
         animator.SetBool("OnGround", onGround);
         animator.SetBool("Dash", dash);

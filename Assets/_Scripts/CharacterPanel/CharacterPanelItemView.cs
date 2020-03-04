@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CharacterPanelItemView : MonoBehaviour
@@ -9,7 +10,8 @@ public class CharacterPanelItemView : MonoBehaviour
     public Image ItemIcon;
     public Text Description;
 
-    private Character _characterData;
+    [SerializeField] private Character _characterData;
+    public UnityEvent OnCharacterChosen;
 
     public void InitItem(Character character)
     {
@@ -21,6 +23,7 @@ public class CharacterPanelItemView : MonoBehaviour
 
     private void ButtonClicked()
     {
-        Debug.Log(_characterData.name);
+        PlayerCharacter.Character = _characterData;
+        OnCharacterChosen.Invoke();
     }
 }
