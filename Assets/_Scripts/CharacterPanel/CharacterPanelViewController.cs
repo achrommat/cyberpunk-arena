@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class CharacterPanelViewController : MonoBehaviour
@@ -8,7 +7,7 @@ public class CharacterPanelViewController : MonoBehaviour
     [SerializeField] private Transform _characterPanel;
     [SerializeField] private CharacterPanelItemView[] _characterItems;
     [SerializeField] private int _characterCount;
-    [SerializeField] private List<Character> _allCharacters;
+    [SerializeField] private Character[] _allCharacters;
     public Character[] Characters;
 
     void OnEnable()
@@ -19,14 +18,17 @@ public class CharacterPanelViewController : MonoBehaviour
 
     public void GetAllCharacters()
     {
-        string[] assetNames = AssetDatabase.FindAssets("t:Character", new[] { "Assets/_ScriptableObjects/Characters" });
+        _allCharacters = Resources.LoadAll<Character>("_ScriptableObjects/Characters");
+
+
+        /*string[] assetNames = AssetDatabase.FindAssets("t:Character", new[] { "Assets/_ScriptableObjects/Characters" });
         _allCharacters.Clear();
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
             var character = AssetDatabase.LoadAssetAtPath<Character>(SOpath);
             _allCharacters.Add(character);
-        }
+        }*/
     }
 
     private void GetRandomCharacters()
@@ -35,7 +37,7 @@ public class CharacterPanelViewController : MonoBehaviour
         for (int i = 0; i < _characterCount; i++)
         {
             // Take only from the latter part of the list - ignore the first i items.
-            int take = Random.Range(i, _allCharacters.Count);
+            int take = Random.Range(i, _allCharacters.Length);
             Characters[i] = _allCharacters[take];
 
             // Swap our random choice to the beginning of the array,

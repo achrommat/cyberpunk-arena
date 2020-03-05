@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -33,7 +32,7 @@ public class CharacterPanelItemView : MonoBehaviour
         OnCharacterChosen.Invoke();
     }
 
-    public void GetAllPerks()
+    /*public void GetAllPerks()
     {
         string[] assetNames = AssetDatabase.FindAssets("t:Character", new[] { "Assets/_ScriptableObjects/Perks/Passive" });
         _allPerks.Clear();
@@ -59,6 +58,6 @@ public class CharacterPanelItemView : MonoBehaviour
             _allPerks[take] = _allPerks[i];
             _allPerks[i] = Perks[i];
         }
-    }
+    }*/
 
 }

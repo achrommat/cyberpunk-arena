@@ -17,6 +17,8 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.instance.AliveEnemyCount = 0;
+        _waveCount = 0;
         GetListOfSpawnPoints();
     }
 

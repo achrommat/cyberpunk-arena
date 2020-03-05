@@ -137,7 +137,8 @@ GameObject:
   - component: {fileID: 3139046834357719347}
   - component: {fileID: 1108388360}
   - component: {fileID: 1108388361}
-  - component: {fileID: 1108388363}
+  - component: {fileID: 666587938}
+  - component: {fileID: 3147020520012627221}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPistolBulletPool: {fileID: 0}
+  AliveEnemyCount: 0
 --- !u!114 &3139046834357719347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +222,7 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &1108388363
+--- !u!114 &666587938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +231,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 1284699712440980830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c43d791d5db52e4c8a90a007c07caa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 097c9ed2343d78f4cb6b3f8d7012d2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  Event: {fileID: 11400000, guid: 46c3ea603d8742847a36c74506386aa1, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &3147020520012627221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284699712440980830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097c9ed2343d78f4cb6b3f8d7012d2ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 434c7def472982248a6c318452663980, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
