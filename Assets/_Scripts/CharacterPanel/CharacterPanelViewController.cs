@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CharacterPanelViewController : MonoBehaviour
 {
@@ -58,6 +56,4 @@ public class CharacterPanelViewController : MonoBehaviour
             _characterItems[i].InitItem(Characters[i]);
         }
     }
-
-
 }

@@ -51,7 +51,7 @@ public class PlayerCharacter : MonoBehaviour
         _player.stats.Health = Character.BaseHealth;
         _player.stats.CurrentHealth = Character.BaseHealth;
         _player.stats.Accuracy = Character.BaseAccuracy;
-        _player.stats.BulletSpeed = Character.BaseAccuracy;
+        _player.stats.BulletSpeed = Character.BaseBulletSpeed;
         _player.stats.RunSpeed = Character.BaseSpeed;
         _player.stats.CurrentRunSpeed = Character.BaseSpeed;
     }
