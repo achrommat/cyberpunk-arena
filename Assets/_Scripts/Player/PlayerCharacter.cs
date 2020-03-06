@@ -38,8 +38,9 @@ public class PlayerCharacter : MonoBehaviour
             {
                 _skinList[i].gameObject.SetActive(true);
                 float outlineAlpha = _outline.outlineColor.a;
-                _outline.outlineColor.a = 0f;
-                _outline.outlineColor.a = outlineAlpha;
+                //_outline.UpdateMaterialProperties();
+                //_outline.Bake();
+                //_outline.outlineColor.a = outlineAlpha;
                 _outline.needsUpdate = true;
             }
         }

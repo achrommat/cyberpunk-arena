@@ -157,7 +157,7 @@ public class Outline : MonoBehaviour {
     Destroy(outlineFillMaterial);
   }
 
-  void Bake() {
+  public void Bake() {
 
     // Generate smooth normals for each mesh
     var bakedMeshes = new HashSet<Mesh>();
@@ -237,7 +237,7 @@ public class Outline : MonoBehaviour {
     return smoothNormals;
   }
 
-  void UpdateMaterialProperties() {
+  public void UpdateMaterialProperties() {
 
     // Apply properties according to mode
     outlineFillMaterial.SetColor("_OutlineColor", outlineColor);

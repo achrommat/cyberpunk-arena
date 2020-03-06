@@ -49923,6 +49923,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1435158321}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1435296065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3001502713944497683, guid: a31773c5aecdebb439a616260746ede9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6748528566610293600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1435880403 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1088274617993374, guid: ee81afb80bd75294cb740f6f220deafd,
@@ -61249,6 +61261,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1811941294}
     m_Modifications:
+    - target: {fileID: 1497396455, guid: 73a061a00fa2b32409c9fdba01d67a94, type: 3}
+      propertyPath: bakeKeys.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497396455, guid: 73a061a00fa2b32409c9fdba01d67a94, type: 3}
+      propertyPath: bakeValues.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497396455, guid: 73a061a00fa2b32409c9fdba01d67a94, type: 3}
+      propertyPath: precomputeOutline
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2982417913301175298, guid: 73a061a00fa2b32409c9fdba01d67a94,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -76979,6 +77003,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8206485363206630352, guid: 454b7784ea3f2f24990bebacfb5cc958,
+        type: 3}
+      propertyPath: _scoreText
+      value: 
+      objectReference: {fileID: 1435296065}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454b7784ea3f2f24990bebacfb5cc958, type: 3}
 --- !u!1001 &4977190349115425528

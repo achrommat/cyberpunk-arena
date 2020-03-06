@@ -19,6 +19,9 @@ public class EnemyController : BaseCharacterController
 
     [SerializeField] private AP_Reference poolRef;
     [SerializeField] private BehaviorTree behaviorTree;
+    [SerializeField] private int _cost;
+
+    [SerializeField] private bool _dead;
 
 
     // Start is called before the first frame update
@@ -98,9 +101,14 @@ public class EnemyController : BaseCharacterController
 
     private void Die()
     {
-        agent.speed = 0;
-        behaviorTree.DisableBehavior();
-        StartCoroutine(Despawn());
+        if (!_dead)
+        {
+            GameManager.instance.AddScore(_cost);
+            agent.speed = 0;
+            behaviorTree.DisableBehavior();
+            StartCoroutine(Despawn());
+            _dead = true;
+        }
     }
 
     private IEnumerator Despawn()
