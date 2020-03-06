@@ -20,6 +20,7 @@ public class EnemyController : BaseCharacterController
     [SerializeField] private AP_Reference poolRef;
     [SerializeField] private BehaviorTree behaviorTree;
 
+
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -33,6 +34,7 @@ public class EnemyController : BaseCharacterController
     {
         GameManager.instance.AliveEnemyCount++;
         behaviorTree.EnableBehavior();
+        agent.speed = stats.RunSpeed / 2;
         stats.CurrentHealth = stats.Health;
         Instantiate(RespawnVFX, transform.position, transform.rotation);
     }
@@ -96,6 +98,7 @@ public class EnemyController : BaseCharacterController
 
     private void Die()
     {
+        agent.speed = 0;
         behaviorTree.DisableBehavior();
         StartCoroutine(Despawn());
     }
@@ -105,6 +108,13 @@ public class EnemyController : BaseCharacterController
         yield return new WaitForSeconds(respawnTime);
         gameObject.SetActive(false);
         GameManager.instance.AliveEnemyCount--;        
+        MF_AutoPool.Despawn(poolRef, 2f);
+    }
+
+    public void DespawnOnPlayerDeath()
+    {
+        gameObject.SetActive(false);
+        GameManager.instance.AliveEnemyCount--;
         MF_AutoPool.Despawn(poolRef, 2f);
     }
 

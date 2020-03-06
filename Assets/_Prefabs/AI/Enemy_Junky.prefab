@@ -4367,6 +4367,7 @@ GameObject:
   - component: {fileID: 4598265743998855951}
   - component: {fileID: 1024532605}
   - component: {fileID: -3995318776960321253}
+  - component: {fileID: -8298565873872783333}
   m_Layer: 18
   m_Name: Enemy_Junky
   m_TagString: Enemy
@@ -4711,6 +4712,33 @@ MonoBehaviour:
   delay: 1
   poolScript: {fileID: 0}
   timeSpawned: 0
+--- !u!114 &-8298565873872783333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248355432669049655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097c9ed2343d78f4cb6b3f8d7012d2ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 434c7def472982248a6c318452663980, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 684642383039903003}
+        m_MethodName: DespawnOnPlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4249000560512251867
 GameObject:
   m_ObjectHideFlags: 0
