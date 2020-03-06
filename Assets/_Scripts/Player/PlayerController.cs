@@ -106,11 +106,10 @@ public class PlayerController : BaseCharacterController
 
     protected override void Respawn()
     {
-        DeathEvent.Invoke();
-
         actualRespawnTime -= Time.deltaTime;
         if (actualRespawnTime <= 0 && respawnTarget != null)
         {
+            DeathEvent.Invoke();
             actualRespawnTime = respawnTime;
             stats.CurrentHealth = stats.Health;
             transform.position = respawnTarget;

@@ -11,6 +11,12 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField] private List<Renderer> _skinList;
     [SerializeField] private Outline _outline;
+    private float _outlineAlpha;
+
+    private void Awake()
+    {
+        _outlineAlpha = _outline.outlineColor.a;
+    }
 
     public void GenerateCharacter()
     {
@@ -37,11 +43,6 @@ public class PlayerCharacter : MonoBehaviour
             if (Character.SkinNumber == i)
             {
                 _skinList[i].gameObject.SetActive(true);
-                float outlineAlpha = _outline.outlineColor.a;
-                //_outline.UpdateMaterialProperties();
-                //_outline.Bake();
-                //_outline.outlineColor.a = outlineAlpha;
-                _outline.needsUpdate = true;
             }
         }
 

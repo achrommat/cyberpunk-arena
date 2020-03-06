@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Shrink
   Description: Former corporate agent
-  BaseHealth: 4
-  BaseSpeed: 8
+  BaseHealth: 3
+  BaseSpeed: 9
   BaseAccuracy: 1
   BaseBulletSpeed: 1
   BasePerkCount: 4
