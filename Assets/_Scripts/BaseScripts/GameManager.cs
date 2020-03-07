@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MoreMountains.Feedbacks;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,11 +18,14 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public GameObject enemyPistolBulletPool;
     public int AliveEnemyCount = 0;
     public int Score = 0;
 
+    [HideInInspector] public EnemyManager CurrentEnemyManager;
+
     [SerializeField] private Text _scoreText;
+
+    [SerializeField] private MMFeedbacks _freezeTimeFeedback;
 
     private NavMeshSurface surface;
 
@@ -44,5 +48,13 @@ public class GameManager : MonoBehaviour
     public void ResetScore()
     {
         Score = 0;
+    }
+
+    public void FreezeTime()
+    {
+        if (CurrentEnemyManager._waveCount == CurrentEnemyManager._numOfTotalWaves)
+        {
+            _freezeTimeFeedback.PlayFeedbacks();
+        }
     }
 }

@@ -6,18 +6,18 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemy;
-    [SerializeField] private float _spawnTime = 3f;
     [SerializeField] private int _minEnemyCount = 1;
     [SerializeField] private int _maxEnemyCount = 5;
     [SerializeField] private Transform _spawnPoints;
     private List<Transform> _spawnPointsList = new List<Transform>();
 
-    private int _waveCount = 0;
-    [SerializeField] private int _numOfTotalWaves = 3;
+    [HideInInspector] public int _waveCount = 0;
+    public int _numOfTotalWaves = 3;
 
     private void OnEnable()
     {
         GameManager.instance.AliveEnemyCount = 0;
+        GameManager.instance.CurrentEnemyManager = this;
         _waveCount = 0;
         GetListOfSpawnPoints();
     }
@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (CanSpawn())
         {            
-            if (_waveCount <= _numOfTotalWaves)
+            if (_waveCount < _numOfTotalWaves)
             {
                 int enemyCount = Random.Range(_minEnemyCount, _maxEnemyCount);
                 SpawnWave(enemyCount);

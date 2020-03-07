@@ -2,6 +2,7 @@
 using MoreMountains.Feedbacks;
 using MoreMountains.NiceVibrations;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Stats : MonoBehaviour, IDamageable
 {
@@ -9,7 +10,6 @@ public class Stats : MonoBehaviour, IDamageable
 
     // здесь перечисляем только статы персонажа
     [Header("Main Stats")]
-    [SerializeField] private bool _isPlayer;
     [SerializeField] private PlayerController _player;
     public float Health = 4;
     public float CurrentHealth;
@@ -33,7 +33,7 @@ public class Stats : MonoBehaviour, IDamageable
             return;
         }
         
-        if (_isPlayer)
+        if (_player)
         {
             MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
         }

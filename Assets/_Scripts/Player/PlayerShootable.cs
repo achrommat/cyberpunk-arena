@@ -35,8 +35,9 @@ public class PlayerShootable : Shootable
             }
             nextAttackTime = Time.time + weaponController.currentWeapon.currentAttackDelay;
 
-            CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, .2f);
-            MMVibrationManager.Vibrate();
+            CameraShaker.Instance.ShakeOnce(2.5f, 4f, .1f, .1f);
+
+            MMVibrationManager.Haptic(HapticTypes.LightImpact);
         }
     }
 

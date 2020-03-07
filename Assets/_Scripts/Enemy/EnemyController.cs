@@ -103,10 +103,18 @@ public class EnemyController : BaseCharacterController
     {
         if (!_dead)
         {
+            
             GameManager.instance.AddScore(_cost);
             agent.speed = 0;
             behaviorTree.DisableBehavior();
+
+            if(GameManager.instance.AliveEnemyCount == 1)
+            {
+                GameManager.instance.FreezeTime();
+            }
+
             StartCoroutine(Despawn());
+            GameManager.instance.AliveEnemyCount--;
             _dead = true;
         }
     }
@@ -114,8 +122,7 @@ public class EnemyController : BaseCharacterController
     private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(respawnTime);
-        gameObject.SetActive(false);
-        GameManager.instance.AliveEnemyCount--;        
+        gameObject.SetActive(false);     
         MF_AutoPool.Despawn(poolRef, 2f);
     }
 
