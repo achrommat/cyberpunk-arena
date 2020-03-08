@@ -103,7 +103,7 @@ public class EnemyController : BaseCharacterController
     {
         if (!_dead)
         {
-            
+            animator.SetInteger("Death_Index", Random.Range(0, 4));
             GameManager.instance.AddScore(_cost);
             agent.speed = 0;
             behaviorTree.DisableBehavior();
