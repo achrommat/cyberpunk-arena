@@ -21,9 +21,11 @@ public class BaseCharacterController : MonoBehaviour
     protected bool HaveTarget;
     protected float run;
     protected bool onGround;
-    protected bool _isStunned = false;
+    [HideInInspector] public bool _isStunned = false;
     [HideInInspector] public bool Dash;
     [HideInInspector] public int DashIndex;
+    [HideInInspector] public bool GloryKill;
+    [HideInInspector] public int GloryKillIndex;
 
     [Header("SOUND FX")]
     public float FootStepsRate = 0.2f;
@@ -114,5 +116,7 @@ public class BaseCharacterController : MonoBehaviour
         animator.SetInteger("Dash_Index", DashIndex);
         animator.SetBool("Dead", !stats.IsAlive());
         animator.SetBool("IsStunned", _isStunned);
+        animator.SetBool("GloryKill", GloryKill);
+        animator.SetInteger("GloryKill_Index", GloryKillIndex);
     }
 }

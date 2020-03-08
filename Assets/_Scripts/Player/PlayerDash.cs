@@ -62,7 +62,7 @@ public class PlayerDash : MonoBehaviour
             _player.rb.AddForce(transform.forward * _dashDistance, ForceMode.Impulse);
             newDash = MF_AutoPool.Spawn(_dashVFX, _dash.position, _dash.rotation);
             MMVibrationManager.Haptic(HapticTypes.LightImpact);
-            CameraShaker.Instance.ShakeOnce(2f, 2f, .1f, .1f);
+            CameraShaker.Instance.ShakeOnce(4f, 6f, .1f, .1f);
             StartCoroutine(DashStop());
             StartCoroutine(Cooldown());
         }
@@ -78,7 +78,6 @@ public class PlayerDash : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        //_player.Dash = false;
         _canDash = false;
         yield return new WaitForSeconds(_cooldown);
         _canDash = true;

@@ -72,8 +72,8 @@ MonoBehaviour:
     RepeatForever: 0
     DelayBetweenRepeats: 1
   DebugActive: 0
-  TimeScale: 0.2
-  TimeScaleDuration: 4
+  TimeScale: 0.4
+  TimeScaleDuration: 2.5
   TimeScaleLerp: 0
   TimeScaleLerpSpeed: 1
 --- !u!114 &557604635
@@ -100,9 +100,9 @@ MonoBehaviour:
   DebugActive: 0
   Channel: 0
   ZoomMode: 0
-  ZoomFieldOfView: 30
+  ZoomFieldOfView: 40
   ZoomTransitionDuration: 0.1
-  ZoomDuration: 1
+  ZoomDuration: 0.7
 --- !u!1 &848621101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,7 +4545,6 @@ GameObject:
   - component: {fileID: 1024532605}
   - component: {fileID: -3995318776960321253}
   - component: {fileID: -8298565873872783333}
-  - component: {fileID: 1901113415}
   m_Layer: 18
   m_Name: Enemy_Junky
   m_TagString: Enemy
@@ -4570,6 +4569,7 @@ Transform:
   - {fileID: 2422475613291837779}
   - {fileID: 1390780427}
   - {fileID: 557604631}
+  - {fileID: 5907972553834354100}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4759,6 +4759,10 @@ MonoBehaviour:
   respawnTime: 3
   RespawnVFX: {fileID: 1323860499875668, guid: 082c287fd5cea9e498027c8ecbfb648e, type: 3}
   aiming: 0
+  Dash: 0
+  DashIndex: 0
+  GloryKill: 0
+  GloryKillIndex: 0
   FootStepsRate: 0.2
   GeneralFootStepsVolume: 1
   Footsteps: []
@@ -4773,6 +4777,7 @@ MonoBehaviour:
   _cost: 10
   _stunFeedback: {fileID: 1390780429}
   _stunDuration: 4
+  _gloryKillTrigger: {fileID: 8525769763506888376}
 --- !u!114 &7660136033664145265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4921,24 +4926,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1901113415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248355432669049655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67d974b88bb3894f92b9e1fb7b22988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gore: {fileID: 1411227222130302, guid: fb0411843d05ea541983e8a06343a145, type: 3}
-  _gloryKillFeedback: {fileID: 557604633}
-  _gorePoolRef: {fileID: 4351849712520944453, guid: fb0411843d05ea541983e8a06343a145,
-    type: 3}
-  _enemyPoolRef: {fileID: -3995318776960321253}
-  _gloryKill: 0
 --- !u!1 &4249000560512251867
 GameObject:
   m_ObjectHideFlags: 0
@@ -7111,6 +7098,69 @@ Transform:
   m_Father: {fileID: 7755224423521043654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8525769763506888376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5907972553834354100}
+  - component: {fileID: 2041694063489854722}
+  - component: {fileID: 1898083072}
+  m_Layer: 18
+  m_Name: GloryKillTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5907972553834354100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525769763506888376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8318154572021167354}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2041694063489854722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525769763506888376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1898083072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525769763506888376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67d974b88bb3894f92b9e1fb7b22988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 684642383039903003}
+  _collider: {fileID: 462515934}
+  _enemyMesh: {fileID: 1192298510897274835}
+  _gore: {fileID: 1411227222130302, guid: fb0411843d05ea541983e8a06343a145, type: 3}
+  _gloryKillFeedback: {fileID: 557604633}
+  _enemyPoolRef: {fileID: -3995318776960321253}
 --- !u!1 &8561272478474353674
 GameObject:
   m_ObjectHideFlags: 0

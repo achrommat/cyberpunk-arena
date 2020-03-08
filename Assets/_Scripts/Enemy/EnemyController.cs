@@ -27,6 +27,7 @@ public class EnemyController : BaseCharacterController
     [Header("Stun")]
     [SerializeField] private MMFeedbacks _stunFeedback;
     [SerializeField] private float _stunDuration;
+    [SerializeField] private GameObject _gloryKillTrigger;
     private bool _wasStunned = false;
 
     // Start is called before the first frame update
@@ -121,11 +122,11 @@ public class EnemyController : BaseCharacterController
 
     private void Stun()
     {
-        if (stats.CurrentHealth < 2 && !_isStunned && !_wasStunned)
+        if (stats.CurrentHealth < 3 && !_isStunned && !_wasStunned)
         {
             _wasStunned = true;
             int chance = Random.Range(0, 100);
-            if (chance >= 75)
+            if (chance >= 65)
             {
                 StartCoroutine(OnStunned());
             }
@@ -136,9 +137,11 @@ public class EnemyController : BaseCharacterController
     {
         DisableActions();
         _isStunned = true;
+        _gloryKillTrigger.SetActive(true);
         _stunFeedback.PlayFeedbacks();
         yield return new WaitForSeconds(_stunDuration);
         _isStunned = false;
+        _gloryKillTrigger.SetActive(false);
         stats.CurrentHealth = 0;
         /*_stunFeedback.StopFeedbacks();
         EnableActions();*/

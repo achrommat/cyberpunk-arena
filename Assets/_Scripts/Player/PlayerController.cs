@@ -35,7 +35,7 @@ public class PlayerController : BaseCharacterController
         }
         Move();
         Rotate();
-        CanShoot = aiming && stats.IsAlive() && !Dash;
+        CanShoot = aiming && stats.IsAlive() && !Dash && !GloryKill;
     }
 
     protected override void Update()
@@ -64,6 +64,11 @@ public class PlayerController : BaseCharacterController
 
     private void Move()
     {
+        if (Dash || GloryKill)
+        {
+            return;
+        }
+
         rb.MovePosition(transform.position + direction * stats.CurrentRunSpeed * Time.fixedDeltaTime);
     }
        
@@ -85,6 +90,10 @@ public class PlayerController : BaseCharacterController
 
     private void Rotate()
     {
+        if (Dash || GloryKill)
+        {
+            return;
+        }
         // При прицеливании учитывается направление поворота правого стика
         // При обычном беге - левого
         if (aiming)

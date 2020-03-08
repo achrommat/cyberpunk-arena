@@ -2,35 +2,50 @@
 using MoreMountains.Feedbacks;
 using MoreMountains.NiceVibrations;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGloryKill : MonoBehaviour
 {
+    [SerializeField] private EnemyController _enemy;
+    [SerializeField] private Collider _collider;
+    [SerializeField] private GameObject _enemyMesh;
     [SerializeField] private GameObject _gore;
     [SerializeField] private MMFeedbacks _gloryKillFeedback;
-    [SerializeField] private AP_Reference _gorePoolRef;
     [SerializeField] private AP_Reference _enemyPoolRef;
-    [SerializeField] private bool _gloryKill = false;    
-
-    void Update()
-    {
-        if (_gloryKill)
-        {
-            GloryKill();
-        }
-    }
+    private GameObject newGore;
 
     public void GloryKill()
     {
-        gameObject.SetActive(false);
-        GameManager.instance.AliveEnemyCount--;
+        _gloryKillFeedback.PlayFeedbacks();
+        _enemyMesh.SetActive(false);
+        _collider.enabled = false;
+        //GameManager.instance.AliveEnemyCount--;
         GameManager.instance.AddScore(100);
         MMVibrationManager.Haptic(HapticTypes.MediumImpact);
-        CameraShaker.Instance.ShakeOnce(2.5f, 5f, .1f, .1f);
-        MF_AutoPool.Spawn(_gore, transform.position, transform.rotation);
-        _gloryKillFeedback.PlayFeedbacks();
-        MF_AutoPool.Despawn(_gorePoolRef, 2f);
-        MF_AutoPool.Despawn(_enemyPoolRef, 2f);
+        CameraShaker.Instance.ShakeOnce(10f, 10f, .1f, .5f);
+        GameObject newGore = MF_AutoPool.Spawn(_gore, transform.position, transform.rotation);
+        StartCoroutine(Despawn());
+        _enemy.stats.CurrentHealth = 0;
+    }
+
+    private IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(2);
+        MF_AutoPool.Despawn(newGore);
+        /*_enemy.SetActive(false);
+        MF_AutoPool.Despawn(_enemyPoolRef);*/
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && _enemy._isStunned)
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player.Dash)
+            {
+                GloryKill();                
+            }
+            return;
+        }
     }
 }

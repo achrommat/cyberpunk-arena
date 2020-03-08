@@ -5805,8 +5805,11 @@ MonoBehaviour:
   respawnTime: 5
   RespawnVFX: {fileID: 1323860499875668, guid: 082c287fd5cea9e498027c8ecbfb648e, type: 3}
   aiming: 0
+  _isStunned: 0
   Dash: 0
   DashIndex: 0
+  GloryKill: 0
+  GloryKillIndex: 0
   FootStepsRate: 0.2
   GeneralFootStepsVolume: 1
   Footsteps: []
@@ -5964,9 +5967,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2987763626810127380}
-  _dashDistance: 10
-  _cooldown: 1
-  _dashDuration: 0.5
+  _dashDistance: 15
+  _cooldown: 2
+  _dashDuration: 1
   _dashVFX: {fileID: 1854854489728914, guid: 02b54e7493a03d142ad3832c158f0e69, type: 3}
   _dash: {fileID: 372235366}
   _dashRefPool: {fileID: 691925335295426092, guid: 02b54e7493a03d142ad3832c158f0e69,
