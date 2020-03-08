@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shotgun
-  damage: 2
+  damage: 0.5
   bulletForce: 25
   multiShot: 1
-  scatter: 10
+  scatter: 13
   currentScatter: 0
   maxEnergy: 999
   currentEnergy: 0

@@ -8,8 +8,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject _enemy;
     [SerializeField] private int _minEnemyCount = 1;
     [SerializeField] private int _maxEnemyCount = 5;
-    [SerializeField] private Transform _spawnPoints;
-    private List<Transform> _spawnPointsList = new List<Transform>();
+    public static Transform SpawnPoints;
+    [SerializeField] private List<Transform> _spawnPointsList = new List<Transform>();
 
     [HideInInspector] public int _waveCount = 0;
     public int _numOfTotalWaves = 3;
@@ -17,14 +17,14 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.instance.AliveEnemyCount = 0;
-        GameManager.instance.CurrentEnemyManager = this;
         _waveCount = 0;
         GetListOfSpawnPoints();
     }
 
     private void GetListOfSpawnPoints()
     {
-        Transform[] spawnPoints = _spawnPoints.GetComponentsInChildren<Transform>();
+        _spawnPointsList.Clear();
+        Transform[] spawnPoints = SpawnPoints.GetComponentsInChildren<Transform>();
         foreach (Transform spawnPoint in spawnPoints)
         {
             _spawnPointsList.Add(spawnPoint);

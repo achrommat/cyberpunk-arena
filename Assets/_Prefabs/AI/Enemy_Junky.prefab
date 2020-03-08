@@ -4576,7 +4576,7 @@ MonoBehaviour:
   animator: {fileID: 1202601848}
   shootable: {fileID: 694818987}
   weaponController: {fileID: 4598265743998855951}
-  respawnTime: 5
+  respawnTime: 3
   RespawnVFX: {fileID: 1323860499875668, guid: 082c287fd5cea9e498027c8ecbfb648e, type: 3}
   aiming: 0
   FootStepsRate: 0.2

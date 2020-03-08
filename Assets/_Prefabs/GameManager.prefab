@@ -61,8 +61,9 @@ GameObject:
   - component: {fileID: 1360581090}
   - component: {fileID: 1360581092}
   - component: {fileID: 1360581091}
+  - component: {fileID: 4328974038542571622}
   m_Layer: 0
-  m_Name: FreezeTimeFeedback
+  m_Name: LastEnemyDeathFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 1360581091}
+  - {fileID: 4328974038542571622}
   InitializationMode: 2
   DebugActive: 0
 --- !u!114 &1360581091
@@ -124,6 +126,51 @@ MonoBehaviour:
   TimeScaleDuration: 4
   TimeScaleLerp: 0
   TimeScaleLerpSpeed: 1
+--- !u!114 &4328974038542571622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360581089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a102c1a91e34644aa37f1e4f00c31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Events
+  Chance: 100
+  Timing:
+    InitialDelay: 0
+    CooldownDuration: 0
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+  DebugActive: 0
+  PlayEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: d9b1832a65fbf0d4fae384423ff81aea, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  StopEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  InitializationEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  ResetEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1992529882
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +258,6 @@ GameObject:
   - component: {fileID: 3139046834357719347}
   - component: {fileID: 1108388360}
   - component: {fileID: 1108388361}
-  - component: {fileID: 666587938}
   - component: {fileID: 3147020520012627221}
   m_Layer: 0
   m_Name: GameManager
@@ -233,6 +279,7 @@ Transform:
   m_Children:
   - {fileID: 921928149}
   - {fileID: 1360581090}
+  - {fileID: 4481067471265660193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -250,9 +297,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AliveEnemyCount: 0
   Score: 0
-  CurrentEnemyManager: {fileID: 0}
   _scoreText: {fileID: 0}
-  _freezeTimeFeedback: {fileID: 1360581092}
+  _lastEnemyDeathFeedback: {fileID: 1360581092}
+  _enemyManager: {fileID: 4481067471265660192}
 --- !u!114 &3139046834357719347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,33 +347,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &666587938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284699712440980830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 097c9ed2343d78f4cb6b3f8d7012d2ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 46c3ea603d8742847a36c74506386aa1, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &3147020520012627221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,17 +363,6 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 8206485363206630352}
         m_MethodName: ResetScore
         m_Mode: 1
@@ -365,3 +374,100 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &8880389689201436593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4579121421976309752}
+    m_Modifications:
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -34.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: _maxEnemyCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128991, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128991, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79e98d15494058045a9ed72973b8dcb2, type: 3}
+--- !u!4 &4481067471265660193 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4977190349555128976, guid: 79e98d15494058045a9ed72973b8dcb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8880389689201436593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4481067471265660192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8880389689201436593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383c11654ddd167408e5e5d0c2fe5336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

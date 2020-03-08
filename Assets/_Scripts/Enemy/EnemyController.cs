@@ -39,6 +39,7 @@ public class EnemyController : BaseCharacterController
         behaviorTree.EnableBehavior();
         agent.speed = stats.RunSpeed / 2;
         stats.CurrentHealth = stats.Health;
+        myCollider.enabled = true;
         Instantiate(RespawnVFX, transform.position, transform.rotation);
     }
 
@@ -103,6 +104,8 @@ public class EnemyController : BaseCharacterController
     {
         if (!_dead)
         {
+            myCollider.enabled = false;
+
             animator.SetInteger("Death_Index", Random.Range(0, 4));
             GameManager.instance.AddScore(_cost);
             agent.speed = 0;
@@ -110,7 +113,7 @@ public class EnemyController : BaseCharacterController
 
             if(GameManager.instance.AliveEnemyCount == 1)
             {
-                GameManager.instance.FreezeTime();
+                GameManager.instance.OnLastEnemyDeath();
             }
 
             StartCoroutine(Despawn());

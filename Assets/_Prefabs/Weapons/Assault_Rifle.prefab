@@ -2760,7 +2760,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2971553676027965540}
+  - {fileID: 2966832148815162106}
   - {fileID: 889344027680797533}
   - {fileID: 8198850078807707367}
   m_Father: {fileID: 0}
@@ -2782,7 +2782,7 @@ MonoBehaviour:
   damage: 1
   bulletForce: 35
   multiShot: 0
-  scatter: 5
+  scatter: 8
   currentScatter: 0
   maxEnergy: 999
   currentEnergy: 0
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   shootPosition: {fileID: 0}
   ConeRadius: 10
   ConeAngle: 45
-  audioSource: {fileID: 2971553676027965821}
+  audioSource: {fileID: 2889198570459006660}
   muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
     type: 3}
   muzzleFlashPos: {fileID: 8198850078807707367}
@@ -2891,13 +2891,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ce6accd60d3304d9e4d7213ff2fc14, type: 3}
---- !u!82 &2971553676027965821 stripped
+--- !u!82 &2889198570459006660 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82589376883831898, guid: 07ce6accd60d3304d9e4d7213ff2fc14,
     type: 3}
   m_PrefabInstance: {fileID: 2971553676027966110}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2971553676027965540 stripped
+--- !u!4 &2966832148815162106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4884365002741860, guid: 07ce6accd60d3304d9e4d7213ff2fc14,
     type: 3}

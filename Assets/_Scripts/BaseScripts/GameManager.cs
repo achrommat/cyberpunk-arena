@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour
     public int AliveEnemyCount = 0;
     public int Score = 0;
 
-    [HideInInspector] public EnemyManager CurrentEnemyManager;
-
     [SerializeField] private Text _scoreText;
 
-    [SerializeField] private MMFeedbacks _freezeTimeFeedback;
+    [SerializeField] private MMFeedbacks _lastEnemyDeathFeedback;
+
+    [SerializeField] private EnemyManager _enemyManager;
 
     private NavMeshSurface surface;
 
@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
         Score = 0;
     }
 
-    public void FreezeTime()
+    public void OnLastEnemyDeath()
     {
-        if (CurrentEnemyManager._waveCount == CurrentEnemyManager._numOfTotalWaves)
+        if (_enemyManager._waveCount == _enemyManager._numOfTotalWaves)
         {
-            _freezeTimeFeedback.PlayFeedbacks();
+            _lastEnemyDeathFeedback.PlayFeedbacks();
         }
     }
 }
