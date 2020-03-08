@@ -19,8 +19,9 @@ MonoBehaviour:
   BaseAccuracy: 1
   BaseBulletSpeed: 1
   BasePerkCount: 4
+  DashIndex: 0
   Icon: {fileID: 0}
-  SkinNumber: 0
+  SkinNumber: 16
   Perks:
   - {fileID: 11400000, guid: c715e7bf34ac60d41a0eb3dabe1ef704, type: 2}
   - {fileID: 11400000, guid: f391393289fccc144b79e92b463c7a8d, type: 2}

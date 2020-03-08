@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System.Collections;
 using BehaviorDesigner.Runtime;
+using MoreMountains.Feedbacks;
 
 public class EnemyController : BaseCharacterController
 {
@@ -21,8 +22,12 @@ public class EnemyController : BaseCharacterController
     [SerializeField] private BehaviorTree behaviorTree;
     [SerializeField] private int _cost;
 
-    [SerializeField] private bool _dead;
+    private bool _dead;
 
+    [Header("Stun")]
+    [SerializeField] private MMFeedbacks _stunFeedback;
+    [SerializeField] private float _stunDuration;
+    private bool _wasStunned = false;
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -36,11 +41,23 @@ public class EnemyController : BaseCharacterController
     public void OnSpawned()
     {
         GameManager.instance.AliveEnemyCount++;
+        Instantiate(RespawnVFX, transform.position, transform.rotation);
+        EnableActions();
+    }
+
+    private void DisableActions()
+    {
+        agent.speed = 0;
+        behaviorTree.DisableBehavior();
+        _wasStunned = false;
+    }
+
+    private void EnableActions()
+    {
         behaviorTree.EnableBehavior();
         agent.speed = stats.RunSpeed / 2;
         stats.CurrentHealth = stats.Health;
         myCollider.enabled = true;
-        Instantiate(RespawnVFX, transform.position, transform.rotation);
     }
 
     public void ShowHighlightOnPlayerAiming()
@@ -84,6 +101,8 @@ public class EnemyController : BaseCharacterController
             Die();
             return;
         }
+        Stun();
+        
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -100,25 +119,55 @@ public class EnemyController : BaseCharacterController
         run = 0.7f;
     }
 
+    private void Stun()
+    {
+        if (stats.CurrentHealth < 2 && !_isStunned && !_wasStunned)
+        {
+            _wasStunned = true;
+            int chance = Random.Range(0, 100);
+            if (chance >= 75)
+            {
+                StartCoroutine(OnStunned());
+            }
+        }
+    }
+
+    private IEnumerator OnStunned()
+    {
+        DisableActions();
+        _isStunned = true;
+        _stunFeedback.PlayFeedbacks();
+        yield return new WaitForSeconds(_stunDuration);
+        _isStunned = false;
+        stats.CurrentHealth = 0;
+        /*_stunFeedback.StopFeedbacks();
+        EnableActions();*/
+    }
+
     private void Die()
     {
         if (!_dead)
         {
+            if (_isStunned)
+            {
+                _isStunned = false;
+            }
+
             myCollider.enabled = false;
+            DisableActions();
 
             animator.SetInteger("Death_Index", Random.Range(0, 4));
-            GameManager.instance.AddScore(_cost);
-            agent.speed = 0;
-            behaviorTree.DisableBehavior();
 
-            if(GameManager.instance.AliveEnemyCount == 1)
+            GameManager.instance.AddScore(_cost);
+            if (GameManager.instance.AliveEnemyCount == 1)
             {
                 GameManager.instance.OnLastEnemyDeath();
             }
+            GameManager.instance.AliveEnemyCount--;
+
+            _dead = true;
 
             StartCoroutine(Despawn());
-            GameManager.instance.AliveEnemyCount--;
-            _dead = true;
         }
     }
 
@@ -140,17 +189,4 @@ public class EnemyController : BaseCharacterController
     {
         transform.position = agent.nextPosition;
     }
-
-    /*protected override void Respawn()
-    {
-        actualRespawnTime -= Time.deltaTime;
-        if (actualRespawnTime <= 0 && respawnTarget != null)
-        {
-            actualRespawnTime = respawnTime;
-            stats.currentHealth = stats.health;
-            transform.position = respawnTarget;
-            Instantiate(RespawnVFX, transform.position, transform.rotation);
-        }
-    }*/
-
 }

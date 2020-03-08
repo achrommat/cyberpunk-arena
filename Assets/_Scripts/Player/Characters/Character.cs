@@ -12,6 +12,7 @@ public class Character : ScriptableObject
     public float BaseAccuracy = 1;
     public float BaseBulletSpeed = 1;
     public int BasePerkCount = 4;
+    public int DashIndex = 1;
 
     public Image Icon;
     //public float DropProbability;

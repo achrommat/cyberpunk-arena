@@ -25,6 +25,8 @@ public class PlayerController : BaseCharacterController
 
     public PlayerCharacter Character;
 
+    [SerializeField] private PlayerDash _dash;
+
     protected void FixedUpdate()
     {
         if (!stats.IsAlive())
@@ -33,14 +35,14 @@ public class PlayerController : BaseCharacterController
         }
         Move();
         Rotate();
-        CanShoot = aiming && stats.IsAlive();
+        CanShoot = aiming && stats.IsAlive() && !Dash;
     }
 
     protected override void Update()
     {
         base.Update();
         GetMovementJoystickInput();
-        GetAimingJoystickInput();        
+        GetAimingJoystickInput(); 
     }
 
     private void GetMovementJoystickInput()

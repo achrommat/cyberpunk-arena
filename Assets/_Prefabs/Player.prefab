@@ -49,7 +49,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9b99946cfb7e3c44bbc77cdf1b7dbda4, type: 2}
+  - {fileID: 2100000, guid: 4cbb6216b894c3444b23c64f01d8d9e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,6 +78,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270007514}
   m_Mesh: {fileID: 0}
+--- !u!1 &372235365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372235366}
+  m_Layer: 9
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &372235366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372235365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.86, z: -0.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2982417913301175298}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1775770615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5460,7 +5490,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 138e0aae3526bd54687107ed3fc9877c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5562,6 +5592,7 @@ GameObject:
   - component: {fileID: 1298147721}
   - component: {fileID: 1846166051350724770}
   - component: {fileID: 1934916700}
+  - component: {fileID: 873699809}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -5586,6 +5617,7 @@ Transform:
   - {fileID: 7485494213217031709}
   - {fileID: 3787138007299428216}
   - {fileID: 1775770616}
+  - {fileID: 372235366}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5773,6 +5805,8 @@ MonoBehaviour:
   respawnTime: 5
   RespawnVFX: {fileID: 1323860499875668, guid: 082c287fd5cea9e498027c8ecbfb648e, type: 3}
   aiming: 0
+  Dash: 0
+  DashIndex: 0
   FootStepsRate: 0.2
   GeneralFootStepsVolume: 1
   Footsteps: []
@@ -5800,6 +5834,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Character: {fileID: 1846166051350724770}
+  _dash: {fileID: 873699809}
 --- !u!114 &2044748532898430443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5916,6 +5951,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &873699809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987763626810127376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe4b1628170a48429e0c82284033197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 2987763626810127380}
+  _dashDistance: 10
+  _cooldown: 1
+  _dashDuration: 0.5
+  _dashVFX: {fileID: 1854854489728914, guid: 02b54e7493a03d142ad3832c158f0e69, type: 3}
+  _dash: {fileID: 372235366}
+  _dashRefPool: {fileID: 691925335295426092, guid: 02b54e7493a03d142ad3832c158f0e69,
+    type: 3}
 --- !u!1 &2987836840543989358
 GameObject:
   m_ObjectHideFlags: 0

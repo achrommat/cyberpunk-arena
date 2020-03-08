@@ -5,8 +5,8 @@ public class BaseCharacterController : MonoBehaviour
 {
     [Header("Links")]
     public Stats stats;
-    [SerializeField] protected Rigidbody rb;
-    [SerializeField] protected Animator animator;
+    public Rigidbody rb;
+    public Animator animator;
     public Shootable shootable;
     public WeaponController weaponController;
 
@@ -18,10 +18,12 @@ public class BaseCharacterController : MonoBehaviour
 
     [Header("Parameters")]
     public bool aiming;
-    protected bool dash;
     protected bool HaveTarget;
     protected float run;
     protected bool onGround;
+    protected bool _isStunned = false;
+    [HideInInspector] public bool Dash;
+    [HideInInspector] public int DashIndex;
 
     [Header("SOUND FX")]
     public float FootStepsRate = 0.2f;
@@ -108,7 +110,9 @@ public class BaseCharacterController : MonoBehaviour
         animator.SetFloat("Speed", stats.CurrentRunSpeed);
         animator.SetBool("Aiming", aiming);
         animator.SetBool("OnGround", onGround);
-        animator.SetBool("Dash", dash);
+        animator.SetBool("Dash", Dash);
+        animator.SetInteger("Dash_Index", DashIndex);
         animator.SetBool("Dead", !stats.IsAlive());
+        animator.SetBool("IsStunned", _isStunned);
     }
 }

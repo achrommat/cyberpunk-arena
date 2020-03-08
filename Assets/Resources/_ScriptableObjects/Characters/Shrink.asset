@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Shrink
   Description: Former corporate agent
-  BaseHealth: 3
+  BaseHealth: 4
   BaseSpeed: 9
   BaseAccuracy: 1
   BaseBulletSpeed: 1
   BasePerkCount: 4
+  DashIndex: 1
   Icon: {fileID: 0}
-  SkinNumber: 1
+  SkinNumber: 5
   Perks:
   - {fileID: 11400000, guid: f391393289fccc144b79e92b463c7a8d, type: 2}
   - {fileID: 11400000, guid: 1a62fc64198de914e9618dc5e7bbed6a, type: 2}

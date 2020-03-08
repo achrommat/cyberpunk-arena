@@ -52,6 +52,57 @@ MonoBehaviour:
       type: 3}
     printLogOnQuit: 0
   masterPool: []
+--- !u!1 &1285681946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285681947}
+  - component: {fileID: 1285681948}
+  m_Layer: 0
+  m_Name: Gore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285681947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285681946}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 317742076836124143}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1285681948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285681946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b92af29f025148109c26acd69c9401b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolBlock:
+    size: 10
+    emptyBehavior: 0
+    maxSize: 20
+    maxEmptyBehavior: 0
+    prefab: {fileID: 1411227222130302, guid: fb0411843d05ea541983e8a06343a145, type: 3}
+    printLogOnQuit: 0
+  masterPool: []
 --- !u!1 &1679866896
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +240,8 @@ Transform:
   - {fileID: 5426976428746544270}
   - {fileID: 354002293}
   - {fileID: 6407191266157482961}
+  - {fileID: 1285681947}
+  - {fileID: 4091937395358926221}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,7 +359,7 @@ MonoBehaviour:
     emptyBehavior: 0
     maxSize: 40
     maxEmptyBehavior: 0
-    prefab: {fileID: 4248355432669049655, guid: e8f07762c62c3c84ab8faf31efa6bff7,
+    prefab: {fileID: 1052408100772012043, guid: 88b50e4036df6664e82915decf782a5b,
       type: 3}
     printLogOnQuit: 0
   masterPool: []
@@ -360,5 +413,56 @@ MonoBehaviour:
     maxEmptyBehavior: 0
     prefab: {fileID: 3370421434349903662, guid: 0316ec0c7dcd9ad4da2297b7ad1e2cb5,
       type: 3}
+    printLogOnQuit: 0
+  masterPool: []
+--- !u!1 &6675606912662710015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4091937395358926221}
+  - component: {fileID: 8463791293219077593}
+  m_Layer: 0
+  m_Name: DashVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4091937395358926221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675606912662710015}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 317742076836124143}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8463791293219077593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675606912662710015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b92af29f025148109c26acd69c9401b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolBlock:
+    size: 10
+    emptyBehavior: 0
+    maxSize: 20
+    maxEmptyBehavior: 0
+    prefab: {fileID: 1854854489728914, guid: 02b54e7493a03d142ad3832c158f0e69, type: 3}
     printLogOnQuit: 0
   masterPool: []

@@ -56,6 +56,7 @@ public class PlayerCharacter : MonoBehaviour
         _player.stats.BulletSpeed = Character.BaseBulletSpeed;
         _player.stats.RunSpeed = Character.BaseSpeed;
         _player.stats.CurrentRunSpeed = Character.BaseSpeed;
+        _player.DashIndex = Character.DashIndex;
     }
 
     private void GeneratePerks()
