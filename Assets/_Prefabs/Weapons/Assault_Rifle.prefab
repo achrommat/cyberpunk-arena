@@ -2782,7 +2782,7 @@ MonoBehaviour:
   damage: 1
   bulletForce: 35
   multiShot: 0
-  scatter: 8
+  scatter: 5
   currentScatter: 0
   maxEnergy: 999
   currentEnergy: 0

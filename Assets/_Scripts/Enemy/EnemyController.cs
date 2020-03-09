@@ -23,6 +23,7 @@ public class EnemyController : BaseCharacterController
     [SerializeField] private int _cost;
 
     private bool _dead;
+    [SerializeField] private MMFeedbacks _deathFeedback;
 
     [Header("Stun")]
     [SerializeField] private MMFeedbacks _stunFeedback;
@@ -158,6 +159,8 @@ public class EnemyController : BaseCharacterController
 
             myCollider.enabled = false;
             DisableActions();
+
+            _deathFeedback.PlayFeedbacks();
 
             animator.SetInteger("Death_Index", Random.Range(0, 4));
 

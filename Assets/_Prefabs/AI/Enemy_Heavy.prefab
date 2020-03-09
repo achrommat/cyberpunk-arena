@@ -405,6 +405,7 @@ Transform:
   - {fileID: 8578645974740101567}
   - {fileID: 1109003817328646795}
   - {fileID: 222438834156451029}
+  - {fileID: 2231454342586728204}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -594,6 +595,7 @@ MonoBehaviour:
   respawnTime: 3
   RespawnVFX: {fileID: 1323860499875668, guid: 082c287fd5cea9e498027c8ecbfb648e, type: 3}
   aiming: 0
+  _isStunned: 0
   Dash: 0
   DashIndex: 0
   GloryKill: 0
@@ -610,6 +612,7 @@ MonoBehaviour:
   poolRef: {fileID: -5279557419139101548}
   behaviorTree: {fileID: 3440899192914808067}
   _cost: 50
+  _deathFeedback: {fileID: 8731717128390719621}
   _stunFeedback: {fileID: 341926877460559277}
   _stunDuration: 3
   _gloryKillTrigger: {fileID: 5213782428805767180}
@@ -647,8 +650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
-  attackDistance: 2
-  repeatAttackDelay: 2
+  attackDistance: 3
+  repeatAttackDelay: 3
   attackAngle: 2
   weaponController: {fileID: 1288106510329668937}
   character: {fileID: 7958307993572341789}
@@ -4145,7 +4148,6 @@ GameObject:
   - component: {fileID: 1901718008891623770}
   - component: {fileID: 2031250131757881154}
   - component: {fileID: 2426122952975840398}
-  - component: {fileID: 2755606139425844333}
   m_Layer: 18
   m_Name: DamageFeedback
   m_TagString: Untagged
@@ -4181,7 +4183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 2426122952975840398}
-  - {fileID: 2755606139425844333}
   InitializationMode: 2
   DebugActive: 0
 --- !u!114 &2426122952975840398
@@ -4210,29 +4211,6 @@ MonoBehaviour:
   FlickerDuration: 0.2
   FlickerOctave: 0.1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
---- !u!114 &2755606139425844333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4614583592547331609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86fec89a17b5b2347a82ae1c77aced3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 0
-  Label: Freeze Frame
-  Chance: 100
-  Timing:
-    InitialDelay: 0
-    CooldownDuration: 0
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-  DebugActive: 0
-  FreezeFrameDuration: 0.005
 --- !u!1 &4636815102113133519
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,6 +5095,81 @@ Transform:
   m_Father: {fileID: 4202885896346711643}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6422079131416121782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2231454342586728204}
+  - component: {fileID: 8731717128390719621}
+  - component: {fileID: 1659560491217872522}
+  m_Layer: 0
+  m_Name: DeathFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2231454342586728204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422079131416121782}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.7142857, y: 0.7142857, z: 0.7142857}
+  m_Children: []
+  m_Father: {fileID: 2728345388317665893}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8731717128390719621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422079131416121782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks:
+  - {fileID: 1659560491217872522}
+  InitializationMode: 2
+  DebugActive: 0
+--- !u!114 &1659560491217872522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422079131416121782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce85594d78e41442a7bfb6ed40e10a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Instantiate Object
+  Chance: 100
+  Timing:
+    InitialDelay: 0
+    CooldownDuration: 0
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+  DebugActive: 0
+  VfxToInstantiate: {fileID: 1589406397015196560, guid: 24e30cfb91dcc3f43baba6d74f470eaa,
+    type: 3}
+  VfxPositionOffset: {x: 0, y: 0, z: 0}
+  VfxCreateObjectPool: 1
+  VfxObjectPoolSize: 10
 --- !u!1 &6527408454624578357
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,6 +5274,7 @@ GameObject:
   - component: {fileID: 3775845404190280959}
   - component: {fileID: 6608477954265446160}
   - component: {fileID: 3343667821462328172}
+  - component: {fileID: 5036224302892021876}
   m_Layer: 18
   m_Name: GloryKillFeedback
   m_TagString: Untagged
@@ -5236,7 +5290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6754945850169584113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.66428566, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.7142857, y: 0.7142857, z: 0.7142857}
   m_Children: []
   m_Father: {fileID: 2728345388317665893}
@@ -5256,6 +5310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 3343667821462328172}
+  - {fileID: 5036224302892021876}
   - {fileID: 6608477954265446160}
   InitializationMode: 2
   DebugActive: 0
@@ -5312,6 +5367,29 @@ MonoBehaviour:
   ZoomFieldOfView: 40
   ZoomTransitionDuration: 0.1
   ZoomDuration: 1
+--- !u!114 &5036224302892021876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754945850169584113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fec89a17b5b2347a82ae1c77aced3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Freeze Frame
+  Chance: 100
+  Timing:
+    InitialDelay: 0
+    CooldownDuration: 0
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+  DebugActive: 0
+  FreezeFrameDuration: 0.05
 --- !u!1 &6944540492554396961
 GameObject:
   m_ObjectHideFlags: 0
