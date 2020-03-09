@@ -12,7 +12,7 @@ public class EnemyGloryKill : MonoBehaviour
     [SerializeField] private GameObject _gore;
     [SerializeField] private MMFeedbacks _gloryKillFeedback;
     [SerializeField] private AP_Reference _enemyPoolRef;
-    private GameObject newGore;
+    private GameObject _newGore;
 
     public void GloryKill()
     {
@@ -23,7 +23,7 @@ public class EnemyGloryKill : MonoBehaviour
         GameManager.instance.AddScore(100);
         MMVibrationManager.Haptic(HapticTypes.MediumImpact);
         CameraShaker.Instance.ShakeOnce(10f, 10f, .1f, .5f);
-        GameObject newGore = MF_AutoPool.Spawn(_gore, transform.position, transform.rotation);
+        _newGore = MF_AutoPool.Spawn(_gore, transform.position, transform.rotation);
         StartCoroutine(Despawn());
         _enemy.stats.CurrentHealth = 0;
     }
@@ -31,9 +31,7 @@ public class EnemyGloryKill : MonoBehaviour
     private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(2);
-        MF_AutoPool.Despawn(newGore);
-        /*_enemy.SetActive(false);
-        MF_AutoPool.Despawn(_enemyPoolRef);*/
+        MF_AutoPool.Despawn(_newGore);
     }
 
     private void OnTriggerEnter(Collider other)

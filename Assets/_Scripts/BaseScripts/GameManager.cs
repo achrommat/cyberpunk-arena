@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MMFeedbacks _lastEnemyDeathFeedback;
 
     [SerializeField] private EnemyManager _enemyManager;
-
+    
     private NavMeshSurface surface;
 
     void Start()
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        _scoreText.text = Score.ToString();
+        _scoreText.text = Score.ToString();        
     }
 
     public void AddScore(int cost)

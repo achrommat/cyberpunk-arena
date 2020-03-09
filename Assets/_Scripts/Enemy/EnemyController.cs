@@ -127,7 +127,7 @@ public class EnemyController : BaseCharacterController
         {
             _wasStunned = true;
             int chance = Random.Range(0, 100);
-            if (chance >= 65)
+            if (chance >= 70)
             {
                 StartCoroutine(OnStunned());
             }

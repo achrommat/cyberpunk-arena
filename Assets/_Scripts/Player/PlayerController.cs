@@ -120,12 +120,17 @@ public class PlayerController : BaseCharacterController
         actualRespawnTime -= Time.deltaTime;
         if (actualRespawnTime <= 0 && respawnTarget != null)
         {
-            DeathEvent.Invoke();
             actualRespawnTime = respawnTime;
-            stats.CurrentHealth = stats.Health;
-            transform.position = respawnTarget;
-            Instantiate(RespawnVFX, transform.position, transform.rotation);
-            ShouldGetPerks = true;
+            RestartLevel();
         }
+    }
+
+    public void RestartLevel()
+    {
+        DeathEvent.Invoke();
+        stats.CurrentHealth = stats.Health;
+        transform.position = respawnTarget;
+        Instantiate(RespawnVFX, transform.position, transform.rotation);
+        ShouldGetPerks = true;
     }
 }
