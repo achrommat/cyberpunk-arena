@@ -24,13 +24,19 @@ public class PlayerDash : MonoBehaviour
     private float _touchCooldown = 0.5f;
     private int _touchCount = 0;
 
+    private int _touchNeeded = 2;
+
     void Update()
     {
-        HandleInput();
+       // HandleInput();
     }
 
-    private void HandleInput()
+    /*private void HandleInput()
     {
+#if UNITY_EDITOR
+        _touchNeeded = 1;
+#endif
+
         if (Input.GetButtonDown("Fire1"))
         {
             if (_touchCooldown > 0 && _touchCount == 1)
@@ -51,7 +57,7 @@ public class PlayerDash : MonoBehaviour
         {
             _touchCount = 0;
         }
-    }
+    }*/
 
     public void DashStart()
     {

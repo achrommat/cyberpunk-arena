@@ -5593,6 +5593,7 @@ GameObject:
   - component: {fileID: 1846166051350724770}
   - component: {fileID: 1934916700}
   - component: {fileID: 873699809}
+  - component: {fileID: 1552202015}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -5967,13 +5968,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2987763626810127380}
-  _dashDistance: 15
-  _cooldown: 2
-  _dashDuration: 1
+  _dashDistance: 13
+  _cooldown: 1.5
+  _dashDuration: 0.8
   _dashVFX: {fileID: 1854854489728914, guid: 02b54e7493a03d142ad3832c158f0e69, type: 3}
   _dash: {fileID: 372235366}
   _dashRefPool: {fileID: 691925335295426092, guid: 02b54e7493a03d142ad3832c158f0e69,
     type: 3}
+--- !u!114 &1552202015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987763626810127376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097c9ed2343d78f4cb6b3f8d7012d2ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 30c61affaebf231449736261674b8ff6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 873699809}
+        m_MethodName: DashStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2987836840543989358
 GameObject:
   m_ObjectHideFlags: 0

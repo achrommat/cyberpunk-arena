@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 6748528565587219318}
   - component: {fileID: 6748528565587219317}
   - component: {fileID: 6748528565587219316}
+  - component: {fileID: 1648162730}
   m_Layer: 5
   m_Name: Right Floating Joystick
   m_TagString: Untagged
@@ -479,6 +480,32 @@ MonoBehaviour:
   background: {fileID: 6748528566863612350}
   backsprite: {fileID: 6748528565212654546}
   handle: {fileID: 6748528566687860778}
+--- !u!114 &1648162730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748528565587219314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf6627fefc9d4448bf7ebeeafd30d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDoubleTapped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 30c61affaebf231449736261674b8ff6, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6748528565588712872
 GameObject:
   m_ObjectHideFlags: 0
