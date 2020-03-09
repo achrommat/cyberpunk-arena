@@ -355,10 +355,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolBlock:
-    size: 20
+    size: 100
     emptyBehavior: 0
-    maxSize: 40
-    maxEmptyBehavior: 0
+    maxSize: 200
+    maxEmptyBehavior: 1
     prefab: {fileID: 1052408100772012043, guid: 88b50e4036df6664e82915decf782a5b,
       type: 3}
     printLogOnQuit: 0
