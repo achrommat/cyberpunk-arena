@@ -7,12 +7,21 @@ public class DoubleTapOnCanvas : MonoBehaviour, IPointerClickHandler
 {
     public UnityEvent OnDoubleTapped;
     private int tapCount;
+    private float lastTimeClick;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2)
+        float currentTimeClick = eventData.clickTime;
+        if (Mathf.Abs(currentTimeClick - lastTimeClick) < 0.75f)
         {
             OnDoubleTapped.Invoke();
         }
+        lastTimeClick = currentTimeClick;
+
+
+       /* if (eventData.clickCount == 2)
+        {
+            OnDoubleTapped.Invoke();
+        }*/
     }
 }
