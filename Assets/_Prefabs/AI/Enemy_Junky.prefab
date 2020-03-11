@@ -4888,7 +4888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
   attackDistance: 5
-  repeatAttackDelay: 0.8
+  repeatAttackDelay: 1
   attackAngle: 3
   weaponController: {fileID: 4598265743998855951}
   character: {fileID: 684642383039903003}

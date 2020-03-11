@@ -24,6 +24,7 @@ public class CharacterPanelItemView : MonoBehaviour
         _characterData = character;
         Description.text = character.Description;
 
+        //Button.onClick.AddListener(ButtonClicked);
         if (!IsInitialized)
         {
             Button.onClick.AddListener(ButtonClicked);

@@ -443,6 +443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
         type: 3}
+      propertyPath: _maxEnemyCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977190349555128977, guid: 79e98d15494058045a9ed72973b8dcb2,
+        type: 3}
       propertyPath: _numOfTotalWaves
       value: 5
       objectReference: {fileID: 0}

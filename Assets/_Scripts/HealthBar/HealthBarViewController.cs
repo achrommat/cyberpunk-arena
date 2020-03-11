@@ -19,7 +19,7 @@ public class HealthBarViewController : MonoBehaviour
 
     public void InitializeItems()
     {
-        ItemCount = (int) PlayerStats.Health;
+        ItemCount = (int) PlayerCharacter.Character.BaseHealth;
         
         for (int i = 0; i < ItemCount; i++)
         {
@@ -43,7 +43,6 @@ public class HealthBarViewController : MonoBehaviour
     {
         ItemCount = 0;
         _items = new List<HealthBarItemView>();
-        Debug.Log(_items.Count);
         HealthBarItemView[] currentItems = transform.GetComponentsInChildren<HealthBarItemView>();
         foreach (HealthBarItemView item in currentItems)
         {
