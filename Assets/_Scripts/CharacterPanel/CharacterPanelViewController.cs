@@ -47,7 +47,6 @@ public class CharacterPanelViewController : MonoBehaviour
         }
 
         InitializeCharacterPanelItem();
-
     }
 
     private void InitializeCharacterPanelItem()

@@ -63,6 +63,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (_canDash)
         {
+            //_player.TemporaryInvulnerability();
             _player.rb.velocity = Vector3.zero;
             _player.Dash = true;
             _player.rb.AddForce(transform.forward * _dashDistance, ForceMode.Impulse);

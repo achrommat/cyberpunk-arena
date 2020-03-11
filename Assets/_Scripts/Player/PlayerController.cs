@@ -3,6 +3,7 @@ using UnityEngine;
 using MoreMountains.TopDownEngine;
 using MoreMountains.Tools;
 using UnityEngine.Events;
+using System.Collections;
 
 public class PlayerController : BaseCharacterController
 {
@@ -26,6 +27,8 @@ public class PlayerController : BaseCharacterController
     public PlayerCharacter Character;
 
     [SerializeField] private PlayerDash _dash;
+
+    public bool IsInvulnerable;
 
     protected void FixedUpdate()
     {
@@ -133,4 +136,17 @@ public class PlayerController : BaseCharacterController
         Instantiate(RespawnVFX, transform.position, transform.rotation);
         ShouldGetPerks = true;
     }
+
+    public void TemporaryInvulnerability()
+    {
+        IsInvulnerable = true;
+        StartCoroutine(ResetInvulnerability());
+    }
+
+    private IEnumerator ResetInvulnerability()
+    {
+        yield return new WaitForSeconds(0.5f);
+        IsInvulnerable = false;
+    }
+
 }

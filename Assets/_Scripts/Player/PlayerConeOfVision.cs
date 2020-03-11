@@ -20,7 +20,7 @@ public class PlayerConeOfVision : MMConeOfVision
         {
             // проверка жива ли цель
             EnemyController enemyController = collider.GetComponent<EnemyController>();
-            if (!enemyController.stats.IsAlive())
+            if (!enemyController.stats.IsAlive() && !enemyController._isStunned)
             {
                 continue;
             }

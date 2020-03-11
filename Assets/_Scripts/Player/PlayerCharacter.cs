@@ -52,6 +52,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         _player.stats.Health = Character.BaseHealth;
         _player.stats.CurrentHealth = Character.BaseHealth;
+        HealthBarViewController.PlayerStats = _player.stats;
+
         _player.stats.Accuracy = Character.BaseAccuracy;
         _player.stats.BulletSpeed = Character.BaseBulletSpeed;
         _player.stats.RunSpeed = Character.BaseSpeed;

@@ -2763,7 +2763,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3560922358492726976}
+  - {fileID: 3565630762151943263}
   - {fileID: 889344027680797533}
   - {fileID: 8198850078807707367}
   m_Father: {fileID: 0}
@@ -2782,8 +2782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Devotion
-  damage: 1
-  bulletForce: 35
+  damage: 0.5
+  bulletForce: 40
   multiShot: 0
   scatter: 15
   currentScatter: 0
@@ -2797,7 +2797,7 @@ MonoBehaviour:
   shootPosition: {fileID: 0}
   ConeRadius: 10
   ConeAngle: 65
-  audioSource: {fileID: 3485435163987684094}
+  audioSource: {fileID: 3565630762151943488}
   muzzleFlash: {fileID: 5708824609408234659, guid: d229a2dee4719ee4a9fab3f1062ec2e0,
     type: 3}
   muzzleFlashPos: {fileID: 8198850078807707367}
@@ -2962,13 +2962,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ef251dfbcaf9b438c0eb0ed72ed92f, type: 3}
---- !u!82 &3485435163987684094 stripped
+--- !u!82 &3565630762151943488 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82589376883831898, guid: 41ef251dfbcaf9b438c0eb0ed72ed92f,
     type: 3}
   m_PrefabInstance: {fileID: 3565630762151943844}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3560922358492726976 stripped
+--- !u!4 &3565630762151943263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4884365002741860, guid: 41ef251dfbcaf9b438c0eb0ed72ed92f,
     type: 3}

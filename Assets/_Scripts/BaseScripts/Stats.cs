@@ -36,6 +36,19 @@ public class Stats : MonoBehaviour, IDamageable
         if (_player)
         {
             MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
+
+            if (HealthBarViewController.CurrentItem.Fill.fillAmount <= amount)
+            {
+                HealthBarViewController.CurrentItem.Fill.fillAmount -= amount;
+                HealthBarViewController.CurrentItemIndex++;
+                HealthBarViewController.SetCurrentItem();
+            }
+            else
+            {
+                HealthBarViewController.CurrentItem.Fill.fillAmount -= amount;
+            }
+
+            //_player.TemporaryInvulnerability();
         }
 
         CurrentHealth -= amount;

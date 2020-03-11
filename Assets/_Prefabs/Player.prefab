@@ -5839,6 +5839,7 @@ MonoBehaviour:
         m_CallState: 2
   Character: {fileID: 1846166051350724770}
   _dash: {fileID: 873699809}
+  IsInvulnerable: 0
 --- !u!114 &2044748532898430443
 MonoBehaviour:
   m_ObjectHideFlags: 0

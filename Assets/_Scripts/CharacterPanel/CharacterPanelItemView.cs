@@ -12,6 +12,7 @@ public class CharacterPanelItemView : MonoBehaviour
 
     [SerializeField] private Character _characterData;
     public UnityEvent OnCharacterChosen;
+    public bool IsInitialized = false;
 
     public Perk[] Perks;
 
@@ -23,7 +24,11 @@ public class CharacterPanelItemView : MonoBehaviour
         _characterData = character;
         Description.text = character.Description;
 
-        Button.onClick.AddListener(ButtonClicked);
+        if (!IsInitialized)
+        {
+            Button.onClick.AddListener(ButtonClicked);
+            IsInitialized = true;
+        }       
     }
 
     private void ButtonClicked()
