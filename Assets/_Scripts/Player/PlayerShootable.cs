@@ -11,7 +11,8 @@ public class PlayerShootable : Shootable
 
     public override void Attack()
     {
-        if (weaponController.currentWeapon.currentEnergy > 0 && Time.time >= nextAttackTime)
+        //if (weaponController.currentWeapon.currentEnergy > 0 && Time.time >= nextAttackTime)
+        if(Time.time >= nextAttackTime)
         {
             if (weaponController.currentWeapon.multiShot)
             {
