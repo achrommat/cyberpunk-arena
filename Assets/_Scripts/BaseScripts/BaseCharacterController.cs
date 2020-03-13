@@ -112,7 +112,7 @@ public class BaseCharacterController : MonoBehaviour
         animator.SetFloat("Speed", stats.CurrentRunSpeed);
         animator.SetBool("Aiming", aiming);
         animator.SetBool("OnGround", onGround);
-        animator.SetBool("Dash", Dash);
+        //animator.SetBool("Dash", Dash);
         animator.SetInteger("Dash_Index", DashIndex);
         animator.SetBool("Dead", !stats.IsAlive());
         animator.SetBool("IsStunned", _isStunned);

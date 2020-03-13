@@ -5969,9 +5969,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2987763626810127380}
-  _dashDistance: 13
+  _dashDistance: 20
   _cooldown: 1.5
-  _dashDuration: 0.8
+  _dashDuration: 0.5
   _dashVFX: {fileID: 1854854489728914, guid: 02b54e7493a03d142ad3832c158f0e69, type: 3}
   _dash: {fileID: 372235366}
   _dashRefPool: {fileID: 691925335295426092, guid: 02b54e7493a03d142ad3832c158f0e69,

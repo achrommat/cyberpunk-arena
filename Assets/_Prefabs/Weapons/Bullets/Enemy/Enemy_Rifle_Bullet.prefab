@@ -9993,7 +9993,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.58360845, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14542,7 +14542,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sawblade: 0
   isEnemy: 0
-  VFXpool: {fileID: 0}
   damage: 0.5
   rb: {fileID: 5397624510486692619}
   poolRef: {fileID: -2318758723162156369}
